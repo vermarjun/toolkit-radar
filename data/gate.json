@@ -1,0 +1,1325 @@
+[
+  {
+    "id": 9,
+    "app": "Copper",
+    "pages": [
+      {
+        "url": "https://copper.com/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "crm resources login get demo try copper free win customers for life. start free, no credit card required. monthly annual up to 26% off \ud83c\udf89 basic $ 23 $"
+        ],
+        "final_url": "https://www.copper.com/pricing",
+        "chars": 3657,
+        "screenshot": "evidence/copper-pricing.jpg"
+      },
+      {
+        "url": "https://developer.copper.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developer.copper.com/",
+        "chars": 2441,
+        "screenshot": "evidence/copper-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  },
+  {
+    "id": 10,
+    "app": "DealCloud",
+    "pages": [
+      {
+        "url": "https://api.docs.dealcloud.com/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://api.docs.dealcloud.com/pricing",
+        "chars": 33,
+        "screenshot": "evidence/dealcloud-pricing.jpg"
+      },
+      {
+        "url": "https://api.docs.dealcloud.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://api.docs.dealcloud.com/",
+        "chars": 278,
+        "screenshot": "evidence/dealcloud-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 12,
+    "app": "Intercom",
+    "pages": [
+      {
+        "url": "https://intercom.com/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "product customers resources pricing log in contact sales view demo start free trial fin ai agent get fin and intercom for a single, fully integrate",
+          "outcome \u200b $ \u200b 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 \u200b \u200b per seat/mo start free trial key features include fin for service, sales & ecommerce messeng",
+          "outcome \u200b $ \u200b 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 \u200b \u200b per seat/mo start free trial get a demo every essential feature, plus multiple team inboxes"
+        ],
+        "final_url": "https://www.intercom.com/pricing",
+        "chars": 5499,
+        "screenshot": "evidence/intercom-pricing.jpg"
+      },
+      {
+        "url": "https://developers.intercom.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developers.intercom.com/",
+        "chars": 1783,
+        "screenshot": "evidence/intercom-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  },
+  {
+    "id": 14,
+    "app": "Front",
+    "pages": [
+      {
+        "url": "https://front.com/pricing",
+        "status": 200,
+        "signal": "approval_required",
+        "why": "credentials exist but are released after a review",
+        "quotes": [
+          "bout front\u2019s security, privacy and compliance practices. you also may request access to our security documentation by reaching out to your sales represent"
+        ],
+        "final_url": "https://front.com/pricing",
+        "chars": 10686,
+        "screenshot": "evidence/front-pricing.jpg"
+      },
+      {
+        "url": "https://dev.frontapp.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://dev.frontapp.com/docs/welcome",
+        "chars": 9814,
+        "screenshot": "evidence/front-home.jpg"
+      }
+    ],
+    "browser_access": "approval_required"
+  },
+  {
+    "id": 15,
+    "app": "Pylon",
+    "pages": [
+      {
+        "url": "https://usepylon.com/pricing",
+        "status": 200,
+        "signal": "partner_gated",
+        "why": "the only route to a credential is a human at the vendor",
+        "quotes": [
+          "rust & security privacy policy terms of service company careers about talk to us compare pylon vs zendesk pylon vs intercom pylon vs plain pylon vs fr",
+          "product enterprise integrations customers resources sign in book a demo schedule a personalized 30-minute demo all fields are required how di"
+        ],
+        "final_url": "https://www.usepylon.com/schedule-demo",
+        "chars": 1135,
+        "screenshot": "evidence/pylon-pricing.jpg"
+      },
+      {
+        "url": "https://docs.usepylon.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://docs.usepylon.com/pylon-docs",
+        "chars": 2551,
+        "screenshot": "evidence/pylon-home.jpg"
+      }
+    ],
+    "browser_access": "partner_gated"
+  },
+  {
+    "id": 18,
+    "app": "Help Scout",
+    "pages": [
+      {
+        "url": "https://helpscout.com/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "skip to content get a 1:1 demo start for free product inbox every support channel, one place ai scale your team's c",
+          "product tour explore at your own pace product updates get a 1:1 demo start for free solutions education saas manufacturing & logistics real estate proper",
+          "vices insurance professional services customer stories get a 1:1 demo start for free resources help scout blog tips and actionable content guides & tools"
+        ],
+        "final_url": "https://www.helpscout.com/pricing/",
+        "chars": 13002,
+        "screenshot": "evidence/help-scout-pricing.jpg"
+      },
+      {
+        "url": "https://docs.helpscout.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://docs.helpscout.com/",
+        "chars": 3123,
+        "screenshot": "evidence/help-scout-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  },
+  {
+    "id": 20,
+    "app": "Gladly",
+    "pages": [
+      {
+        "url": "https://gladly.com/pricing",
+        "status": 200,
+        "signal": "partner_gated",
+        "why": "the only route to a credential is a human at the vendor",
+        "quotes": [
+          "mo to show how gladly instantly transforms your customer experiences. request a demo ask ai for a summary of gladly product platform overview product tour",
+          "ry blog glossary events and webinars gladly connect live gladly about become a partner careers contact stay informed follow gladly terms of service privacy"
+        ],
+        "final_url": "https://www.gladly.ai/",
+        "chars": 4864,
+        "screenshot": "evidence/gladly-pricing.jpg"
+      },
+      {
+        "url": "https://developer.gladly.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developer.gladly.com/",
+        "chars": 1283,
+        "screenshot": "evidence/gladly-home.jpg"
+      }
+    ],
+    "browser_access": "partner_gated"
+  },
+  {
+    "id": 21,
+    "app": "Slack",
+    "pages": [
+      {
+        "url": "https://slack.com/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "usinesses rely on slack free a simpler way to chat and collaborate \u20b90 free forever get started 90 days of message history up to ten apps 1:1 meetings 1:"
+        ],
+        "final_url": "https://slack.com/intl/en-in/pricing",
+        "chars": 6254,
+        "screenshot": "evidence/slack-pricing.jpg"
+      },
+      {
+        "url": "https://docs.slack.dev",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://docs.slack.dev/",
+        "chars": 2083,
+        "screenshot": "evidence/slack-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  },
+  {
+    "id": 25,
+    "app": "Pumble",
+    "pages": [
+      {
+        "url": "https://pumble.com/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "nlimited users \u2022 unlimited chat history \u2022 free forever upgrade now or start free trial communication and collaboration software for businesses book a",
+          "es for free for 7 days, no credit card required. you can activate the free trial on the upgrade page. if you need more time, be sure to contact our sa",
+          "ed users \u2022 unlimited chat history \u2022 free forever upgrade now or start free trial communication and collaboration software for businesses book a demo l"
+        ],
+        "final_url": "https://pumble.com/pricing",
+        "chars": 16978,
+        "screenshot": "evidence/pumble-pricing.jpg"
+      },
+      {
+        "url": "https://pumble.com",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "e in your browser also available on mac windows linux android ios web free forever unlimited users unlimited channels unlimited message history see upgr",
+          "rt chatting with your team unlimited users \u2022 unlimited chat history \u2022 free forever create free account communication and collaboration software for busi"
+        ],
+        "final_url": "https://pumble.com/",
+        "chars": 6769,
+        "screenshot": "evidence/pumble-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  },
+  {
+    "id": 26,
+    "app": "Discord",
+    "pages": [
+      {
+        "url": "https://discord.com/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://discord.com/pricing",
+        "chars": 660,
+        "screenshot": "evidence/discord-pricing.jpg"
+      },
+      {
+        "url": "https://docs.discord.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://docs.discord.com/developers/intro",
+        "chars": 1986,
+        "screenshot": "evidence/discord-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 28,
+    "app": "WhatsApp Business",
+    "pages": [
+      {
+        "url": "https://developers.facebook.com/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developers.facebook.com/pricing",
+        "chars": 502,
+        "screenshot": "evidence/whatsapp-business-pricing.jpg"
+      },
+      {
+        "url": "https://developers.facebook.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developers.facebook.com/",
+        "chars": 4092,
+        "screenshot": "evidence/whatsapp-business-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 29,
+    "app": "Aircall",
+    "pages": [
+      {
+        "url": "https://aircall.io/pricing",
+        "status": 200,
+        "signal": "approval_required",
+        "why": "credentials exist but are released after a review",
+        "quotes": [
+          "t, scalable voice support integrated seamlessly with salesforce voice request access ($30/license) full call controls in the omni-channel widget call pop-"
+        ],
+        "final_url": "https://aircall.io/pricing/",
+        "chars": 9974,
+        "screenshot": "evidence/aircall-pricing.jpg"
+      },
+      {
+        "url": "https://aircall.io",
+        "status": 200,
+        "signal": "partner_gated",
+        "why": "the only route to a credential is a human at the vendor",
+        "quotes": [
+          "why aircall solutions resources partners company pricing login talk to sales get free access en customer communications, evolved with ai that hand",
+          "with ai that handles customer interactions, end to end. try for free talk to sales 23,000+ companies trust aircall to power their customer communication",
+          "get your copy upgrade your customer conversations today. try for free talk to sales enterprise-grade security & compliance soc2 type ii gdpr eu privacy h"
+        ],
+        "final_url": "https://aircall.io/",
+        "chars": 4207,
+        "screenshot": "evidence/aircall-home.jpg"
+      }
+    ],
+    "browser_access": "approval_required"
+  },
+  {
+    "id": 31,
+    "app": "Google Ads",
+    "pages": [
+      {
+        "url": "https://developers.google.com/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developers.google.com/pricing",
+        "chars": 505,
+        "screenshot": "evidence/google-ads-pricing.jpg"
+      },
+      {
+        "url": "https://developers.google.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developers.google.com/",
+        "chars": 4133,
+        "screenshot": "evidence/google-ads-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 32,
+    "app": "Meta Ads",
+    "pages": [
+      {
+        "url": "https://developers.facebook.com/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developers.facebook.com/pricing",
+        "chars": 502,
+        "screenshot": "evidence/meta-ads-pricing.jpg"
+      },
+      {
+        "url": "https://developers.facebook.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developers.facebook.com/",
+        "chars": 4092,
+        "screenshot": "evidence/meta-ads-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 33,
+    "app": "LinkedIn Ads",
+    "pages": [
+      {
+        "url": "https://learn.microsoft.com/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://learn.microsoft.com/en-us/pricing",
+        "chars": 656,
+        "screenshot": "evidence/linkedin-ads-pricing.jpg"
+      },
+      {
+        "url": "https://mcpservers.org",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://mcpservers.org/",
+        "chars": 7292,
+        "screenshot": "evidence/linkedin-ads-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 34,
+    "app": "GoHighLevel",
+    "pages": [
+      {
+        "url": "https://highlevel.stoplight.io/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://highlevel.stoplight.io/welcome",
+        "chars": 110,
+        "screenshot": "evidence/gohighlevel-pricing.jpg"
+      },
+      {
+        "url": "https://help.gohighlevel.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://help.gohighlevel.com/support/home",
+        "chars": 1176,
+        "screenshot": "evidence/gohighlevel-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 37,
+    "app": "systeme.io",
+    "pages": [
+      {
+        "url": "https://systeme.io/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "why systeme.io? features resources pricing sign in start for free now en \u2304 choose your plan monthly billing annual billing free access",
+          "contacts. perfect for testing the platform $0 no credit card required start for free startup expand your capacity with up to 10 funnels, 10 automation rul",
+          "unnels, 10 automation rules, 3 custom domains, and 5,000 contacts $17 start for free webinar unlock evergreen webinars and get up to 50 funnels, 100 autom"
+        ],
+        "final_url": "https://systeme.io/pricing",
+        "chars": 7119,
+        "screenshot": "evidence/systeme-io-pricing.jpg"
+      },
+      {
+        "url": "https://help.systeme.io",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://help.systeme.io/",
+        "chars": 949,
+        "screenshot": "evidence/systeme-io-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  },
+  {
+    "id": 38,
+    "app": "Pinterest",
+    "pages": [
+      {
+        "url": "https://developers.pinterest.com/pricing",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developers.pinterest.com/",
+        "chars": 1512,
+        "screenshot": "evidence/pinterest-pricing.jpg"
+      },
+      {
+        "url": "https://developers.pinterest.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developers.pinterest.com/",
+        "chars": 1512,
+        "screenshot": "evidence/pinterest-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 39,
+    "app": "Threads (Meta)",
+    "pages": [
+      {
+        "url": "https://developers.facebook.com/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developers.facebook.com/pricing",
+        "chars": 502,
+        "screenshot": "evidence/threads-meta-pricing.jpg"
+      },
+      {
+        "url": "https://developers.facebook.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developers.facebook.com/",
+        "chars": 4092,
+        "screenshot": "evidence/threads-meta-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 41,
+    "app": "Shopify",
+    "pages": [
+      {
+        "url": "https://shopify.dev/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://shopify.dev/pricing",
+        "chars": 123,
+        "screenshot": "evidence/shopify-pricing.jpg"
+      },
+      {
+        "url": "https://shopify.dev",
+        "status": 200,
+        "signal": "approval_required",
+        "why": "credentials exist but are released after a review",
+        "quotes": [
+          "launch your app or theme launch your app or theme when you're ready, submit your app or custom theme so merchants can find, buy, and install it. review th",
+          "equirements and theme store requirements before you submit. app store submit your app so merchants can find and buy it through search or personalized recom"
+        ],
+        "final_url": "https://shopify.dev/docs",
+        "chars": 2666,
+        "screenshot": "evidence/shopify-home.jpg"
+      }
+    ],
+    "browser_access": "approval_required"
+  },
+  {
+    "id": 44,
+    "app": "Salesforce Commerce Cloud",
+    "pages": [
+      {
+        "url": "https://developer.salesforce.com/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developer.salesforce.com/pricing",
+        "chars": 0,
+        "screenshot": "evidence/salesforce-commerce-cloud-pricing.jpg"
+      },
+      {
+        "url": "https://developer.salesforce.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developer.salesforce.com/",
+        "chars": 4415,
+        "screenshot": "evidence/salesforce-commerce-cloud-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "pages": [
+      {
+        "url": "https://developer.adobe.com/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developer.adobe.com/pricing",
+        "chars": 685,
+        "screenshot": "evidence/magento-adobe-commerce-pricing.jpg"
+      },
+      {
+        "url": "https://developer.adobe.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developer.adobe.com/",
+        "chars": 2844,
+        "screenshot": "evidence/magento-adobe-commerce-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 46,
+    "app": "Squarespace",
+    "pages": [
+      {
+        "url": "https://developers.squarespace.com/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developers.squarespace.com/pricing",
+        "chars": 269,
+        "screenshot": "evidence/squarespace-pricing.jpg"
+      },
+      {
+        "url": "https://support.squarespace.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://support.squarespace.com/hc/en-us",
+        "chars": 366,
+        "screenshot": "evidence/squarespace-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 47,
+    "app": "Ecwid",
+    "pages": [
+      {
+        "url": "https://api-docs.ecwid.com/pricing",
+        "status": 200,
+        "signal": "approval_required",
+        "why": "credentials exist but are released after a review",
+        "quotes": [
+          "learn app settings develop public apps faq about public applications submit your app idea get human support ask your questions and get answers from our ap"
+        ],
+        "final_url": "https://docs.ecwid.com/",
+        "chars": 2850,
+        "screenshot": "evidence/ecwid-pricing.jpg"
+      },
+      {
+        "url": "https://docs.ecwid.com",
+        "status": 200,
+        "signal": "approval_required",
+        "why": "credentials exist but are released after a review",
+        "quotes": [
+          "learn app settings develop public apps faq about public applications submit your app idea get human support ask your questions and get answers from our ap"
+        ],
+        "final_url": "https://docs.ecwid.com/",
+        "chars": 2850,
+        "screenshot": "evidence/ecwid-home.jpg"
+      }
+    ],
+    "browser_access": "approval_required"
+  },
+  {
+    "id": 49,
+    "app": "Amazon Selling Partner",
+    "pages": [
+      {
+        "url": "https://developer-docs.amazon.com/pricing",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developer-docs.amazon/sp-api/page/404",
+        "chars": 804,
+        "screenshot": "evidence/amazon-selling-partner-pricing.jpg"
+      },
+      {
+        "url": "https://sell.amazon.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://sell.amazon.com/",
+        "chars": 6765,
+        "screenshot": "evidence/amazon-selling-partner-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 50,
+    "app": "fanbasis",
+    "pages": [
+      {
+        "url": "https://fanbasis.com/pricing",
+        "status": 200,
+        "signal": "approval_required",
+        "why": "credentials exist but are released after a review",
+        "quotes": [
+          "e to a full business account with routing numbers and up to 4.6% apy. join the waitlist faq's need more answers? here are answers to our most asked questions"
+        ],
+        "final_url": "https://commas.com/",
+        "chars": 6572,
+        "screenshot": "evidence/fanbasis-pricing.jpg"
+      },
+      {
+        "url": "https://www.linkedin.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://www.linkedin.com/",
+        "chars": 2802,
+        "screenshot": "evidence/fanbasis-home.jpg"
+      }
+    ],
+    "browser_access": "approval_required"
+  },
+  {
+    "id": 52,
+    "app": "SE Ranking",
+    "pages": [
+      {
+        "url": "https://seranking.com/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "lutions tools resources pricing api & mcp en sign in see product tour start free trial get discovered across traditional search and ai answers monthly",
+          "geo for marketing teams with repeatable delivery $103.20 $129.00 /mo start free 14-day trial no credit card required 10 projects & 1 manager seat 2k",
+          "tion and collaboration for multi-client seo + geo $223.20 $279.00 /mo start free 14-day trial no credit card required 30 projects & 3 manager seats 5k"
+        ],
+        "final_url": "https://seranking.com/subscription.html",
+        "chars": 8877,
+        "screenshot": "evidence/se-ranking-pricing.jpg"
+      },
+      {
+        "url": "https://seranking.com",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "lutions tools resources pricing api & mcp en sign in see product tour start free trial don\u2019t just track visibility. validate it. give your team the cr",
+          "ext to prove the value of every decision across seo, geo, and social. start free trial see product tour no credit card required trusted by 40,000+ age",
+          "sibility tracker ai overviews tracker chatgpt tracker ai mode tracker start free trial power up your stack, workflows, and reporting with se ranking d"
+        ],
+        "final_url": "https://seranking.com/",
+        "chars": 7915,
+        "screenshot": "evidence/se-ranking-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  },
+  {
+    "id": 53,
+    "app": "Ahrefs",
+    "pages": [
+      {
+        "url": "https://ahrefs.com/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "/ schedule posts questions? we have answers do you offer discounts or free trials? we never run discounts. but if you're a website owner, you can sign",
+          "fter your paid subscription ends, you\u2019ll be switched to a free ahrefs free plan with free limited access to site explorer & site audit. how can i swi"
+        ],
+        "final_url": "https://ahrefs.com/pricing",
+        "chars": 10625,
+        "screenshot": "evidence/ahrefs-pricing.jpg"
+      },
+      {
+        "url": "https://docs.ahrefs.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://docs.ahrefs.com/",
+        "chars": 2417,
+        "screenshot": "evidence/ahrefs-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  },
+  {
+    "id": 57,
+    "app": "Bright Data",
+    "pages": [
+      {
+        "url": "https://brightdata.com/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "m trust center bright sdk bright initiative docs log in contact sales start free trial bright data's products pricing designed to meet enterprise comp",
+          "t center bright sdk bright initiative docs log in contact sales start free trial bright data's products pricing designed to meet enterprise companies'"
+        ],
+        "final_url": "https://brightdata.com/pricing",
+        "chars": 5476,
+        "screenshot": "evidence/bright-data-pricing.jpg"
+      },
+      {
+        "url": "https://docs.brightdata.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://docs.brightdata.com/introduction",
+        "chars": 2496,
+        "screenshot": "evidence/bright-data-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  },
+  {
+    "id": 58,
+    "app": "Sherlock",
+    "pages": [
+      {
+        "url": "https://github.com/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "rial that includes github enterprise, copilot, and advanced security. start free for 30 days free the basics for individuals and organizations $ 0 usd",
+          "do with github. that\u2019s why we've packed all of it into a single risk-free trial that includes github enterprise, copilot, and advanced security. star",
+          ", and flexible deployment starting at $ 21 usd per user/month start a free trial contact sales everything included in team, plus... data residency ent"
+        ],
+        "final_url": "https://github.com/pricing",
+        "chars": 7044,
+        "screenshot": "evidence/sherlock-pricing.jpg"
+      },
+      {
+        "url": "https://apify.com",
+        "status": 200,
+        "signal": "partner_gated",
+        "why": "the only route to a credential is a human at the vendor",
+        "quotes": [
+          "rs jobs we're hiring! join our discord talk to other builders pricing contact sales log in get started new apify ai beta is live. find and run the right",
+          "website, at any scale. 99.95% uptime. soc2, gdpr, and ccpa compliant. contact sales learn more we looked at several providers, and apify was the most com"
+        ],
+        "final_url": "https://apify.com/",
+        "chars": 8196,
+        "screenshot": "evidence/sherlock-home.jpg"
+      }
+    ],
+    "browser_access": "partner_gated"
+  },
+  {
+    "id": 59,
+    "app": "Waterfall.io",
+    "pages": [
+      {
+        "url": "https://waterfall.io/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://www.waterfall.io/pricing",
+        "chars": 88,
+        "screenshot": "evidence/waterfall-io-pricing.jpg"
+      },
+      {
+        "url": "https://docs.waterfall.io",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://docs.waterfall.io/v1/introduction",
+        "chars": 3102,
+        "screenshot": "evidence/waterfall-io-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 60,
+    "app": "Clay",
+    "pages": [
+      {
+        "url": "https://clay.com/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "urces resources company company pricing pricing \u2318 k log in get a demo start free trial data infrastructure audiences data marketplace signals and inte",
+          "negotiated with ai vendors. turn your growth ideas into reality today start for free today. no credit card required. start building for free get a demo us",
+          "resources company company pricing pricing \u2318 k log in get a demo start free trial data infrastructure audiences data marketplace signals and intent wat"
+        ],
+        "final_url": "https://www.clay.com/pricing",
+        "chars": 17528,
+        "screenshot": "evidence/clay-pricing.jpg"
+      },
+      {
+        "url": "https://pipeline.zoominfo.com",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "utions our data gtm developers resources pricing log in contact sales free trial zoominfo blog proven strategies and plays that actually help you do y",
+          "fo is the go-to-market platform to find, acquire, and grow customers. free trial news & trends 1 gtm exclusives issue #2: the implementation land grab",
+          "information english also of interest zoominfo ai information zoominfo free trial zoominfo lead generation by clicking \u201callow all cookies,\u201d you agree t"
+        ],
+        "final_url": "https://pipeline.zoominfo.com/",
+        "chars": 4068,
+        "screenshot": "evidence/clay-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  },
+  {
+    "id": 63,
+    "app": "Netlify",
+    "pages": [
+      {
+        "url": "https://docs.netlify.com/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "ard? what can i do if i\u2019ve been charged the wrong amount? can i get a free trial? how do i cancel? how can i know if netlify will start charging for a",
+          "our support team and we\u2019ll do our best to make it right! can i get a free trial? section titled \u201ccan i get a free trial?\u201d most paid features include",
+          "to make it right! can i get a free trial? section titled \u201ccan i get a free trial?\u201d most paid features include a free tier of service for evaluation an"
+        ],
+        "final_url": "https://docs.netlify.com/manage/accounts-and-billing/billing/billing-for-legacy-plans/billing-faq-for-legacy-plans/",
+        "chars": 19851,
+        "screenshot": "evidence/netlify-pricing.jpg"
+      },
+      {
+        "url": "https://docs.netlify.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://docs.netlify.com/",
+        "chars": 5438,
+        "screenshot": "evidence/netlify-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  },
+  {
+    "id": 70,
+    "app": "Sentry",
+    "pages": [
+      {
+        "url": "https://docs.sentry.io/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "erwise, we guarantee a maximum turnaround time of 24 hours. plans and free trials sentry has one free developer plan and three paid plans: team, busin",
+          "of your current contract. all new sentry accounts come with a 14-day free trial period. you'll have the option to upgrade and continue to use sentry'",
+          "effective immediately. users who haven't upgraded by the end of their free trial will remain on the free developer plan with limited features. product"
+        ],
+        "final_url": "https://docs.sentry.io/pricing/",
+        "chars": 17308,
+        "screenshot": "evidence/sentry-pricing.jpg"
+      },
+      {
+        "url": "https://sentry.io",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://sentry.io/welcome/",
+        "chars": 16617,
+        "screenshot": "evidence/sentry-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  },
+  {
+    "id": 79,
+    "app": "Smartsheet",
+    "pages": [
+      {
+        "url": "https://smartsheet.com/pricing",
+        "status": 200,
+        "signal": "partner_gated",
+        "why": "the only route to a credential is a human at the vendor",
+        "quotes": [
+          "ansparency. improve project estimates with time and expense tracking. request a demo secure process management dynamic view eligible: business enterprise",
+          "rough mcp-enabled integrations new 1 tb attachment storage enterprise custom pricing 10+ members contact us for organizations needing to build complex sol",
+          "nt storage directory integrations best value advanced work management custom pricing solutions for your needs contact us for organizations aiming to manag"
+        ],
+        "final_url": "https://www.smartsheet.com/pricing",
+        "chars": 7260,
+        "screenshot": "evidence/smartsheet-pricing.jpg"
+      },
+      {
+        "url": "https://developers.smartsheet.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developers.smartsheet.com/",
+        "chars": 1632,
+        "screenshot": "evidence/smartsheet-home.jpg"
+      }
+    ],
+    "browser_access": "partner_gated"
+  },
+  {
+    "id": 84,
+    "app": "Paygent Connect",
+    "pages": [],
+    "browser_access": null
+  },
+  {
+    "id": 85,
+    "app": "iPayX",
+    "pages": [
+      {
+        "url": "https://ipayx.ai/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "etime fx score 0-10 automatic markup detection multi-bank (pdf / csv) start free most popular credit pack 100 100 audits. never expire. use them at yo"
+        ],
+        "final_url": "https://www.ipayx.ai/pricing",
+        "chars": 1068,
+        "screenshot": "evidence/ipayx-pricing.jpg"
+      },
+      {
+        "url": "https://docs.x.com",
+        "status": 200,
+        "signal": "approval_required",
+        "why": "credentials exist but are released after a review",
+        "quotes": [
+          "ners & customers partner directory customer directory success stories request access resources tutorials newsletter livestreams billing support developer"
+        ],
+        "final_url": "https://docs.x.com/overview",
+        "chars": 2252,
+        "screenshot": "evidence/ipayx-home.jpg"
+      }
+    ],
+    "browser_access": "approval_required"
+  },
+  {
+    "id": 86,
+    "app": "QuickBooks",
+    "pages": [
+      {
+        "url": "https://developer.intuit.com/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developer.intuit.com/pricing",
+        "chars": 19,
+        "screenshot": "evidence/quickbooks-pricing.jpg"
+      },
+      {
+        "url": "https://help.developer.intuit.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://help.developer.intuit.com/s/",
+        "chars": 2160,
+        "screenshot": "evidence/quickbooks-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 87,
+    "app": "Xero",
+    "pages": [
+      {
+        "url": "https://developer.xero.com/pricing",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developer.xero.com/pricing",
+        "chars": 11924,
+        "screenshot": "evidence/xero-pricing.jpg"
+      },
+      {
+        "url": "https://developer.xero.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developer.xero.com/",
+        "chars": 5658,
+        "screenshot": "evidence/xero-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 88,
+    "app": "Brex",
+    "pages": [
+      {
+        "url": "https://developer.brex.com/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developer.brex.com/pricing",
+        "chars": 372,
+        "screenshot": "evidence/brex-pricing.jpg"
+      },
+      {
+        "url": "https://developer.brex.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://developer.brex.com/",
+        "chars": 2010,
+        "screenshot": "evidence/brex-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 89,
+    "app": "Ramp",
+    "pages": [
+      {
+        "url": "https://docs.ramp.com/pricing",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://docs.ramp.com/pricing",
+        "chars": 0,
+        "screenshot": "evidence/ramp-pricing.jpg"
+      },
+      {
+        "url": "https://docs.ramp.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://docs.ramp.com/developer-api/v1/introduction",
+        "chars": 4160,
+        "screenshot": "evidence/ramp-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 90,
+    "app": "PitchBook",
+    "pages": [
+      {
+        "url": "https://pitchbook.com/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "nd leveraged finance updates delivered to your inbox search request a free trial log in pitchbook\u2019s pricing get the most comprehensive view of the pri",
+          "ative today to see how pitchbook can help you. does pitchbook offer a free trial? interested in joining today? fill out a form and we\u2019ll see if a free",
+          "rial? interested in joining today? fill out a form and we\u2019ll see if a free trial might be right for you. learn why pitchbook surpasses the competition"
+        ],
+        "final_url": "https://pitchbook.com/pricing",
+        "chars": 7614,
+        "screenshot": "evidence/pitchbook-pricing.jpg"
+      },
+      {
+        "url": "https://mcpservers.org",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://mcpservers.org/",
+        "chars": 7332,
+        "screenshot": "evidence/pitchbook-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  },
+  {
+    "id": 91,
+    "app": "NotebookLM",
+    "pages": [
+      {
+        "url": "https://cloud.google.com/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "s work with a trusted partner find a partner start using google cloud try it free continue browsing see all products welcome to google cloud guide over"
+        ],
+        "final_url": "https://cloud.google.com/pricing",
+        "chars": 3913,
+        "screenshot": "evidence/notebooklm-pricing.jpg"
+      },
+      {
+        "url": "https://docs.cloud.google.com",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://docs.cloud.google.com/",
+        "chars": 3742,
+        "screenshot": "evidence/notebooklm-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  },
+  {
+    "id": 92,
+    "app": "Otter AI",
+    "pages": [
+      {
+        "url": "https://help.otter.ai/pricing",
+        "status": 404,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://help.otter.ai/pricing",
+        "chars": 457,
+        "screenshot": "evidence/otter-ai-pricing.jpg"
+      },
+      {
+        "url": "https://help.otter.ai",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://help.otter.ai/hc/en-us",
+        "chars": 2510,
+        "screenshot": "evidence/otter-ai-home.jpg"
+      }
+    ],
+    "browser_access": null
+  },
+  {
+    "id": 94,
+    "app": "Consensus",
+    "pages": [
+      {
+        "url": "https://consensus.app/pricing",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "free keep using basic paper search for free, without any ai analysis. $0/mo try for free basic paper search 15 pro messages per month dynamic a"
+        ],
+        "final_url": "https://consensus.app/pricing/",
+        "chars": 2007,
+        "screenshot": "evidence/consensus-pricing.jpg"
+      },
+      {
+        "url": "https://consensus.app",
+        "status": 403,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://consensus.app/",
+        "chars": 261,
+        "screenshot": "evidence/consensus-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  },
+  {
+    "id": 99,
+    "app": "YouTube Transcript",
+    "pages": [
+      {
+        "url": "https://transcriptapi.com/pricing",
+        "status": 200,
+        "signal": null,
+        "why": "",
+        "quotes": [],
+        "final_url": "https://transcriptapi.com/pricing",
+        "chars": 9,
+        "screenshot": "evidence/youtube-transcript-pricing.jpg"
+      },
+      {
+        "url": "https://transcriptapi.com",
+        "status": 200,
+        "signal": "no_gate_found",
+        "why": "a free or trial signup is offered and no gate was detected",
+        "quotes": [
+          "annels, and extract playlists via rest api or youtube mcp \u2014 at scale. get started free view pricing works everywhere powering 15m+ transcripts every month t",
+          "d start building. 100 free credits to try the api \u2014 no card required. get started free monthly $5.00 /month includes: 1,000 credits per month top-ups at $2."
+        ],
+        "final_url": "https://transcriptapi.com/",
+        "chars": 13384,
+        "screenshot": "evidence/youtube-transcript-home.jpg"
+      }
+    ],
+    "browser_access": "no_gate_found"
+  }
+]

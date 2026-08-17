@@ -1,0 +1,135 @@
+== pass 2 (grounded + critic) over 100 apps
+  p2   1/100  Zoho CRM
+  p2   2/100  Pipedrive
+  p2   3/100  Close
+  p2   4/100  HubSpot
+  p2   5/100  DealCloud
+  p2   6/100  Salesforce
+  p2   7/100  Copper
+  p2   8/100  Attio
+  p2   9/100  Twenty
+  p2  10/100  Podio
+  p2  11/100  Gorgias
+  p2  12/100  Help Scout
+  p2  13/100  Freshdesk
+  p2  14/100  Intercom
+  p2  15/100  Front
+  p2  16/100  Zendesk
+  p2  17/100  Plain
+  p2  18/100  LiveAgent
+  p2  19/100  Pylon
+  p2  20/100  Telegram
+  p2  21/100  WhatsApp Business
+  p2  22/100  Zoho Cliq
+  p2  23/100  Twilio
+  p2  24/100  Gladly
+  p2  25/100  Slack
+  p2  26/100  Lark (Larksuite)
+  p2  27/100  Pumble
+  p2  28/100  Discord
+  p2  29/100  Aircall
+  p2  30/100  Google Ads
+  p2  31/100  Pinterest
+  p2  32/100  GoHighLevel
+  p2  33/100  systeme.io
+  p2  34/100  Klaviyo
+  p2  35/100  Mailchimp
+  p2  36/100  Meta Ads
+  p2  37/100  Vonage
+  p2  38/100  LinkedIn Ads
+  p2  39/100  Squarespace
+  p2  40/100  Salesforce Commerce Cloud
+  p2  41/100  Magento (Adobe Commerce)
+  p2  42/100  Ecwid
+  p2  43/100  BigCommerce
+  p2  44/100  Threads (Meta)
+  p2  45/100  Shopify
+  p2  46/100  SendGrid
+  p2  47/100  WooCommerce
+  p2  48/100  Firecrawl
+  p2  49/100  MrScraper
+  p2  50/100  fanbasis
+  p2  51/100  Ahrefs
+  p2  52/100  SE Ranking
+  p2  53/100  Bright Data
+  p2  54/100  Gumroad
+  p2  55/100  Apify
+  p2  56/100  Sherlock
+  p2  57/100  GitHub
+  p2  58/100  Netlify
+  p2  59/100  Clay
+  p2  60/100  Vercel
+  p2  61/100  Waterfall.io
+  p2  62/100  Cloudflare
+  p2  63/100  Neo4j
+  p2  64/100  MongoDB Atlas
+  p2  65/100  Sentry
+  p2  66/100  Datadog
+  p2  67/100  Snowflake
+  p2  68/100  Supabase
+  p2  69/100  Amazon Selling Partner
+  p2  70/100  DataForSEO
+  p2  71/100  Notion
+  p2  72/100  Linear
+  p2  73/100  Jira
+  p2  74/100  Harvest
+  p2  75/100  Monday.com
+  p2  76/100  Coda
+  p2  77/100  Asana
+  p2  78/100  Airtable
+  p2  79/100  ClickUp
+  p2  80/100  Smartsheet
+  p2  81/100  Brex
+  p2  82/100  Ramp
+  p2  83/100  Paygent Connect
+  p2  84/100  QuickBooks
+  p2  85/100  Xero
+  p2  86/100  iPayX
+  p2  87/100  Stripe
+  p2  88/100  Binance
+  p2  89/100  Plaid
+  p2  90/100  PitchBook
+  p2  91/100  YouTube Transcript
+  p2  92/100  Otter AI
+  p2  93/100  Fathom
+  p2  94/100  NotebookLM
+  p2  95/100  Consensus
+  p2  96/100  Reducto
+  p2  97/100  Mermaid CLI
+  p2  98/100  Devin
+  p2  99/100  higgsfield
+  p2 100/100  Grain
+pass2 done in 726s  firecrawl={'search': 0, 'scrape': 80, 'cache_hits': 500}
+{
+  "calls": 299,
+  "input_tokens": 1751608,
+  "output_tokens": 227264,
+  "llm_seconds": 4190.0,
+  "notional_usd": 1.1163,
+  "by_model": {
+    "deepseek-v4-flash": {
+      "calls": 100,
+      "in": 666093,
+      "out": 180000,
+      "secs": 2506.8
+    },
+    "glm-5.1": {
+      "calls": 99,
+      "in": 627549,
+      "out": 27349,
+      "secs": 1159.5
+    },
+    "kimi-k2.6": {
+      "calls": 59,
+      "in": 267076,
+      "out": 12468,
+      "secs": 256.2
+    },
+    "minimax-m3": {
+      "calls": 41,
+      "in": 190890,
+      "out": 7447,
+      "secs": 267.5
+    }
+  }
+}

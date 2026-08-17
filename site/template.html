@@ -11,7 +11,7 @@
     --plane:#f9f9f7; --surface:#fcfcfb; --surface-2:#f2f1ed;
     --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
     --grid:#e1e0d9; --axis:#c3c2b7;
-    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
     --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
     --o1:#86b6ef; --o2:#5598e7; --o3:#2a78d6; --o4:#256abf; --o5:#184f95; --o6:#104281;
     --seq0:#f0f4fb; --seq1:#cde2fb; --seq2:#9ec5f4; --seq3:#6da7ec; --seq4:#3987e5; --seq5:#1c5cab;
@@ -24,7 +24,7 @@
       --plane:#0d0d0d; --surface:#1a1a19; --surface-2:#232322;
       --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
       --grid:#2c2c2a; --axis:#383835;
-      --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+      --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
       --o1:#86b6ef; --o2:#5598e7; --o3:#3987e5; --o4:#256abf; --o5:#1c5cab; --o6:#184f95;
       --seq0:#1f2229; --seq1:#184f95; --seq2:#1c5cab; --seq3:#256abf; --seq4:#3987e5; --seq5:#6da7ec;
     }
@@ -33,7 +33,7 @@
     --plane:#0d0d0d; --surface:#1a1a19; --surface-2:#232322;
     --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
     --grid:#2c2c2a; --axis:#383835;
-    --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
     --o1:#86b6ef; --o2:#5598e7; --o3:#3987e5; --o4:#256abf; --o5:#1c5cab; --o6:#184f95;
     --seq0:#1f2229; --seq1:#184f95; --seq2:#1c5cab; --seq3:#256abf; --seq4:#3987e5; --seq5:#6da7ec;
   }
@@ -257,7 +257,7 @@
 
 <section id="agent"><div class="wrap">
   <div class="kicker">The agent</div>
-  <h2>Four passes, two of which exist only to catch the first two lying</h2>
+  <h2>Five passes, three of which exist only to catch the other two lying</h2>
   <p class="sub">Roughly 700 lines of Python. Pass 1 is the control, not a stage — it is what this
   assignment looks like if you just ask a model, and it is on the page so the verified number has
   something to be measured against.</p>
@@ -287,10 +287,7 @@
     <div class="card">
       <h3>Accuracy per field</h3>
       <p class="cap">Same 20 apps, same 100 labels, both passes.</p>
-      <div class="legend">
-        <span><i style="background:var(--s2)"></i>Pass 1 — closed book</span>
-        <span><i style="background:var(--s1)"></i>Pass 2 — grounded + critic</span>
-      </div>
+      <div class="legend" id="accLegend"></div>
       <div id="accChart"></div>
     </div>
     <div class="card">
@@ -318,6 +315,12 @@
       <p class="cap" id="gateCap"></p>
       <div id="gateSummary"></div>
     </div>
+  </div>
+  <div style="height:16px"></div>
+  <div class="card">
+    <h3>The loop that touched the APIs instead of reading about them</h3>
+    <p class="cap" id="reachCap"></p>
+    <div class="grid2"><div id="reachChart"></div><div id="reachNote"></div></div>
   </div>
   <div id="shots" class="shots"></div>
 </div></section>
@@ -684,8 +687,12 @@ const STAGES = [
     + 'pipeline; it exists so the verified number has a baseline, and so "the model already knows this" can be tested rather than assumed.'},
   {n:'2', t:'Grounded', d:'Three narrow searches per app — docs/auth, pricing/access, MCP — then fetch the two best pages with a '
     + 'renderer, and extract with every citation checked against the retrieved corpus. A URL the model invents is dropped, not trusted.'},
-  {n:'3', t:'Critic', d:'A different model family re-reads the same evidence and is told to refute, not agree. Unsupported claims are '
-    + 'demoted to unknown rather than being quietly kept. Every demotion is recorded so the page can show what changed and why.'},
+  {n:'3', t:'Critic', d:'A different model family re-reads the same evidence and is told to refute, not agree. It flags what it cannot '
+    + 'support — and, measured against the gold set, it lost the right to act on those flags. Its output is published per row for a human '
+    + 'to triage, but it no longer changes a value. See the verification section for why.'},
+  {n:'3b', t:'Arbitration', d:'The one pass that was not in the original design, added after the eval showed the first two were '
+    + 'losing information rather than adding it. Evidence updates the prior instead of replacing it, silence keeps the prior, and the '
+    + 'verdict is computed from the other fields so it cannot contradict them. Every field records which rule decided it.'},
   {n:'4', t:'Browser gate prover', d:'For the ambiguous ones, a real Chromium opens the pricing and developer pages, reads the rendered '
     + 'call-to-action, and screenshots it. Deliberately rule-based, not another model — a second LLM reading the same page is not an independent check.'},
 ];
@@ -727,33 +734,48 @@ $('#cost').append(el('div', {class:'bars'}, COST.map(([k, v]) => el('div', {clas
 
 /* ---------- 7. verification ---------- */
 const E = D.eval || {};
+const STAGE_COLOR = ['var(--s2)', 'var(--s4)', 'var(--s3)', 'var(--s1)'];
 if (E.pass1 && E.pass2) {
   const p1 = E.pass1, p2 = E.pass2;
+  const stages = E.stages && E.stages.length ? E.stages : [
+    {key:'pass1', label:'closed book', ...p1}, {key:'pass2', label:'verified', ...p2}];
+
   $('#verifyTiles').append(...[
     {v:(p1.accuracy * 100).toFixed(0) + '%', k:'pass 1 — just asking the model', n:`${p1.n_labels} labels, no tools, no evidence`},
-    {v:(p2.accuracy * 100).toFixed(0) + '%', k:'pass 2 — grounded, critiqued, browser-checked', n:'same labels, same grader'},
-    {v:(E.lift >= 0 ? '+' : '') + (E.lift * 100).toFixed(0) + ' pts', k:'bought by the verification loops', n:'the number this whole pipeline exists to move'},
-    E.oracle ? {v:(E.oracle.agreement * 100).toFixed(0) + '%', k:'agreement with Composio\'s shipped auth config',
+    {v:(p2.accuracy * 100).toFixed(0) + '%', k:'the shipped answer, after every loop', n:'same labels, same grader, same 20 apps'},
+    {v:(E.lift >= 0 ? '+' : '') + (E.lift * 100).toFixed(0) + ' pts', k:'bought by the verification loops',
+     n:E.lift <= 0.03 ? 'small — and the honest story is on the right' : 'the number this pipeline exists to move'},
+    E.oracle ? {v:(E.oracle.agreement * 100).toFixed(0) + '%', k:"agreement with Composio's shipped auth config",
       n:`independent cross-check across ${E.oracle.n_checked} apps, not 20`} : null,
   ].filter(Boolean).map(t => el('div', {class:'tile'}, [
     el('div', {class:'v', text:t.v}), el('div', {class:'k', text:t.k}), el('div', {class:'n', text:t.n})
   ])));
 
+  $('#accLegend').append(...stages.map((st, i) => el('span', {}, [
+    el('i', {style:`background:${STAGE_COLOR[i % STAGE_COLOR.length]}`}),
+    document.createTextNode(`${st.key} — ${st.label} (${(st.accuracy * 100).toFixed(0)}%)`)])));
+
   const node = $('#accChart');
   Object.keys(p2.per_field).forEach(f => {
-    const a = Math.round(p1.per_field[f].accuracy * 100), b = Math.round(p2.per_field[f].accuracy * 100);
     node.append(el('div', {class:'grpbar'}, [
       el('div', {class:'lab mono muted', style:'text-align:right;font-size:11.5px', text:f}),
-      el('div', {class:'two'}, [
-        hoverable(el('div', {class:'row'}, [
-          el('div', {class:'track', style:'height:11px'}, el('div', {class:'fill', style:`width:${a}%;background:var(--s2)`})),
-          el('div', {class:'v', text:a + '%'})]), `closed book: ${p1.per_field[f].correct || 0} of 20 correct`),
-        hoverable(el('div', {class:'row'}, [
-          el('div', {class:'track', style:'height:11px'}, el('div', {class:'fill', style:`width:${b}%;background:var(--s1)`})),
-          el('div', {class:'v', text:b + '%'})]), `grounded: ${p2.per_field[f].correct || 0} of 20 correct`),
-      ]),
+      el('div', {class:'two'}, stages.map((st, i) => {
+        const v = Math.round((st.per_field[f] || {}).accuracy * 100);
+        return hoverable(el('div', {class:'row'}, [
+          el('div', {class:'track', style:'height:9px'},
+            el('div', {class:'fill', style:`width:${v}%;background:${STAGE_COLOR[i % STAGE_COLOR.length]}`})),
+          el('div', {class:'v', text:v + '%'})]),
+          `${st.key} (${st.label}): ${(st.per_field[f] || {}).correct || 0} of ${p2.n_apps} correct`);
+      })),
     ]));
   });
+
+  if (E.rules && E.rules.length) {
+    $('#accChart').append(el('p', {class:'cap', style:'margin-top:16px', text:
+      'Per-rule hit rate inside the final pass: ' + E.rules.map(r =>
+        `${r.rule} ${Math.round(r.accuracy * 100)}% (n=${r.n})`).join(' · ')
+      + '. This is how the critic lost the right to propose corrections.'}));
+  }
 
   const t = $('#missTable');
   t.append(el('thead', {}, el('tr', {}, ['App','Field','Agent said','Truth','Kind','Its confidence','Why the truth is the truth']
@@ -791,6 +813,8 @@ if (E.oracle) {
     + `call it agreement. This is not accuracy — Composio can be terminologically different from a vendor's docs — but it is a `
     + `consistency check ${Math.round(o.n_checked / 20 * 10) / 10}× the size of the gold set.`;
   const dis = o.disagreements || [];
+  const bearerish = dis.filter(r => ['BEARER_TOKEN','API_KEY'].includes(r.predicted)
+    && (r.composio || []).some(c => ['BEARER_TOKEN','API_KEY'].includes(c))).length;
   $('#oracle').append(
     el('div', {class:'bars', style:'margin-bottom:14px'}, [
       el('div', {class:'bar', style:'grid-template-columns:1fr auto'}, [
@@ -804,6 +828,11 @@ if (E.oracle) {
         el('div', {class:'num muted', text:String(o.n_abstained)})]),
     ]));
   if (dis.length) {
+    $('#oracle').append(el('p', {class:'cap', style:'margin:-4px 0 12px', text:
+      `${bearerish} of the ${dis.length} disagreements are the same fact under two names: the agent reads `
+      + '"Authorization: Bearer <token>" off a docs page and records BEARER_TOKEN, while Composio classifies the '
+      + 'same static credential as API_KEY. They are not counted as agreement — collapsing them would flatter the '
+      + 'number — but they are a different kind of miss from getting the scheme wrong.'}));
     const t = el('table');
     t.append(el('thead', {}, el('tr', {}, ['App','Agent','Composio accepts'].map(h => el('th', {text:h})))));
     t.append(el('tbody', {}, dis.map(r => el('tr', {}, [
@@ -814,34 +843,60 @@ if (E.oracle) {
 }
 
 {
-  const probed = rows.filter(r => r.browser_access);
-  const agree = probed.filter(r => r.browser_agrees).length;
-  $('#gateCap').textContent = probed.length
-    ? `A real browser was sent to ${probed.length} apps whose access answer was low-confidence or claimed a gate. `
-      + `It read the rendered call-to-action and screenshotted it. This is a different kind of evidence from the docs the model read — `
-      + `no documentation page says "you cannot have a key".`
+  const L = (D.loops || {}).browser || {};
+  $('#gateCap').textContent = L.probed
+    ? `A real browser opened the pricing and developer pages for ${L.probed} apps whose access answer was `
+      + `low-confidence or already claimed a gate, read the rendered call-to-action, and screenshotted it. `
+      + `It only reports what it can prove: "submit your app for review" is written deliberately, while `
+      + `"Start free" is on almost every pricing page in this set and describes the product, not the API. `
+      + `A free CTA therefore resolves to "no gate found", which is all it licenses.`
     : 'The browser pass has not been run for this build.';
-  if (probed.length) {
+  if (L.probed) {
     $('#gateSummary').append(el('div', {class:'bars'}, [
-      el('div', {class:'bar', style:'grid-template-columns:1fr auto'}, [
-        el('div', {class:'sec2', style:'text-align:left', text:'browser confirmed the agent'}),
-        el('div', {class:'num ok', text:String(agree)})]),
-      el('div', {class:'bar', style:'grid-template-columns:1fr auto'}, [
-        el('div', {class:'sec2', style:'text-align:left', text:'browser saw a different gate'}),
-        el('div', {class:'num warnc', text:String(probed.length - agree)})]),
-    ]), el('p', {class:'cap', style:'margin-top:12px', text:
-      'Disagreement does not automatically mean the agent was wrong — a pricing page shouting "Start free" while the API sits '
-      + 'behind an enterprise tier is exactly the trap this check exists to expose. Each one was read by a person.'}));
-    const withShots = probed.flatMap(r => (r.browser_evidence || [])
-      .filter(p => p.screenshot && p.signal).slice(0, 1).map(p => ({r, p}))).slice(0, 8);
+      ['explicit gate found on the page', L.gate_found, 'var(--ink)'],
+      ['…of which confirmed the agent', L.confirmed_agent, 'var(--good)'],
+      ['…of which corrected the agent', L.corrected_agent, 'var(--serious)'],
+      ['no gate found (free CTA present)', L.no_gate_found, 'var(--muted)'],
+    ].map(([k, v, c]) => el('div', {class:'bar', style:'grid-template-columns:1fr auto'}, [
+      el('div', {class:'sec2', style:'text-align:left', text:k}),
+      el('div', {class:'num', style:`color:${c}`, text:String(v ?? 0)})]))),
+      el('p', {class:'cap', style:'margin-top:12px', text:
+        `The ${L.corrected_agent} corrections are rows where the agent had called the app open and a real page said `
+        + 'otherwise — iPayX, where the agent had no answer at all, is the clearest. The '
+        + `${L.no_gate_found} "no gate found" rows are the honest hard case: a free product sitting in front of an `
+        + 'API that may still be sold separately, which is precisely the ambiguity a regex cannot resolve.'}));
+    const withShots = rows.flatMap(r => (r.browser_evidence || [])
+      .filter(p => p.screenshot && p.signal && p.signal !== 'no_gate_found').slice(0, 1)
+      .map(p => ({r, p}))).slice(0, 8);
     $('#shots').append(...withShots.map(({r, p}) => el('div', {class:'shot'}, [
       el('img', {src:p.screenshot, alt:`${r.app} pricing page`, loading:'lazy'}),
       el('div', {class:'m'}, [
         el('b', {text:r.app}), el('span', {text:' — browser read '}),
-        el('span', {class:'mono', style:`color:${ACCESS_COLOR[p.signal]}`, text:ACCESS_LABEL[p.signal] || p.signal}),
+        el('span', {class:'mono', style:'color:var(--warn)', text:(p.signal || '').replace(/_/g, ' ')}),
         el('div', {class:'muted', style:'margin-top:4px;font-size:11px', text:'“' + ((p.quotes || [])[0] || '').slice(0, 110) + '”'}),
       ]),
     ])));
+  }
+}
+
+{
+  const R = (D.loops || {}).reachability;
+  if (R) {
+    $('#reachCap').textContent =
+      `Documentation goes stale. So one GET, with no credential, to the endpoint each app's own docs publish — `
+      + `asking only whether it exists and demands a key. ${R.live_and_gated} of ${R.probed} answered 401 or 403, `
+      + `which is the strongest confirmation available that both the API and its auth story are real, and `
+      + `${R.corroborates_surface} of those also had a documented surface in the findings. No credential was sent.`;
+    const LABEL = {
+      live_and_gated:'401/403 — live and gated', not_probeable:'per-tenant host or a CLI, nothing to probe',
+      path_not_found:'404 — host up, documented path wrong', live_open:'200 — answers with no credential',
+      unreachable:'nothing listening', server_error:'5xx', error:'probe failed',
+    };
+    barChart($('#reachChart'), (R.mix || []).map(([k, v]) => ({k:LABEL[k] || k, v})), {total:R.probed});
+    $('#reachNote').append(el('p', {class:'cap', style:'margin:0', text:
+      'The 404s are mostly the probe\'s fault, not the vendor\'s: Linear is GraphQL over POST so a GET is '
+      + 'meaningless, and Telegram puts the bot token in the path. They are left in rather than filtered out, '
+      + 'because a check that quietly drops its own failures is not a check.'}));
   }
 }
 
@@ -853,8 +908,8 @@ const demoted = rows.reduce((n, r) => n + ((r.critic_changes || []).length), 0);
 const criticFailed = rows.filter(r => (r.critic_audit || {})._error).length;
 const HONEST = [
   ['The sample is 20 apps, not 100', `Accuracy is measured on ${(E.pass2 || {}).n_labels || 100} labels across 20 apps. One flipped label moves the headline by a point, and the 95% interval on a result near 90% is roughly ±13 points. It is a direction, not a guarantee. The Composio cross-check exists precisely because 20 is small.`],
-  ['Retrieval was rationed', 'The free Firecrawl tier bills per search result. A first full run was projected to run out at app 55, so retrieval was cut to six search results and two fetched pages per app mid-project. Fields that need a pricing page a click deeper than the landing page suffer for it, and that is a real cause of the remaining errors — not a hypothetical one.'],
-  ['The critic can only demote, never invent', `It demoted ${demoted} claims to unknown across the run. That makes the agent more honest but not more knowledgeable: some of those unknowns are things a person could have found in another thirty seconds.${criticFailed ? ` On ${criticFailed} apps the critic model itself failed and no audit ran.` : ''}`],
+  ['Retrieval was rationed', 'The free Firecrawl tier bills per search *result*, not per query. A full-width first run was projected to drain the account at app 55 of 100, so retrieval was cut to six search results and two fetched pages per app mid-project; a third page was bought back later out of what the cache had saved. Fields that need a pricing page one click deeper than the landing page suffer for it, and that is a real cause of the remaining errors, not a hypothetical one.'],
+  ['The adversarial critic did not work', `It flagged ${demoted} claims across the run and, allowed to act on them, cost 32 accuracy points — it turned a 74% pipeline into a 42% one. Both of the roles it was given (propose a correction, cast doubt) scored under a third against the gold set. Its flags are still published per row because they are useful for triage, but nothing on this page is decided by them. Every technique here was measured, and this is the one that lost.${criticFailed ? ` On ${criticFailed} apps the critic model itself errored and no audit ran at all.` : ''}`],
   ['Apps that defeated it', `${unknowns} apps still have an unknown access level and ${lowconf} more are below 0.6 confidence on it. The pattern is consistent: private-beta fintech and research-data products (PitchBook, iPayX, Paygent, fanbasis, Waterfall) publish marketing pages and nothing else. For those, "there is no public evidence" is the finding, and the row says so instead of guessing.`],
   ['Category errors are the honest hard case', 'Sherlock and Mermaid CLI are command-line programs, not SaaS. They have no auth, no tenant, and no API, and every instinct in a pipeline built around "apps" wants to give them one. They are on the page because getting them right is a better signal than a clean average.'],
   errored ? ['Rows that errored outright', `${errored} apps hit an unrecoverable model or fetch error and carry whatever partial answer survived. They are in the table, not deleted from it.`] : null,

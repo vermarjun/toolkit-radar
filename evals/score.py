@@ -166,16 +166,48 @@ def oracle_agreement(preds: dict[int, dict]) -> dict:
     }
 
 
+STAGES = [
+    ("pass1", "closed book", "one model call, no tools at all — the control"),
+    ("pass2_raw", "grounded", "search, fetch three pages, extract with citations"),
+    ("pass2", "grounded + critic", "a second model demotes what it cannot support"),
+    ("pass3", "arbitrated", "evidence updates the prior instead of replacing it"),
+]
+
+
+def rule_accuracy(preds: dict[int, dict], gold: dict[int, dict]) -> list[dict]:
+    """Which arbitration rule earns its place, and which one is a coin flip."""
+    per: dict[str, Counter] = defaultdict(Counter)
+    for app_id, truth in gold.items():
+        pred = preds.get(app_id) or {}
+        prov = pred.get("provenance") or {}
+        for f in FIELDS:
+            rule = prov.get(f)
+            if not rule:
+                continue
+            per[rule][classify(pred.get(f), truth[f])] += 1
+    out = []
+    for rule, c in per.items():
+        n = sum(c.values())
+        out.append({"rule": rule, "n": n, "accuracy": round(c["correct"] / n, 3), **dict(c)})
+    return sorted(out, key=lambda r: -r["n"])
+
+
 def main() -> None:
     gold = load_gold()
-    p1, p2 = load_pass("pass1"), load_pass("pass2")
+    loaded = {k: load_pass(k) for k, _, _ in STAGES}
+    p1, final = loaded.get("pass1"), loaded.get("pass3") or loaded.get("pass2")
 
     out = {
         "gold_apps": sorted(gold),
+        "stages": [
+            {"key": k, "label": label, "note": note, **grade(loaded[k], gold)}
+            for k, label, note in STAGES if loaded.get(k)
+        ],
         "pass1": grade(p1, gold) if p1 else None,
-        "pass2": grade(p2, gold) if p2 else None,
-        "calibration_pass2": calibration(p2, gold) if p2 else None,
-        "oracle": oracle_agreement(p2) if p2 else None,
+        "pass2": grade(final, gold) if final else None,
+        "rules": rule_accuracy(final, gold) if final else None,
+        "calibration_pass2": calibration(final, gold) if final else None,
+        "oracle": oracle_agreement(final) if final else None,
     }
     if out["pass1"] and out["pass2"]:
         out["lift"] = round(out["pass2"]["accuracy"] - out["pass1"]["accuracy"], 4)
@@ -189,10 +221,14 @@ def main() -> None:
             bits = " ".join(f"{k}={v}" for k, v in s.items() if k != "accuracy" and v)
             print(f"   {f:<14} {s['accuracy']:>6.1%}   {bits}")
 
-    show("PASS 1  closed book", out["pass1"])
-    show("PASS 2  grounded + critic", out["pass2"])
+    for st in out["stages"]:
+        show(f"{st['key']}  {st['label']}", st)
     if "lift" in out:
         print(f"\nlift: {out['lift']:+.1%}")
+    if out["rules"]:
+        print("\nper-rule accuracy on the gold set:")
+        for r in out["rules"]:
+            print(f"   {r['rule']:<30} n={r['n']:<4} {r['accuracy']:.0%}")
     if out["oracle"]:
         o = out["oracle"]
         print(f"\noracle agreement on primary_auth: {o['agreement']:.1%} of {o['n_checked']} Composio-covered apps "

@@ -8,3 +8,5 @@ node_modules/
 run_full.log
 pw_install.log
 /tmp
+.vercel
+.env*

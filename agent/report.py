@@ -32,12 +32,13 @@ def _load(name: str, default=None):
 
 
 def build() -> dict:
-    findings = _load("pass2.json", [])
+    findings = _load("pass3.json") or _load("pass2.json", [])
     join = _load("catalog_join.json", {"rows": []})
     gate = {g["id"]: g for g in _load("gate.json", [])}
     evaluation = _load("eval.json", {})
     usage = _load("usage.json", {})
     catalog = _load("composio_catalog.json", [])
+    reach = {r["id"]: r for r in _load("reach.json", [])}
 
     join_by_id = {r["id"]: r for r in join.get("rows", [])}
     rows = enrich(findings)
@@ -56,9 +57,18 @@ def build() -> dict:
                 for p in g.get("pages", [])
                 if p.get("signal") or p.get("screenshot")
             ]
+            # The browser can prove a gate; it cannot prove the absence of one.
+            # Agreement is therefore only scored on gate-positive findings.
+            b = g.get("browser_access")
             r["browser_agrees"] = (
-                None if not g.get("browser_access") else g["browser_access"] == r["access"]
+                r["access"] in GATED if b in {"approval_required", "plan_gated", "partner_gated"}
+                else None
             )
+        rc = reach.get(r["id"])
+        if rc:
+            r["reachability"] = rc.get("reachability")
+            r["probe_url"] = rc.get("probe_url")
+            r["probe"] = rc.get("probe")
 
     by_cat: dict[str, list] = defaultdict(list)
     for r in rows:
@@ -102,14 +112,19 @@ def build() -> dict:
     gap = [r for r in rows if not r["in_composio"]]
     queue = sorted(gap, key=lambda r: -r["build_score"])
 
-    blockers = Counter(
-        r["access"] for r in rows if r["access"] in GATED
-    )
+    blockers = Counter(r["access"] for r in rows if r["access"] in GATED)
+
+    reach_mix = Counter(r.get("reachability") for r in rows if r.get("reachability"))
+    live = [r for r in rows if r.get("reachability") == "live_and_gated"]
+    browser_positive = [
+        r for r in rows
+        if r.get("browser_access") in {"approval_required", "plan_gated", "partner_gated"}
+    ]
 
     return {
         "meta": {
             "n_apps": n,
-            "generated_from": "agent/research.py pass 2 (grounded + critic)",
+            "generated_from": "agent/research.py pass 2 -> agent/arbitrate.py pass 3",
             "composio_catalog_size": len(catalog),
             "usage": usage,
         },
@@ -123,6 +138,25 @@ def build() -> dict:
             "outreach_gap": sum(1 for r in gap if r["lane"] == "needs_outreach"),
             "top_auth": auth_mix.most_common(1)[0] if auth_mix else None,
             "top_blocker": blockers.most_common(1)[0] if blockers else None,
+            "apis_touched_live": len(live),
+        },
+        "loops": {
+            "reachability": {
+                "mix": reach_mix.most_common(),
+                "live_and_gated": len(live),
+                "corroborates_surface": sum(
+                    1 for r in live if r["api_surface"] not in {"none", "unknown"}
+                ),
+                "probed": sum(1 for r in rows if r.get("reachability")),
+            },
+            "browser": {
+                "probed": sum(1 for r in rows if r.get("browser_access") is not None
+                              or r.get("browser_evidence")),
+                "gate_found": len(browser_positive),
+                "confirmed_agent": sum(1 for r in browser_positive if r["browser_agrees"]),
+                "corrected_agent": sum(1 for r in browser_positive if r["browser_agrees"] is False),
+                "no_gate_found": sum(1 for r in rows if r.get("browser_access") == "no_gate_found"),
+            },
         },
         "distributions": {
             "auth": auth_mix.most_common(),
@@ -154,7 +188,7 @@ CSV_COLS = [
     "id", "app", "category", "one_liner", "primary_auth", "auth_methods", "access",
     "access_note", "api_surface", "api_breadth", "has_mcp", "verdict", "blocker",
     "build_score", "effort", "lane", "in_composio", "composio_slug",
-    "browser_access", "browser_agrees", "evidence",
+    "browser_access", "reachability", "probe_url", "evidence",
 ]
 
 

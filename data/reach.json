@@ -1,0 +1,1394 @@
+[
+  {
+    "id": 1,
+    "app": "Salesforce",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": true,
+    "note": "Evidence mentions OAuth and REST entry points but omits base URL and endpoints.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 2,
+    "app": "HubSpot",
+    "base_url": "https://api.hubapi.com",
+    "probe_url": "https://api.hubapi.com/crm/objects/2026-03/contacts?limit=10&archived=false",
+    "per_tenant": false,
+    "note": "Base URL and GET endpoint extracted from provided cURL examples.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json;charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"status\":\"error\",\"message\":\"Authentication credentials not found. This API supports OAuth 2.0 authentication and you can find more details at https://developer"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 3,
+    "app": "Pipedrive",
+    "base_url": "https://companydomain.pipedrive.com/api/v2",
+    "probe_url": "https://companydomain.pipedrive.com/api/v2/deals",
+    "per_tenant": true,
+    "note": "Base URL uses a tenant-specific 'companydomain' subdomain.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 4,
+    "app": "Attio",
+    "base_url": "https://api.attio.com/v2",
+    "probe_url": "https://api.attio.com/v2/objects",
+    "per_tenant": false,
+    "note": "Base and probe derived from Attio SDK example listing objects.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"status_code\":401,\"type\":\"auth_error\",\"code\":\"unauthorized\",\"message\":\"The Authorization header was not provided. Double check that you are including the heade"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 5,
+    "app": "Twenty",
+    "base_url": "https://api.twenty.com/",
+    "probe_url": "https://api.twenty.com/rest/companies",
+    "per_tenant": false,
+    "note": "Cloud base URL is static. REST Core API uses /rest/ for CRUD on records like companies.",
+    "error": null,
+    "probe": {
+      "status": 403,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{\"statusCode\":403,\"messages\":[\"Missing authentication token\"],\"error\":\"FORBIDDEN_EXCEPTION\"}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 6,
+    "app": "Podio",
+    "base_url": "https://api.podio.com",
+    "probe_url": "https://api.podio.com/user",
+    "per_tenant": false,
+    "note": "Evidence shows OAuth at podio.com. API root inferred from standard Podio API structure.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": "Bearer realm=\"podio\", error=\"invalid_request\"",
+      "snippet": "{\"error\":\"unauthorized\",\"error_detail\":null,\"error_description\":\"invalid_request\",\"error_parameters\":{},\"error_propagate\":false,\"request\":{\"url\":\"/user\",\"method"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 7,
+    "app": "Zoho CRM",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": true,
+    "note": "Evidence lists API endpoints but omits the base URL; Zoho CRM API base URLs are tenant/data-center specific.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 8,
+    "app": "Close",
+    "base_url": "https://api.close.com/api/v1",
+    "probe_url": "https://api.close.com/api/v1/me",
+    "per_tenant": false,
+    "note": "Base URL inferred from standard Close API docs; /me is the standard auth-check endpoint.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{\"error\": \"Unauthorized\"} "
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 9,
+    "app": "Copper",
+    "base_url": "https://api.copper.com/developer_api/",
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence shows base URL but lacks specific GET resource endpoints.",
+    "error": null,
+    "probe": {
+      "status": 404,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"error\":\"not_found\"}"
+    },
+    "reachability": "path_not_found"
+  },
+  {
+    "id": 10,
+    "app": "DealCloud",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": true,
+    "note": "Base URL is a per-tenant template (https://{{host}}). No single absolute URL can be probed.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 11,
+    "app": "Zendesk",
+    "base_url": "https://{subdomain}.zendesk.com/api/v2",
+    "probe_url": "https://{subdomain}.zendesk.com/api/v2/users.json",
+    "per_tenant": true,
+    "note": "Base URL requires a customer-specific subdomain as shown in curl examples.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 12,
+    "app": "Intercom",
+    "base_url": "https://api.intercom.io",
+    "probe_url": "https://api.intercom.io/me",
+    "per_tenant": false,
+    "note": "Global API root with regional variants (api.eu.intercom.io, api.au.intercom.io). /me endpoint is shown in docs.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": "Basic realm=\"intercom.io\"",
+      "snippet": "{\"type\":\"error.list\",\"request_id\":\"0009so3stopimlq1cmgg\",\"errors\":[{\"code\":\"missing_authorization\",\"message\":\"No authorization was provided\"}]}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 13,
+    "app": "Freshdesk",
+    "base_url": "https://{domain}.freshdesk.com/api/v2",
+    "probe_url": "https://{domain}.freshdesk.com/api/v2/tickets",
+    "per_tenant": true,
+    "note": "Freshdesk API uses a customer-specific subdomain. The base URL and endpoints are documented relative to this tenant-specific domain.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 14,
+    "app": "Front",
+    "base_url": "https://api2.frontapp.com",
+    "probe_url": "https://api2.frontapp.com/conversations/cnv_123/drafts",
+    "per_tenant": false,
+    "note": "Base URL is api2.frontapp.com. Probe URL is the GET example from the authentication docs.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"_error\":{\"status\":401,\"title\":\"Unauthenticated\",\"message\":\"JSON Web Token error\"}}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 15,
+    "app": "Pylon",
+    "base_url": null,
+    "probe_url": "https://api.usepylon.com/me",
+    "per_tenant": false,
+    "note": "Docs mention a /me endpoint but omit the base URL; inferred from app/mcp subdomains.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{   \"errors\": [     \"Token must follow Bearer authorization scheme: https://www.rfc-editor.org/rfc/rfc6750#section-2.1.\"   ],   \"request_id\": \"2aaef3ba-55ac-4a5"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 16,
+    "app": "LiveAgent",
+    "base_url": "https://support.liveagent.com",
+    "probe_url": "https://support.liveagent.com/840770-Complete-API-reference",
+    "per_tenant": false,
+    "note": "Evidence shows API reference and rate limits but does not expose the actual REST API base URL or specific GET endpoints.",
+    "error": null,
+    "probe": {
+      "status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "www_authenticate": null,
+      "snippet": "<!DOCTYPE html> <html lang=\"en-US\"> <head>     <meta name=\"referrer\" content=\"no-referrer\"> \t<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"> <link r"
+    },
+    "reachability": "live_open"
+  },
+  {
+    "id": 17,
+    "app": "Plain",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "No evidence about Plain's public HTTP API in the provided snippets.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 18,
+    "app": "Help Scout",
+    "base_url": "https://api.helpscout.com/v2",
+    "probe_url": "https://api.helpscout.com/v2/users/me",
+    "per_tenant": false,
+    "note": "Base URL inferred from standard Help Scout v2 API docs; evidence links to developer.helpscout.com.",
+    "error": null,
+    "probe": {
+      "status": null,
+      "error": "ConnectError: [Errno 8] nodename nor servname provided, or not known"
+    },
+    "reachability": "unreachable"
+  },
+  {
+    "id": 19,
+    "app": "Gorgias",
+    "base_url": "https://{subdomain}.gorgias.com",
+    "probe_url": null,
+    "per_tenant": true,
+    "note": "API requires a customer-specific subdomain (e.g., your-brand.gorgias.com).",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 20,
+    "app": "Gladly",
+    "base_url": "https://{organization}.gladly.com",
+    "probe_url": null,
+    "per_tenant": true,
+    "note": "Base URL is tenant-specific; no single URL can be probed.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 21,
+    "app": "Slack",
+    "base_url": "https://slack.com/api",
+    "probe_url": "https://slack.com/api/auth.test",
+    "per_tenant": false,
+    "note": "Evidence mentions Slack Web API methods and MCP endpoint https://mcp.slack.com/mcp, but not the standard HTTP API base URL directly.",
+    "error": null,
+    "probe": {
+      "status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"ok\":false,\"error\":\"not_authed\"}"
+    },
+    "reachability": "live_open"
+  },
+  {
+    "id": 22,
+    "app": "Twilio",
+    "base_url": "https://accounts.twilio.com/v1/Credentials",
+    "probe_url": "https://accounts.twilio.com/v1/Credentials/PublicKeys?PageSize=20",
+    "per_tenant": false,
+    "note": "Base URL and GET endpoint for listing public keys extracted from Credentials API docs.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json",
+      "www_authenticate": "Basic realm=\"Twilio API\"",
+      "snippet": "{\"code\":20003,\"message\":\"Authentication Error - No credentials provided\",\"more_info\":\"https://www.twilio.com/docs/errors/20003\",\"status\":401}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 23,
+    "app": "Zoho Cliq",
+    "base_url": "https://cliq.zoho.com",
+    "probe_url": "https://cliq.zoho.com/api/v3/users/me",
+    "per_tenant": false,
+    "note": "Base URL inferred from app links; specific GET endpoints not detailed in evidence.",
+    "error": null,
+    "probe": {
+      "status": 404,
+      "content_type": "application/json;charset=UTF-8",
+      "www_authenticate": null,
+      "snippet": "{\"code\":\"request_url_invalid\",\"message\":\"The request URL is invalid. Please check the URL pattern.\"}  "
+    },
+    "reachability": "path_not_found"
+  },
+  {
+    "id": 24,
+    "app": "Lark (Larksuite)",
+    "base_url": "https://open.larksuite.com",
+    "probe_url": "https://open.larksuite.com/open-apis/contact/v3/scopes",
+    "per_tenant": false,
+    "note": "Lark public API root from official docs; scopes endpoint is a GET requiring auth.",
+    "error": null,
+    "probe": {
+      "status": 400,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"code\":99991661,\"msg\":\"Missing access token for authorization. Please make a request with token attached.\",\"error\":{\"log_id\":\"20260817213347665E23376A5DA2BD189"
+    },
+    "reachability": "http_400"
+  },
+  {
+    "id": 25,
+    "app": "Pumble",
+    "base_url": "https://pumble-api-keys.addons.marketplace.cake.com",
+    "probe_url": "https://pumble-api-keys.addons.marketplace.cake.com/api-docs/",
+    "per_tenant": false,
+    "note": "Swagger docs URL is the only absolute API endpoint found in the evidence.",
+    "error": null,
+    "probe": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "<!doctype html> <html>   <head>     <title>Scalar API Reference</title>     <meta charset=\"utf-8\" />     <meta       name=\"viewport\"       content=\"width=device"
+    },
+    "reachability": "live_open"
+  },
+  {
+    "id": 26,
+    "app": "Discord",
+    "base_url": "https://discord.com/api",
+    "probe_url": "https://discord.com/api/users/@me",
+    "per_tenant": false,
+    "note": "Discord's public API root is documented; /users/@me is a common authenticated GET endpoint.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{\"message\": \"401: Unauthorized\", \"code\": 0}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 27,
+    "app": "Telegram",
+    "base_url": "https://api.telegram.org",
+    "probe_url": "https://api.telegram.org/bot<token>/getMe",
+    "per_tenant": false,
+    "note": "Base URL and getMe endpoint are standard for Telegram Bot API, though not explicitly shown in the provided evidence.",
+    "error": null,
+    "probe": {
+      "status": 404,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{\"ok\":false,\"error_code\":404,\"description\":\"Not Found\"}"
+    },
+    "reachability": "path_not_found"
+  },
+  {
+    "id": 28,
+    "app": "WhatsApp Business",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence only contains documentation and pricing pages, no API base URL or endpoints.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 29,
+    "app": "Aircall",
+    "base_url": "https://api.aircall.io/v1",
+    "probe_url": "https://api.aircall.io/v1/users",
+    "per_tenant": false,
+    "note": "Base URL and endpoints are global; auth is via Basic Auth or OAuth 2.0.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{\"message\":\"Unauthorized\"}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 30,
+    "app": "Vonage",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence only contains marketing, pricing, and MCP documentation links, not the public HTTP API base URL.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 31,
+    "app": "Google Ads",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence only shows documentation links, not the actual API HTTP base URL.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 32,
+    "app": "Meta Ads",
+    "base_url": "https://mcp.facebook.com/ads",
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence shows a remote-hosted MCP server URL, not a standard HTTP REST API with GET endpoints.",
+    "error": null,
+    "probe": {
+      "status": 405,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{\"title\":\"Method Not Allowed\",\"detail\":\"MCP endpoints accept POST for JSON-RPC; GET is not supported.\",\"status\":405}"
+    },
+    "reachability": "path_not_found"
+  },
+  {
+    "id": 33,
+    "app": "LinkedIn Ads",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence mentions LinkedIn Ads API access but provides no API base URL or endpoints.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 34,
+    "app": "GoHighLevel",
+    "base_url": "https://services.leadconnectorhq.com",
+    "probe_url": "https://services.leadconnectorhq.com/mcp/",
+    "per_tenant": false,
+    "note": "Base URL for v2 REST API and MCP server. /mcp/ is a GET endpoint requiring auth.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": "Bearer realm=\"ghl-mcp\", error=\"invalid_token\", resource_metadata=\"https://servic",
+      "snippet": "{\"error\":\"invalid_token\",\"error_description\":\"Authorization required for protected tools\"}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 35,
+    "app": "Mailchimp",
+    "base_url": "https://<dc>.api.mailchimp.com/3.0/",
+    "probe_url": null,
+    "per_tenant": true,
+    "note": "Base URL requires a data center subdomain (e.g., us6) specific to the account.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 36,
+    "app": "Klaviyo",
+    "base_url": "https://a.klaviyo.com/api",
+    "probe_url": "https://a.klaviyo.com/api/profiles",
+    "per_tenant": false,
+    "note": "Base URL inferred from standard Klaviyo API documentation; not explicitly shown in provided evidence.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/vnd.api+json",
+      "www_authenticate": "Bearer, Klaviyo-API-Key",
+      "snippet": "{\"errors\":[{\"id\":\"75c41034-a8c4-46f3-8f55-6c49c4a009fe\",\"status\":401,\"code\":\"not_authenticated\",\"title\":\"Authentication credentials were not provided.\",\"detail\""
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 37,
+    "app": "systeme.io",
+    "base_url": "https://developer.systeme.io/docs/mcp-server",
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence only shows a documentation URL, not the actual API base URL or endpoints.",
+    "error": null,
+    "probe": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "<!DOCTYPE html><html lang=\"en\" style=\"\" data-color-mode=\"system\" class=\" useReactApp  \"><head><meta charset=\"utf-8\"><link rel=\"preconnect\" href=\"https://cdn.rea"
+    },
+    "reachability": "live_open"
+  },
+  {
+    "id": 38,
+    "app": "Pinterest",
+    "base_url": "https://api.pinterest.com/v5",
+    "probe_url": "https://api.pinterest.com/v5/user_account",
+    "per_tenant": false,
+    "note": "Evidence mentions Pinterest API v5; standard base URL and user_account endpoint are inferred.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{\"code\":2,\"message\":\"Authentication failed.\",\"status\":\"failure\"}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 39,
+    "app": "Threads (Meta)",
+    "base_url": "https://graph.threads.com",
+    "probe_url": "https://graph.threads.com/v1.0/{threads-user-id}/threads_publishing_limit",
+    "per_tenant": false,
+    "note": "Official Meta Threads API. Also accessible via graph.threads.net. Probe URL requires user ID and access token.",
+    "error": null,
+    "probe": {
+      "status": 400,
+      "content_type": "application/json; charset=UTF-8",
+      "www_authenticate": "OAuth \"Facebook Platform\" \"invalid_token\" \"Invalid OAuth 2.0 Access Token\"",
+      "snippet": "{\"error\":{\"message\":\"Invalid OAuth 2.0 Access Token\",\"type\":\"OAuthException\",\"code\":190,\"fbtrace_id\":\"Aw1mHFUMQvxT4SwLISTdLtF\"}}"
+    },
+    "reachability": "http_400"
+  },
+  {
+    "id": 40,
+    "app": "SendGrid",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence mentions SendGrid APIs and SDKs but does not provide the base URL or specific endpoints.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 41,
+    "app": "Shopify",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence mentions Shopify APIs and MCP servers but provides no HTTP API base URLs or GET endpoints.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 42,
+    "app": "WooCommerce",
+    "base_url": "https://example.com/wp-json/wc/v3",
+    "probe_url": "https://example.com/wp-json/wc/v3/orders",
+    "per_tenant": true,
+    "note": "Base URL is tenant-specific. /orders requires basic auth with consumer key/secret.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 43,
+    "app": "BigCommerce",
+    "base_url": "https://api.bigcommerce.com",
+    "probe_url": "https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/catalog/products",
+    "per_tenant": true,
+    "note": "Base URL is global, but endpoints require a tenant-specific store_hash in the path.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 44,
+    "app": "Salesforce Commerce Cloud",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": true,
+    "note": "Evidence shows API docs but no base URL. SFCC APIs are tenant-specific.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "base_url": "https://<host>/rest",
+    "probe_url": null,
+    "per_tenant": true,
+    "note": "PaaS URL structure is https://<host>/rest/<store-view-code>/<endpoint>; SaaS is https://<server>.api.commerce.adobe.com/<tenant-id>/<endpoint>.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 46,
+    "app": "Squarespace",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence does not contain Squarespace API URLs; only support links and Square MCP docs.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 47,
+    "app": "Ecwid",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": true,
+    "note": "Evidence mentions store ID in request path but lacks the actual base URL.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 48,
+    "app": "Gumroad",
+    "base_url": "https://app.gumroad.com/api",
+    "probe_url": "https://app.gumroad.com/api/user",
+    "per_tenant": false,
+    "note": "Base URL is app.gumroad.com/api. /user is a standard 'me'-style GET endpoint for verifying auth.",
+    "error": null,
+    "probe": {
+      "status": 404,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"status\":404,\"error\":\"Not Found\"}"
+    },
+    "reachability": "path_not_found"
+  },
+  {
+    "id": 49,
+    "app": "Amazon Selling Partner",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence describes SP-API as a REST API but does not provide the base URL or endpoints.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 50,
+    "app": "fanbasis",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence only shows a login page for docs, not the actual API base URL or endpoints.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 51,
+    "app": "DataForSEO",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence shows MCP endpoint and dashboard, not the public HTTP API base URL.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 52,
+    "app": "SE Ranking",
+    "base_url": "https://api.seranking.com",
+    "probe_url": "https://api.seranking.com/v1/account/subscription",
+    "per_tenant": false,
+    "note": "Base URL is globally shared. Use /v1/account/subscription to test API key auth.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"error_description\":\"Authentication failed. Please ensure you have a valid, enabled API key. To get an API key, please contact us at api@seranking.com.\"} "
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 53,
+    "app": "Ahrefs",
+    "base_url": "https://api.ahrefs.com/v3",
+    "probe_url": "https://api.ahrefs.com/v3/site-explorer/refdomains",
+    "per_tenant": false,
+    "note": "Base URL derived from the example GET request shown in the documentation.",
+    "error": null,
+    "probe": {
+      "status": 403,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "[\"Error\",\"Forbidden\"]"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 54,
+    "app": "MrScraper",
+    "base_url": "https://api.app.mrscraper.com",
+    "probe_url": "https://api.app.mrscraper.com/api/v1/results?filters[scraperId]=<SCRAPER_ID>&page=1&pageSize=10&sort=createdAt&sortOrder=DESC",
+    "per_tenant": false,
+    "note": "Base URL extracted from cURL example in authentication docs. Requires x-api-token header for auth.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"message\":\"Unauthorized access\",\"errors\":\"Unauthorized\"}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 55,
+    "app": "Apify",
+    "base_url": "https://api.apify.com/v2",
+    "probe_url": "https://api.apify.com/v2/users/me",
+    "per_tenant": false,
+    "note": "Base URL extracted from Run Actor example. /users/me inferred as standard auth probe.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{   \"error\": {     \"type\": \"token-not-provided\",     \"message\": \"Authentication token was not provided\"   } }"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 56,
+    "app": "Firecrawl",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence shows SDK usage but does not document the public HTTP API base URL or GET endpoints.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 57,
+    "app": "Bright Data",
+    "base_url": "https://api.brightdata.com",
+    "probe_url": "https://api.brightdata.com/dca/dataset?id=<snapshot_id>",
+    "per_tenant": false,
+    "note": "Base URL is api.brightdata.com. GET /dca/dataset requires Bearer token auth and a snapshot_id.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "text/html; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "Credentials are missing"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 58,
+    "app": "Sherlock",
+    "base_url": "https://api.apify.com/v2",
+    "probe_url": "https://api.apify.com/v2/actors/misceres~sherlock?token=<YOUR_API_TOKEN>",
+    "per_tenant": false,
+    "note": "Sherlock is an Apify Actor. The public HTTP API is Apify's, using the user's API token for auth.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{   \"error\": {     \"type\": \"user-or-token-not-found\",     \"message\": \"User was not found or authentication token is not valid\"   } }"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 59,
+    "app": "Waterfall.io",
+    "base_url": "https://api.waterfall.io",
+    "probe_url": "https://api.waterfall.io/v1/account-reporter-v2",
+    "per_tenant": false,
+    "note": "Docs list sync GET endpoints; account reporting is ideal for auth probing.",
+    "error": null,
+    "probe": {
+      "status": 404,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{     \"status\": \"error\",     \"message\": \"Not Found\",     \"category\": \"NOT_FOUND\",     \"code\": \"NOT_FOUND_NOT_FOUND\" }"
+    },
+    "reachability": "path_not_found"
+  },
+  {
+    "id": 60,
+    "app": "Clay",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence states Clay has no public base URL and is not a conventional REST API.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 61,
+    "app": "GitHub",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence does not mention GitHub's public HTTP API base URL or endpoints.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 62,
+    "app": "Vercel",
+    "base_url": "https://api.vercel.com",
+    "probe_url": "https://api.vercel.com/v6/deployments",
+    "per_tenant": false,
+    "note": "Base URL is explicitly stated. Deployments endpoint is shown as a GET request requiring auth.",
+    "error": null,
+    "probe": {
+      "status": 403,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"error\":{\"code\":\"forbidden\",\"message\":\"The request is missing an authentication token\",\"missingToken\":true}}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 63,
+    "app": "Netlify",
+    "base_url": "https://api.netlify.com/api/v1/",
+    "probe_url": "https://api.netlify.com/api/v1/sites",
+    "per_tenant": false,
+    "note": "Docs state all API URLs start with this base; /sites is the example GET endpoint.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"code\":401,\"message\":\"Access Denied\"}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 64,
+    "app": "Cloudflare",
+    "base_url": "https://api.cloudflare.com",
+    "probe_url": "https://api.cloudflare.com/client/v4/user",
+    "per_tenant": false,
+    "note": "Evidence links to the Cloudflare API docs; standard REST base is api.cloudflare.com/client/v4.",
+    "error": null,
+    "probe": {
+      "status": 403,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{\"success\":false,\"errors\":[{\"code\":9106,\"message\":\"Missing X-Auth-Email header\"},{\"code\":9107,\"message\":\"Missing X-Auth-Key header\"}],\"messages\":[],\"result\":nul"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 65,
+    "app": "Supabase",
+    "base_url": "https://mcp.supabase.com/mcp",
+    "probe_url": "https://mcp.supabase.com/mcp?features=docs%2Caccount%2Cdatabase%2Cdebugging%2Cdevelopment%2Cfunctions%2Cbranching",
+    "per_tenant": false,
+    "note": "Hosted MCP server requires OAuth authentication before interacting with Supabase projects.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": "Bearer error=\"invalid_request\", error_description=\"No access token was provided ",
+      "snippet": "{\"message\":\"Unauthorized\"}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 66,
+    "app": "Neo4j",
+    "base_url": "https://api.neo4j.io",
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence shows base URL for Aura API, but only POST /oauth/token is documented; no GET endpoints shown.",
+    "error": null,
+    "probe": {
+      "status": 403,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{     \"error\": \"Version information not found\" }"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 67,
+    "app": "Snowflake",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": true,
+    "note": "Evidence mentions Snowflake REST APIs and JWT auth but does not specify the base URL or endpoints.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 68,
+    "app": "MongoDB Atlas",
+    "base_url": "https://cloud.mongodb.com",
+    "probe_url": "https://cloud.mongodb.com/api/atlas/v2/federationSettings",
+    "per_tenant": false,
+    "note": "Base URL inferred from standard Atlas API path /api/atlas/<version>/.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json",
+      "www_authenticate": "Digest realm=\"MMS Public API\", domain=\"\", nonce=\"PtLZI+tgkJFYXPPaPs7erpzd5UZnjbg",
+      "snippet": "{   \"error\" : 401,   \"reason\" : \"Unauthorized\",   \"detail\" : \"You are not authorized for this resource.\",   \"errorCode\" : \"UNEXPECTED_ERROR\" }"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 69,
+    "app": "Datadog",
+    "base_url": "https://api.datadoghq.com",
+    "probe_url": "https://api.datadoghq.com/api/v1/validate",
+    "per_tenant": false,
+    "note": "Datadog API is HTTP REST. The /api/v1/validate GET endpoint checks API key auth.",
+    "error": null,
+    "probe": {
+      "status": 403,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{\"errors\":[\"Forbidden\"]}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 70,
+    "app": "Sentry",
+    "base_url": "https://api.sentry.dev",
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence shows MCP server URL but no public HTTP API base URL or GET endpoints.",
+    "error": null,
+    "probe": {
+      "status": 404,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{\"error\": {\"code\": \"404\", \"message\": \"The deployment could not be found on Vercel.\"}}"
+    },
+    "reachability": "path_not_found"
+  },
+  {
+    "id": 71,
+    "app": "Notion",
+    "base_url": "https://api.notion.com",
+    "probe_url": "https://api.notion.com/v1/users",
+    "per_tenant": false,
+    "note": "Base URL extracted from cURL example; /v1/users is a GET endpoint for listing users.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"object\":\"error\",\"status\":401,\"code\":\"unauthorized\",\"message\":\"API token is invalid.\",\"request_id\":\"003dee7f-5218-424b-b3ea-864e3b61d687\"}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 72,
+    "app": "Airtable",
+    "base_url": "https://api.airtable.com",
+    "probe_url": "https://api.airtable.com/v0/meta/bases",
+    "per_tenant": false,
+    "note": "Base URL is api.airtable.com. GET /v0/meta/bases lists accessible bases and requires authentication.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"error\":{\"type\":\"AUTHENTICATION_REQUIRED\",\"message\":\"Authentication required\"}}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 73,
+    "app": "Linear",
+    "base_url": "https://api.linear.app",
+    "probe_url": "https://api.linear.app/v1/user",
+    "per_tenant": false,
+    "note": "Evidence links to developers.linear.app for GraphQL, but standard public REST API base is api.linear.app.",
+    "error": null,
+    "probe": {
+      "status": 404,
+      "content_type": "text/html; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "<!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <title>Error</title> </head> <body> <pre>Cannot GET /v1/user</pre> </body> </html> "
+    },
+    "reachability": "path_not_found"
+  },
+  {
+    "id": 74,
+    "app": "Jira",
+    "base_url": "https://api.atlassian.com",
+    "probe_url": "https://api.atlassian.com/me",
+    "per_tenant": false,
+    "note": "Base URL inferred from standard Atlassian API patterns; specific endpoints not detailed in evidence.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{\"code\":401,\"message\":\"Unauthorized\"}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 75,
+    "app": "Asana",
+    "base_url": "https://app.asana.com/api/1.0",
+    "probe_url": "https://app.asana.com/api/1.0/users/me",
+    "per_tenant": false,
+    "note": "Base URL inferred from standard Asana REST API documentation; not explicitly in evidence.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=UTF-8",
+      "www_authenticate": null,
+      "snippet": "{\"errors\":[{\"message\":\"Not Authorized\",\"help\":\"For more information on API status codes and how to handle them, read the docs on errors: https://developers.asan"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 76,
+    "app": "Monday.com",
+    "base_url": "https://api.monday.com/v2",
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence shows monday.com uses a GraphQL API, not REST GET endpoints.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"errors\":[{\"message\":\"Not authenticated\",\"extensions\":{\"code\":\"NOT_AUTHENTICATED\"}}]}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 77,
+    "app": "ClickUp",
+    "base_url": "https://api.clickup.com/api/v2",
+    "probe_url": "https://api.clickup.com/api/v2/team",
+    "per_tenant": false,
+    "note": "Base URL derived from OAuth token endpoint. Probe URL targets Get Authorized Teams (Workspaces).",
+    "error": null,
+    "probe": {
+      "status": 400,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"err\":\"Authorization header required\",\"ECODE\":\"OAUTH_017\"}"
+    },
+    "reachability": "http_400"
+  },
+  {
+    "id": 78,
+    "app": "Coda",
+    "base_url": "https://coda.io/apis/v1",
+    "probe_url": "https://coda.io/apis/v1/docs",
+    "per_tenant": false,
+    "note": "Coda was rebranded to Superhuman Docs, but the API base path remains https://coda.io/apis/v1. /docs lists available docs.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "{\"statusCode\":401,\"statusMessage\":\"Unauthorized\",\"message\":\"Unauthorized\"}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 79,
+    "app": "Smartsheet",
+    "base_url": "https://api.smartsheet.com/2.0",
+    "probe_url": "https://api.smartsheet.com/2.0/users/me",
+    "per_tenant": false,
+    "note": "Base URL is explicitly documented. /users/me is a standard authenticated GET endpoint for the API.",
+    "error": null,
+    "probe": {
+      "status": 403,
+      "content_type": "application/json;charset=UTF-8",
+      "www_authenticate": null,
+      "snippet": "{   \"errorCode\" : 1004,   \"message\" : \"You are not authorized to perform this action.\",   \"refId\" : \"sbvhjl\" }"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 80,
+    "app": "Harvest",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence is a marketing page only; no API base URL or endpoints are documented.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 81,
+    "app": "Stripe",
+    "base_url": "https://api.stripe.com",
+    "probe_url": "https://api.stripe.com/v1/customers",
+    "per_tenant": false,
+    "note": "Base URL inferred from standard Stripe API structure; docs list /v1/customers.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json",
+      "www_authenticate": "Basic realm=\"Stripe\"",
+      "snippet": "{   \"error\": {     \"message\": \"You did not provide an API key. You need to provide your API key in the Authorization header, using Bearer auth (e.g. 'Authorizat"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 82,
+    "app": "Plaid",
+    "base_url": "https://production.plaid.com",
+    "probe_url": "https://status.plaid.com/api/v2/status.json",
+    "per_tenant": false,
+    "note": "Docs list production and sandbox base URLs. Core API uses POST, but a public GET status endpoint is documented.",
+    "error": null,
+    "probe": {
+      "status": 200,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{\"page\":{\"id\":\"01KJ72XDYEXAHDV9SPTMB7YS2Y\",\"name\":\"Plaid\",\"url\":\"https://status.plaid.com/\",\"updated_at\":\"2026-05-05T16:04:16Z\"},\"status\":{\"description\":\"All Sy"
+    },
+    "reachability": "live_open"
+  },
+  {
+    "id": 83,
+    "app": "Binance",
+    "base_url": "https://api.binance.com",
+    "probe_url": "https://api.binance.com/api/v3/ticker/price",
+    "per_tenant": false,
+    "note": "Public endpoint shown in official docs; no auth needed for this specific probe.",
+    "error": null,
+    "probe": {
+      "status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "www_authenticate": null,
+      "snippet": "[{\"symbol\":\"ETHBTC\",\"price\":\"0.02991000\"},{\"symbol\":\"LTCBTC\",\"price\":\"0.00069500\"},{\"symbol\":\"BNBBTC\",\"price\":\"0.00950400\"},{\"symbol\":\"NEOBTC\",\"price\":\"0.000035"
+    },
+    "reachability": "live_open"
+  },
+  {
+    "id": 84,
+    "app": "Paygent Connect",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence shows API docs for ConnectPay but lacks the actual API base URL.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 85,
+    "app": "iPayX",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "No evidence mentions iPayX or its API base URL.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 86,
+    "app": "QuickBooks",
+    "base_url": "https://quickbooks.api.intuit.com/v3/company",
+    "probe_url": "https://quickbooks.api.intuit.com/v3/company/{companyId}/companyinfo/{companyId}",
+    "per_tenant": true,
+    "note": "Base URL requires a tenant-specific companyId in the path for all API calls.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 87,
+    "app": "Xero",
+    "base_url": "https://api.xero.com",
+    "probe_url": "https://api.xero.com/connections",
+    "per_tenant": false,
+    "note": "Evidence shows login.xero.com for auth. API base is standard for Xero, connections endpoint lists tenants.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json",
+      "www_authenticate": "Bearer",
+      "snippet": "{\"Type\":null,\"Title\":\"Unauthorized\",\"Status\":401,\"Detail\":\"AuthenticationUnsuccessful\",\"Instance\":\"0772cbed-3f9f-4298-86ca-edcb75752b53\",\"Extensions\":{}}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 88,
+    "app": "Brex",
+    "base_url": "https://api.brex.com",
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence provides base URL but no specific GET endpoints.",
+    "error": null,
+    "probe": {
+      "status": 404,
+      "content_type": "text/plain; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "Not Found "
+    },
+    "reachability": "path_not_found"
+  },
+  {
+    "id": 89,
+    "app": "Ramp",
+    "base_url": "https://api.ramp.com",
+    "probe_url": "https://api.ramp.com/developer/v1/users",
+    "per_tenant": false,
+    "note": "Production base URL is explicitly stated. Probe URL inferred from OpenAPI schema for a standard GET endpoint.",
+    "error": null,
+    "probe": {
+      "status": 404,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{\"error_v2\":{\"error_code\":\"DEVELOPER_7002\",\"notes\":\"\",\"error_id\":\"59fefeb5\",\"additional_info\":{},\"message\":\"Access token with given access_token not found\"},\"er"
+    },
+    "reachability": "path_not_found"
+  },
+  {
+    "id": 90,
+    "app": "PitchBook",
+    "base_url": "https://premium.mcp.pitchbook.com/mcp",
+    "probe_url": "https://premium.mcp.pitchbook.com/mcp",
+    "per_tenant": false,
+    "note": "MCP Streamable HTTP endpoint requiring OAuth. GET likely returns server info or 401.",
+    "error": null,
+    "probe": {
+      "status": 405,
+      "content_type": "text/plain; charset=utf-8",
+      "www_authenticate": null,
+      "snippet": "Method Not Allowed"
+    },
+    "reachability": "path_not_found"
+  },
+  {
+    "id": 91,
+    "app": "NotebookLM",
+    "base_url": "https://discoveryengine.googleapis.com",
+    "probe_url": "https://discoveryengine.googleapis.com/v1alpha/projects/PROJECT_NUMBER/locations/LOCATION/notebooks",
+    "per_tenant": false,
+    "note": "Base host is standard Google Cloud; tenant info is in the path. GET notebooks list requires auth.",
+    "error": null,
+    "probe": {
+      "status": 404,
+      "content_type": "text/html; charset=UTF-8",
+      "www_authenticate": null,
+      "snippet": "<!DOCTYPE html> <html lang=en>   <meta charset=utf-8>   <meta name=viewport content=\"initial-scale=1, minimum-scale=1, width=device-width\">   <title>Error 404 ("
+    },
+    "reachability": "path_not_found"
+  },
+  {
+    "id": 92,
+    "app": "Otter AI",
+    "base_url": "https://api.otter.ai/v1",
+    "probe_url": "https://api.otter.ai/v1/channels",
+    "per_tenant": false,
+    "note": "Public API base from Otter docs; /channels is a list endpoint requiring Bearer auth.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json",
+      "www_authenticate": null,
+      "snippet": "{\"error\": \"unauthorized\"}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 93,
+    "app": "Fathom",
+    "base_url": "https://api.fathom.ai/external/v1/",
+    "probe_url": "https://api.fathom.ai/external/v1/meetings",
+    "per_tenant": false,
+    "note": "Base URL and GET /meetings endpoint confirmed from ZoomInfo review evidence.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "text/html",
+      "www_authenticate": null,
+      "snippet": ""
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 94,
+    "app": "Consensus",
+    "base_url": "https://api.consensus.app",
+    "probe_url": "https://api.consensus.app/v1/quick_search",
+    "per_tenant": false,
+    "note": "Docs link points to docs.consensus.app/reference/v1_quick_search; standard API root inferred.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json",
+      "www_authenticate": "APIKey",
+      "snippet": "{\"detail\":\"Not authenticated\"}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 95,
+    "app": "Reducto",
+    "base_url": "https://platform.reducto.ai",
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence shows POST /parse; no GET endpoint documented.",
+    "error": null,
+    "probe": {
+      "status": 403,
+      "content_type": "text/html",
+      "www_authenticate": null,
+      "snippet": "<html>\r <head><title>403 Forbidden</title></head>\r <body>\r <center><h1>403 Forbidden</h1></center>\r </body>\r </html>\r "
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 96,
+    "app": "Devin",
+    "base_url": "https://api.devin.ai/v3",
+    "probe_url": "https://api.devin.ai/v3/organizations/$DEVIN_ORG_ID/sessions",
+    "per_tenant": false,
+    "note": "Base URL is api.devin.ai/v3; tenant ID is passed as a path parameter, not a subdomain.",
+    "error": null,
+    "probe": {
+      "status": 403,
+      "content_type": "application/problem+json",
+      "www_authenticate": null,
+      "snippet": "{\"type\":\"about:blank\",\"title\":\"Forbidden\",\"status\":403,\"detail\":\"Unauthorized\",\"instance\":\"/v3/organizations/$DEVIN_ORG_ID/sessions\"}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 97,
+    "app": "higgsfield",
+    "base_url": "https://api.higgsfield.ai",
+    "probe_url": "https://api.higgsfield.ai/v1/me",
+    "per_tenant": false,
+    "note": "Base URL inferred from standard API conventions; specific endpoints not detailed in evidence.",
+    "error": null,
+    "probe": {
+      "status": null,
+      "error": "ReadTimeout: The read operation timed out"
+    },
+    "reachability": "unreachable"
+  },
+  {
+    "id": 98,
+    "app": "Mermaid CLI",
+    "base_url": null,
+    "probe_url": null,
+    "per_tenant": false,
+    "note": "Evidence only shows a CLI tool and an MCP server, with no public HTTP API base URL or endpoints documented.",
+    "error": null,
+    "reachability": "not_probeable"
+  },
+  {
+    "id": 99,
+    "app": "YouTube Transcript",
+    "base_url": "https://transcriptapi.com",
+    "probe_url": "https://transcriptapi.com/api/v2/youtube/transcript?video_url=dQw4w9WgXcQ&format=json",
+    "per_tenant": false,
+    "note": "Evidence shows a curl GET request to this endpoint requiring a Bearer token.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json",
+      "www_authenticate": "Bearer",
+      "snippet": "{\"detail\":\"Not authenticated\"}"
+    },
+    "reachability": "live_and_gated"
+  },
+  {
+    "id": 100,
+    "app": "Grain",
+    "base_url": "https://api.grain.com",
+    "probe_url": "https://api.grain.com/_/public-api/me",
+    "per_tenant": false,
+    "note": "Base URL is explicitly stated. Probe URL inferred from 'myself' MCP tool.",
+    "error": null,
+    "probe": {
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "www_authenticate": "Bearer resource_metadata=\"https://grain.com/.well-known/oauth-protected-resource",
+      "snippet": "{\"error\":\"unauthorized\"}"
+    },
+    "reachability": "live_and_gated"
+  }
+]

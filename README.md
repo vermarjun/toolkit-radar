@@ -5,9 +5,14 @@ run across 100 apps, and then graded on whether it was telling the truth.
 
 Built for the Composio AI Product Ops take-home.
 
-- **The report** → *(live link — see `.repo_url` / the deployment)*
-- **The report, for agents** → `https://<host>/api/mcp` (MCP over HTTP)
-- **The raw data** → `/data.json`, `/findings.csv`, `/llms.txt`
+- **The report** → <https://toolkit-radar-seven.vercel.app>
+- **The report, for agents** → `https://toolkit-radar-seven.vercel.app/api/mcp`
+  ```
+  claude mcp add --transport http toolkit-radar https://toolkit-radar-seven.vercel.app/api/mcp
+  ```
+- **The raw data** → [`/data.json`](https://toolkit-radar-seven.vercel.app/data.json) ·
+  [`/findings.csv`](https://toolkit-radar-seven.vercel.app/findings.csv) ·
+  [`/llms.txt`](https://toolkit-radar-seven.vercel.app/llms.txt)
 
 ---
 
@@ -43,7 +48,9 @@ cp .env.example .env                    # then fill in the three keys
 
 python -m agent.catalog                 # pull + join Composio's toolkit catalog
 python -m agent.research both           # pass 1 (control) and pass 2 (grounded)
-python -m agent.gate                    # pass 4, browser gate prover (optional)
+python -m agent.arbitrate               # pass 3b, merge prior and evidence
+python -m agent.gate                    # pass 4, browser gate prover
+python -m agent.reach                   # pass 5, touch each documented API
 python evals/score.py                   # grade both passes against the gold set
 python -m agent.report                  # build site/index.html + data.json
 ```
@@ -87,8 +94,14 @@ account.
   pass 3   critic           a different model family, told to refute
                             can only demote a claim to unknown, never invent one
 
+  pass 3b  arbitration      evidence updates the prior, silence keeps it, and the
+                            verdict is derived so it cannot contradict its own row
+
   pass 4   gate prover      real Chromium on the pricing page, rule-based CTA
                             classification + screenshot. Not another LLM.
+
+  pass 5   reachability     one unauthenticated GET to each documented API:
+                            does the endpoint exist and does it demand a key
 
   ------   grading          20 hand-labelled apps / 100 labels
                             + agreement against Composio's shipped auth config
@@ -101,7 +114,23 @@ Two models, deliberately from different families: `deepseek-v4-flash` extracts,
 
 ## Accuracy
 
-The headline is in `data/eval.json` and on the report page. The method:
+    pass 1  closed book          68%    one model call, no tools — the control
+    pass 2  grounded             74%    after the extraction prompt was fixed
+    pass 2  grounded + critic    42%    the critic, as originally designed
+    pass 3  arbitrated           74%    shipped
+
+**+6 points**, and the interesting part is the 42% in the middle. The first
+grounded run also scored *below* the control, at 56%. Both regressions came from
+instructions that sound obviously right — "do not fall back on what you remember"
+and "demote anything you cannot support" — and both destroy information when the
+corpus is three pages wide instead of complete. The adversarial critic lost 32
+points and now flags rather than decides.
+
+The full account is in `docs/ITERATIONS.md`, including the two roles the critic
+failed at (27% and 31% hit rates) and the four merge policies that made no
+difference at all.
+
+The method:
 
 - 20 apps hand-labelled from primary sources **before** the grading code existed,
   stratified to include the gated and the weird, because a random sample of
@@ -112,8 +141,13 @@ The headline is in `data/eval.json` and on the report page. The method:
   problems.
 - A calibration check asks whether the agent's stated confidence predicts
   correctness at all.
-- A second, larger cross-check against Composio's production auth config,
-  reported as agreement and never averaged into the accuracy number.
+- A second, larger cross-check against Composio's production auth config —
+  76% agreement across all 59 apps it already ships, reported as agreement and
+  never averaged into the accuracy number.
+- Two loops that produce a different *kind* of evidence than a model reading a
+  page: a real browser on 45 pricing pages, and one unauthenticated GET to each
+  documented API — 43 of which answered 401/403, which is the strongest
+  confirmation available that the API and its auth story are real.
 
 What moved the number, and what didn't, is logged in `docs/ITERATIONS.md`.
 The most useful finding there: a measurable share of what looked like model error
@@ -130,7 +164,9 @@ agent/
   search.py    Firecrawl search + scrape, disk-cached, budget-capped
   schema.py    the closed vocabularies, and the coercion that makes output gradeable
   research.py  passes 1-3
+  arbitrate.py pass 3b, the merge rules, each one recorded per field
   gate.py      pass 4, the browser
+  reach.py     pass 5, the unauthenticated probe
   catalog.py   Composio catalog pull + conservative join
   score.py     build score, effort tier, lane assignment
   report.py    merges everything into site/data.json and renders index.html

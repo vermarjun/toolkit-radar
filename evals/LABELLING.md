@@ -40,6 +40,20 @@ a written tie-break rule *before* labelling:
   most consequential judgement in the whole exercise and it is argued in
   `../docs/FINDINGS.md`.
 
+## One label was changed after the fact
+
+`verdict` for **Mermaid CLI** was moved from `build_now` to `build_with_caveats`.
+Writing the derived-verdict rule in code forced the two command-line entries in
+the set to be compared side by side, and they had been labelled differently —
+Sherlock as `build_with_caveats` because wrapping a binary is a different build
+shape, Mermaid CLI as `build_now` because it felt easy. Both are npm/pip CLIs
+with no tenant and no credential. The inconsistency was mine, not the agent's.
+
+Changing a gold label after seeing results is exactly the move that invalidates
+an eval, so: it is disclosed here, it is one label out of 100, it was made to
+enforce a rule rather than to match any prediction, and the agent's answer for
+that cell was wrong both before and after the change.
+
 ## Independence
 
 The gold labels were fixed before `pass2.json` was read. Three apps

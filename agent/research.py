@@ -148,7 +148,7 @@ def _pick_pages(results: list[dict], limit: int) -> list[str]:
     return picked
 
 
-def gather(app: dict, pages: int = 2, per_query: int = 2) -> dict:
+def gather(app: dict, pages: int = 3, per_query: int = 2) -> dict:
     """Retrieval step. Returns the corpus handed to the extractor."""
     name, hint = app["app"], app["hint"]
     domain = re.split(r"[ (]", hint)[0]
@@ -200,10 +200,17 @@ App: {app['app']}
 Category: {app['category']}
 Hint: {app['hint']}
 
-Below is retrieved evidence. Base every answer on it. Where the evidence is
-silent, use the "unknown" member and a low confidence number — do NOT fall back
-on what you remember about this product. Every URL you put in "evidence" must
-appear verbatim in the evidence below.
+Below is retrieved evidence.
+
+Where the evidence and your own recollection differ, the evidence wins — vendors
+change auth schemes and pricing tiers faster than a model's training data moves.
+Where the evidence is *silent* on a field, you may answer from your own knowledge
+of this product, but then set that field's confidence to 0.5 or below and do not
+cite anything for it. Use "unknown" only when you have neither evidence nor
+knowledge. An earlier version of this prompt forbade the fallback entirely and
+scored worse than answering with no evidence at all: silence is common in a
+three-page corpus, and discarding a decent prior to honour it loses more than it
+protects. Every URL in "evidence" must appear verbatim below.
 
 Pay particular attention to the commercial gate. Docs rarely state it outright;
 infer it from phrases like "contact sales", "available on the Enterprise plan",
@@ -223,8 +230,9 @@ token, that is self_serve_free even when the product itself is expensive.
     allowed = set(corpus["fetched_urls"]) | {r["url"] for r in corpus["search_results"]}
     kept = [u for u in out["evidence"] if u in allowed]
     out["evidence"] = kept or corpus["fetched_urls"][:2]
-    out["fabricated_citations"] = len(out.get("evidence", [])) and len(
-        [u for u in raw.get("evidence", []) or [] if isinstance(u, str) and u not in allowed]
+    cited = (raw.get("evidence") or []) if isinstance(raw, dict) else []
+    out["fabricated_citations"] = len(
+        [u for u in cited if isinstance(u, str) and u not in allowed]
     )
     return out
 

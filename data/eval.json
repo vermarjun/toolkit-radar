@@ -21,59 +21,1639 @@
     90,
     98
   ],
+  "stages": [
+    {
+      "key": "pass1",
+      "label": "closed book",
+      "note": "one model call, no tools at all \u2014 the control",
+      "n_apps": 20,
+      "n_labels": 100,
+      "accuracy": 0.68,
+      "per_field": {
+        "primary_auth": {
+          "accuracy": 0.7,
+          "correct": 14,
+          "wrong": 5,
+          "overclaimed": 1
+        },
+        "access": {
+          "accuracy": 0.7,
+          "wrong": 6,
+          "correct": 14
+        },
+        "api_surface": {
+          "accuracy": 0.8,
+          "correct": 16,
+          "overclaimed": 1,
+          "wrong": 3
+        },
+        "has_mcp": {
+          "accuracy": 0.5,
+          "wrong": 10,
+          "correct": 10
+        },
+        "verdict": {
+          "accuracy": 0.7,
+          "wrong": 6,
+          "correct": 14
+        }
+      },
+      "misses": [
+        {
+          "id": 60,
+          "app": "Clay",
+          "field": "access",
+          "predicted": "self_serve_paid",
+          "gold": "plan_gated",
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "HTTP API available on paid plans; users report the API throttled and gated at the Explorer tier upward. First-party Clay MCP."
+        },
+        {
+          "id": 14,
+          "app": "Front",
+          "field": "access",
+          "predicted": "plan_gated",
+          "gold": "self_serve_free",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
+        },
+        {
+          "id": 20,
+          "app": "Gladly",
+          "field": "access",
+          "predicted": "approval_required",
+          "gold": "partner_gated",
+          "outcome": "wrong",
+          "confidence": 0.6,
+          "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
+        },
+        {
+          "id": 90,
+          "app": "PitchBook",
+          "field": "access",
+          "predicted": "approval_required",
+          "gold": "partner_gated",
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        },
+        {
+          "id": 58,
+          "app": "Sherlock",
+          "field": "access",
+          "predicted": "no_public_api",
+          "gold": "self_serve_free",
+          "outcome": "wrong",
+          "confidence": 1.0,
+          "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+        },
+        {
+          "id": 21,
+          "app": "Slack",
+          "field": "access",
+          "predicted": "approval_required",
+          "gold": "self_serve_free",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+        },
+        {
+          "id": 98,
+          "app": "Mermaid CLI",
+          "field": "api_surface",
+          "predicted": "none",
+          "gold": "sdk_only",
+          "outcome": "wrong",
+          "confidence": 1.0,
+          "note": "Local npm CLI, no auth and no network service. MermaidChart ships an MCP but that is a different company's hosted product, so the vendor-published test fails here."
+        },
+        {
+          "id": 90,
+          "app": "PitchBook",
+          "field": "api_surface",
+          "predicted": "rest",
+          "gold": "unknown",
+          "outcome": "overclaimed",
+          "confidence": 0.8,
+          "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        },
+        {
+          "id": 58,
+          "app": "Sherlock",
+          "field": "api_surface",
+          "predicted": "none",
+          "gold": "sdk_only",
+          "outcome": "wrong",
+          "confidence": 1.0,
+          "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+        },
+        {
+          "id": 5,
+          "app": "Twenty",
+          "field": "api_surface",
+          "predicted": "graphql",
+          "gold": "rest+graphql",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "Bearer API key; both GraphQL and REST exposed. Open source and self-hostable, and Twenty Cloud workspaces ship a native MCP server."
+        },
+        {
+          "id": 4,
+          "app": "Attio",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.6,
+          "note": "Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."
+        },
+        {
+          "id": 60,
+          "app": "Clay",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.6,
+          "note": "HTTP API available on paid plans; users report the API throttled and gated at the Explorer tier upward. First-party Clay MCP."
+        },
+        {
+          "id": 10,
+          "app": "DealCloud",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "OAuth2 client-credentials. Docs are public but credentials are provisioned by DealCloud for an existing client tenant. First-party MCP server in client preview from July 2026."
+        },
+        {
+          "id": 14,
+          "app": "Front",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.85,
+          "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
+        },
+        {
+          "id": 19,
+          "app": "Gorgias",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."
+        },
+        {
+          "id": 36,
+          "app": "Klaviyo",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "Private API key from the account settings; free tier up to 250 contacts. First-party MCP server documented."
+        },
+        {
+          "id": 71,
+          "app": "Notion",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "Internal integration token or public OAuth, self-serve on the free plan. First-party hosted MCP."
+        },
+        {
+          "id": 21,
+          "app": "Slack",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+        },
+        {
+          "id": 81,
+          "app": "Stripe",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "Secret key self-issued in dashboard with no activation; Connect OAuth exists but keys are the normal path. First-party MCP at mcp.stripe.com."
+        },
+        {
+          "id": 5,
+          "app": "Twenty",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.6,
+          "note": "Bearer API key; both GraphQL and REST exposed. Open source and self-hostable, and Twenty Cloud workspaces ship a native MCP server."
+        },
+        {
+          "id": 10,
+          "app": "DealCloud",
+          "field": "primary_auth",
+          "predicted": "API_KEY",
+          "gold": "S2S_OAUTH2",
+          "outcome": "wrong",
+          "confidence": 0.6,
+          "note": "OAuth2 client-credentials. Docs are public but credentials are provisioned by DealCloud for an existing client tenant. First-party MCP server in client preview from July 2026."
+        },
+        {
+          "id": 14,
+          "app": "Front",
+          "field": "primary_auth",
+          "predicted": "S2S_OAUTH2",
+          "gold": "BEARER_TOKEN",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
+        },
+        {
+          "id": 20,
+          "app": "Gladly",
+          "field": "primary_auth",
+          "predicted": "API_KEY",
+          "gold": "BASIC",
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
+        },
+        {
+          "id": 19,
+          "app": "Gorgias",
+          "field": "primary_auth",
+          "predicted": "API_KEY",
+          "gold": "BASIC",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."
+        },
+        {
+          "id": 90,
+          "app": "PitchBook",
+          "field": "primary_auth",
+          "predicted": "API_KEY",
+          "gold": "UNKNOWN",
+          "outcome": "overclaimed",
+          "confidence": 0.8,
+          "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        },
+        {
+          "id": 28,
+          "app": "WhatsApp Business",
+          "field": "primary_auth",
+          "predicted": "BEARER_TOKEN",
+          "gold": "OAUTH2",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+        },
+        {
+          "id": 10,
+          "app": "DealCloud",
+          "field": "verdict",
+          "predicted": "needs_outreach",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 0.6,
+          "note": "OAuth2 client-credentials. Docs are public but credentials are provisioned by DealCloud for an existing client tenant. First-party MCP server in client preview from July 2026."
+        },
+        {
+          "id": 14,
+          "app": "Front",
+          "field": "verdict",
+          "predicted": "build_with_caveats",
+          "gold": "build_now",
+          "outcome": "wrong",
+          "confidence": 0.85,
+          "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
+        },
+        {
+          "id": 20,
+          "app": "Gladly",
+          "field": "verdict",
+          "predicted": "needs_outreach",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
+        },
+        {
+          "id": 98,
+          "app": "Mermaid CLI",
+          "field": "verdict",
+          "predicted": "not_buildable",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 1.0,
+          "note": "Local npm CLI, no auth and no network service. MermaidChart ships an MCP but that is a different company's hosted product, so the vendor-published test fails here."
+        },
+        {
+          "id": 58,
+          "app": "Sherlock",
+          "field": "verdict",
+          "predicted": "not_buildable",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 1.0,
+          "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+        },
+        {
+          "id": 21,
+          "app": "Slack",
+          "field": "verdict",
+          "predicted": "build_with_caveats",
+          "gold": "build_now",
+          "outcome": "wrong",
+          "confidence": 0.85,
+          "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+        }
+      ]
+    },
+    {
+      "key": "pass2_raw",
+      "label": "grounded",
+      "note": "search, fetch three pages, extract with citations",
+      "n_apps": 20,
+      "n_labels": 100,
+      "accuracy": 0.74,
+      "per_field": {
+        "primary_auth": {
+          "accuracy": 0.7,
+          "correct": 14,
+          "wrong": 5,
+          "overclaimed": 1
+        },
+        "access": {
+          "accuracy": 0.75,
+          "wrong": 5,
+          "correct": 15
+        },
+        "api_surface": {
+          "accuracy": 0.8,
+          "wrong": 3,
+          "correct": 16,
+          "overclaimed": 1
+        },
+        "has_mcp": {
+          "accuracy": 0.8,
+          "correct": 16,
+          "wrong": 4
+        },
+        "verdict": {
+          "accuracy": 0.65,
+          "wrong": 7,
+          "correct": 13
+        }
+      },
+      "misses": [
+        {
+          "id": 49,
+          "app": "Amazon Selling Partner",
+          "field": "access",
+          "predicted": "self_serve_paid",
+          "gold": "approval_required",
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "LWA OAuth2; AWS SigV4 signing dropped in Oct 2023. Requires a registered developer profile and app registration before credentials exist. Community MCP servers only."
+        },
+        {
+          "id": 20,
+          "app": "Gladly",
+          "field": "access",
+          "predicted": "approval_required",
+          "gold": "partner_gated",
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
+        },
+        {
+          "id": 90,
+          "app": "PitchBook",
+          "field": "access",
+          "predicted": "approval_required",
+          "gold": "partner_gated",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        },
+        {
+          "id": 21,
+          "app": "Slack",
+          "field": "access",
+          "predicted": "approval_required",
+          "gold": "self_serve_free",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+        },
+        {
+          "id": 28,
+          "app": "WhatsApp Business",
+          "field": "access",
+          "predicted": "self_serve_free",
+          "gold": "approval_required",
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+        },
+        {
+          "id": 60,
+          "app": "Clay",
+          "field": "api_surface",
+          "predicted": "none",
+          "gold": "rest",
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "HTTP API available on paid plans; users report the API throttled and gated at the Explorer tier upward. First-party Clay MCP."
+        },
+        {
+          "id": 90,
+          "app": "PitchBook",
+          "field": "api_surface",
+          "predicted": "rest",
+          "gold": "unknown",
+          "outcome": "overclaimed",
+          "confidence": 0.45,
+          "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        },
+        {
+          "id": 58,
+          "app": "Sherlock",
+          "field": "api_surface",
+          "predicted": "rest",
+          "gold": "sdk_only",
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+        },
+        {
+          "id": 21,
+          "app": "Slack",
+          "field": "api_surface",
+          "predicted": "rpc",
+          "gold": "rest",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+        },
+        {
+          "id": 4,
+          "app": "Attio",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."
+        },
+        {
+          "id": 71,
+          "app": "Notion",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "Internal integration token or public OAuth, self-serve on the free plan. First-party hosted MCP."
+        },
+        {
+          "id": 90,
+          "app": "PitchBook",
+          "field": "has_mcp",
+          "predicted": true,
+          "gold": false,
+          "outcome": "wrong",
+          "confidence": 1.0,
+          "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        },
+        {
+          "id": 5,
+          "app": "Twenty",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "Bearer API key; both GraphQL and REST exposed. Open source and self-hostable, and Twenty Cloud workspaces ship a native MCP server."
+        },
+        {
+          "id": 14,
+          "app": "Front",
+          "field": "primary_auth",
+          "predicted": "OAUTH2",
+          "gold": "BEARER_TOKEN",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
+        },
+        {
+          "id": 19,
+          "app": "Gorgias",
+          "field": "primary_auth",
+          "predicted": "OAUTH2",
+          "gold": "BASIC",
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."
+        },
+        {
+          "id": 73,
+          "app": "Linear",
+          "field": "primary_auth",
+          "predicted": "API_KEY",
+          "gold": "OAUTH2",
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "GraphQL only, no REST. Personal API key or OAuth, free plan. First-party MCP at mcp.linear.app."
+        },
+        {
+          "id": 90,
+          "app": "PitchBook",
+          "field": "primary_auth",
+          "predicted": "OAUTH2",
+          "gold": "UNKNOWN",
+          "outcome": "overclaimed",
+          "confidence": 0.9,
+          "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        },
+        {
+          "id": 58,
+          "app": "Sherlock",
+          "field": "primary_auth",
+          "predicted": "API_KEY",
+          "gold": "NO_AUTH",
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+        },
+        {
+          "id": 28,
+          "app": "WhatsApp Business",
+          "field": "primary_auth",
+          "predicted": "S2S_OAUTH2",
+          "gold": "OAUTH2",
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+        },
+        {
+          "id": 20,
+          "app": "Gladly",
+          "field": "verdict",
+          "predicted": "needs_outreach",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
+        },
+        {
+          "id": 33,
+          "app": "LinkedIn Ads",
+          "field": "verdict",
+          "predicted": "build_with_caveats",
+          "gold": "needs_outreach",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "3-legged OAuth. Every product requires an application; Standard tier needs a support ticket and LinkedIn 'reserves the right to select partners at its discretion'. Only unofficial "
+        },
+        {
+          "id": 98,
+          "app": "Mermaid CLI",
+          "field": "verdict",
+          "predicted": "build_now",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "Local npm CLI, no auth and no network service. MermaidChart ships an MCP but that is a different company's hosted product, so the vendor-published test fails here."
+        },
+        {
+          "id": 58,
+          "app": "Sherlock",
+          "field": "verdict",
+          "predicted": "build_now",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+        },
+        {
+          "id": 21,
+          "app": "Slack",
+          "field": "verdict",
+          "predicted": "needs_outreach",
+          "gold": "build_now",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+        },
+        {
+          "id": 5,
+          "app": "Twenty",
+          "field": "verdict",
+          "predicted": "build_with_caveats",
+          "gold": "build_now",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "Bearer API key; both GraphQL and REST exposed. Open source and self-hostable, and Twenty Cloud workspaces ship a native MCP server."
+        },
+        {
+          "id": 28,
+          "app": "WhatsApp Business",
+          "field": "verdict",
+          "predicted": "build_now",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 0.5,
+          "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+        }
+      ]
+    },
+    {
+      "key": "pass2",
+      "label": "grounded + critic",
+      "note": "a second model demotes what it cannot support",
+      "n_apps": 20,
+      "n_labels": 100,
+      "accuracy": 0.42,
+      "per_field": {
+        "primary_auth": {
+          "accuracy": 0.15,
+          "abstained": 12,
+          "wrong": 4,
+          "correct": 3,
+          "overclaimed": 1
+        },
+        "access": {
+          "accuracy": 0.25,
+          "wrong": 5,
+          "abstained": 10,
+          "correct": 5
+        },
+        "api_surface": {
+          "accuracy": 0.6,
+          "wrong": 1,
+          "abstained": 7,
+          "correct": 12
+        },
+        "has_mcp": {
+          "accuracy": 0.45,
+          "correct": 9,
+          "abstained": 7,
+          "wrong": 4
+        },
+        "verdict": {
+          "accuracy": 0.65,
+          "wrong": 7,
+          "correct": 13
+        }
+      },
+      "misses": [
+        {
+          "id": 49,
+          "app": "Amazon Selling Partner",
+          "field": "access",
+          "predicted": "unknown",
+          "gold": "approval_required",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "LWA OAuth2; AWS SigV4 signing dropped in Oct 2023. Requires a registered developer profile and app registration before credentials exist. Community MCP servers only."
+        },
+        {
+          "id": 4,
+          "app": "Attio",
+          "field": "access",
+          "predicted": "unknown",
+          "gold": "self_serve_free",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."
+        },
+        {
+          "id": 60,
+          "app": "Clay",
+          "field": "access",
+          "predicted": "unknown",
+          "gold": "plan_gated",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "HTTP API available on paid plans; users report the API throttled and gated at the Explorer tier upward. First-party Clay MCP."
+        },
+        {
+          "id": 10,
+          "app": "DealCloud",
+          "field": "access",
+          "predicted": "unknown",
+          "gold": "approval_required",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "OAuth2 client-credentials. Docs are public but credentials are provisioned by DealCloud for an existing client tenant. First-party MCP server in client preview from July 2026."
+        },
+        {
+          "id": 14,
+          "app": "Front",
+          "field": "access",
+          "predicted": "unknown",
+          "gold": "self_serve_free",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
+        },
+        {
+          "id": 20,
+          "app": "Gladly",
+          "field": "access",
+          "predicted": "unknown",
+          "gold": "partner_gated",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
+        },
+        {
+          "id": 19,
+          "app": "Gorgias",
+          "field": "access",
+          "predicted": "approval_required",
+          "gold": "self_serve_free",
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."
+        },
+        {
+          "id": 73,
+          "app": "Linear",
+          "field": "access",
+          "predicted": "unknown",
+          "gold": "self_serve_free",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "GraphQL only, no REST. Personal API key or OAuth, free plan. First-party MCP at mcp.linear.app."
+        },
+        {
+          "id": 71,
+          "app": "Notion",
+          "field": "access",
+          "predicted": "unknown",
+          "gold": "self_serve_free",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Internal integration token or public OAuth, self-serve on the free plan. First-party hosted MCP."
+        },
+        {
+          "id": 90,
+          "app": "PitchBook",
+          "field": "access",
+          "predicted": "approval_required",
+          "gold": "partner_gated",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        },
+        {
+          "id": 58,
+          "app": "Sherlock",
+          "field": "access",
+          "predicted": "self_serve_paid",
+          "gold": "self_serve_free",
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+        },
+        {
+          "id": 21,
+          "app": "Slack",
+          "field": "access",
+          "predicted": "approval_required",
+          "gold": "self_serve_free",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+        },
+        {
+          "id": 81,
+          "app": "Stripe",
+          "field": "access",
+          "predicted": "unknown",
+          "gold": "self_serve_free",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Secret key self-issued in dashboard with no activation; Connect OAuth exists but keys are the normal path. First-party MCP at mcp.stripe.com."
+        },
+        {
+          "id": 5,
+          "app": "Twenty",
+          "field": "access",
+          "predicted": "unknown",
+          "gold": "self_serve_free",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Bearer API key; both GraphQL and REST exposed. Open source and self-hostable, and Twenty Cloud workspaces ship a native MCP server."
+        },
+        {
+          "id": 28,
+          "app": "WhatsApp Business",
+          "field": "access",
+          "predicted": "self_serve_paid",
+          "gold": "approval_required",
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+        },
+        {
+          "id": 60,
+          "app": "Clay",
+          "field": "api_surface",
+          "predicted": "unknown",
+          "gold": "rest",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "HTTP API available on paid plans; users report the API throttled and gated at the Explorer tier upward. First-party Clay MCP."
+        },
+        {
+          "id": 61,
+          "app": "GitHub",
+          "field": "api_surface",
+          "predicted": "unknown",
+          "gold": "rest+graphql",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "OAuth app or PAT, both self-issued free. REST and GraphQL are both first-class. First-party MCP server."
+        },
+        {
+          "id": 36,
+          "app": "Klaviyo",
+          "field": "api_surface",
+          "predicted": "unknown",
+          "gold": "rest",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Private API key from the account settings; free tier up to 250 contacts. First-party MCP server documented."
+        },
+        {
+          "id": 33,
+          "app": "LinkedIn Ads",
+          "field": "api_surface",
+          "predicted": "unknown",
+          "gold": "rest",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "3-legged OAuth. Every product requires an application; Standard tier needs a support ticket and LinkedIn 'reserves the right to select partners at its discretion'. Only unofficial "
+        },
+        {
+          "id": 58,
+          "app": "Sherlock",
+          "field": "api_surface",
+          "predicted": "unknown",
+          "gold": "sdk_only",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+        },
+        {
+          "id": 21,
+          "app": "Slack",
+          "field": "api_surface",
+          "predicted": "rpc",
+          "gold": "rest",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+        },
+        {
+          "id": 81,
+          "app": "Stripe",
+          "field": "api_surface",
+          "predicted": "unknown",
+          "gold": "rest",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Secret key self-issued in dashboard with no activation; Connect OAuth exists but keys are the normal path. First-party MCP at mcp.stripe.com."
+        },
+        {
+          "id": 28,
+          "app": "WhatsApp Business",
+          "field": "api_surface",
+          "predicted": "unknown",
+          "gold": "rest",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+        },
+        {
+          "id": 4,
+          "app": "Attio",
+          "field": "has_mcp",
+          "predicted": null,
+          "gold": true,
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."
+        },
+        {
+          "id": 10,
+          "app": "DealCloud",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "OAuth2 client-credentials. Docs are public but credentials are provisioned by DealCloud for an existing client tenant. First-party MCP server in client preview from July 2026."
+        },
+        {
+          "id": 61,
+          "app": "GitHub",
+          "field": "has_mcp",
+          "predicted": null,
+          "gold": true,
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "OAuth app or PAT, both self-issued free. REST and GraphQL are both first-class. First-party MCP server."
+        },
+        {
+          "id": 20,
+          "app": "Gladly",
+          "field": "has_mcp",
+          "predicted": null,
+          "gold": false,
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
+        },
+        {
+          "id": 98,
+          "app": "Mermaid CLI",
+          "field": "has_mcp",
+          "predicted": null,
+          "gold": false,
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Local npm CLI, no auth and no network service. MermaidChart ships an MCP but that is a different company's hosted product, so the vendor-published test fails here."
+        },
+        {
+          "id": 71,
+          "app": "Notion",
+          "field": "has_mcp",
+          "predicted": null,
+          "gold": true,
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Internal integration token or public OAuth, self-serve on the free plan. First-party hosted MCP."
+        },
+        {
+          "id": 90,
+          "app": "PitchBook",
+          "field": "has_mcp",
+          "predicted": true,
+          "gold": false,
+          "outcome": "wrong",
+          "confidence": 1.0,
+          "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        },
+        {
+          "id": 58,
+          "app": "Sherlock",
+          "field": "has_mcp",
+          "predicted": true,
+          "gold": false,
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+        },
+        {
+          "id": 81,
+          "app": "Stripe",
+          "field": "has_mcp",
+          "predicted": null,
+          "gold": true,
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Secret key self-issued in dashboard with no activation; Connect OAuth exists but keys are the normal path. First-party MCP at mcp.stripe.com."
+        },
+        {
+          "id": 5,
+          "app": "Twenty",
+          "field": "has_mcp",
+          "predicted": null,
+          "gold": true,
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Bearer API key; both GraphQL and REST exposed. Open source and self-hostable, and Twenty Cloud workspaces ship a native MCP server."
+        },
+        {
+          "id": 28,
+          "app": "WhatsApp Business",
+          "field": "has_mcp",
+          "predicted": true,
+          "gold": false,
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+        },
+        {
+          "id": 72,
+          "app": "Airtable",
+          "field": "primary_auth",
+          "predicted": "BEARER_TOKEN",
+          "gold": "OAUTH2",
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "PAT or OAuth, both self-serve. Airtable MCP server listed as available on all plans."
+        },
+        {
+          "id": 49,
+          "app": "Amazon Selling Partner",
+          "field": "primary_auth",
+          "predicted": "UNKNOWN",
+          "gold": "OAUTH2",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "LWA OAuth2; AWS SigV4 signing dropped in Oct 2023. Requires a registered developer profile and app registration before credentials exist. Community MCP servers only."
+        },
+        {
+          "id": 4,
+          "app": "Attio",
+          "field": "primary_auth",
+          "predicted": "UNKNOWN",
+          "gold": "OAUTH2",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."
+        },
+        {
+          "id": 60,
+          "app": "Clay",
+          "field": "primary_auth",
+          "predicted": "UNKNOWN",
+          "gold": "API_KEY",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "HTTP API available on paid plans; users report the API throttled and gated at the Explorer tier upward. First-party Clay MCP."
+        },
+        {
+          "id": 10,
+          "app": "DealCloud",
+          "field": "primary_auth",
+          "predicted": "API_KEY",
+          "gold": "S2S_OAUTH2",
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "OAuth2 client-credentials. Docs are public but credentials are provisioned by DealCloud for an existing client tenant. First-party MCP server in client preview from July 2026."
+        },
+        {
+          "id": 14,
+          "app": "Front",
+          "field": "primary_auth",
+          "predicted": "OAUTH2",
+          "gold": "BEARER_TOKEN",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
+        },
+        {
+          "id": 61,
+          "app": "GitHub",
+          "field": "primary_auth",
+          "predicted": "UNKNOWN",
+          "gold": "OAUTH2",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "OAuth app or PAT, both self-issued free. REST and GraphQL are both first-class. First-party MCP server."
+        },
+        {
+          "id": 20,
+          "app": "Gladly",
+          "field": "primary_auth",
+          "predicted": "UNKNOWN",
+          "gold": "BASIC",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
+        },
+        {
+          "id": 19,
+          "app": "Gorgias",
+          "field": "primary_auth",
+          "predicted": "UNKNOWN",
+          "gold": "BASIC",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."
+        },
+        {
+          "id": 36,
+          "app": "Klaviyo",
+          "field": "primary_auth",
+          "predicted": "UNKNOWN",
+          "gold": "API_KEY",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Private API key from the account settings; free tier up to 250 contacts. First-party MCP server documented."
+        },
+        {
+          "id": 73,
+          "app": "Linear",
+          "field": "primary_auth",
+          "predicted": "UNKNOWN",
+          "gold": "OAUTH2",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "GraphQL only, no REST. Personal API key or OAuth, free plan. First-party MCP at mcp.linear.app."
+        },
+        {
+          "id": 71,
+          "app": "Notion",
+          "field": "primary_auth",
+          "predicted": "BEARER_TOKEN",
+          "gold": "OAUTH2",
+          "outcome": "wrong",
+          "confidence": 0.45,
+          "note": "Internal integration token or public OAuth, self-serve on the free plan. First-party hosted MCP."
+        },
+        {
+          "id": 90,
+          "app": "PitchBook",
+          "field": "primary_auth",
+          "predicted": "OAUTH2",
+          "gold": "UNKNOWN",
+          "outcome": "overclaimed",
+          "confidence": 0.9,
+          "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        },
+        {
+          "id": 58,
+          "app": "Sherlock",
+          "field": "primary_auth",
+          "predicted": "UNKNOWN",
+          "gold": "NO_AUTH",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+        },
+        {
+          "id": 21,
+          "app": "Slack",
+          "field": "primary_auth",
+          "predicted": "UNKNOWN",
+          "gold": "OAUTH2",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+        },
+        {
+          "id": 81,
+          "app": "Stripe",
+          "field": "primary_auth",
+          "predicted": "UNKNOWN",
+          "gold": "API_KEY",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Secret key self-issued in dashboard with no activation; Connect OAuth exists but keys are the normal path. First-party MCP at mcp.stripe.com."
+        },
+        {
+          "id": 28,
+          "app": "WhatsApp Business",
+          "field": "primary_auth",
+          "predicted": "UNKNOWN",
+          "gold": "OAUTH2",
+          "outcome": "abstained",
+          "confidence": 0.45,
+          "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+        },
+        {
+          "id": 20,
+          "app": "Gladly",
+          "field": "verdict",
+          "predicted": "needs_outreach",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
+        },
+        {
+          "id": 33,
+          "app": "LinkedIn Ads",
+          "field": "verdict",
+          "predicted": "build_with_caveats",
+          "gold": "needs_outreach",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "3-legged OAuth. Every product requires an application; Standard tier needs a support ticket and LinkedIn 'reserves the right to select partners at its discretion'. Only unofficial "
+        },
+        {
+          "id": 98,
+          "app": "Mermaid CLI",
+          "field": "verdict",
+          "predicted": "build_now",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "Local npm CLI, no auth and no network service. MermaidChart ships an MCP but that is a different company's hosted product, so the vendor-published test fails here."
+        },
+        {
+          "id": 58,
+          "app": "Sherlock",
+          "field": "verdict",
+          "predicted": "build_now",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+        },
+        {
+          "id": 21,
+          "app": "Slack",
+          "field": "verdict",
+          "predicted": "needs_outreach",
+          "gold": "build_now",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+        },
+        {
+          "id": 5,
+          "app": "Twenty",
+          "field": "verdict",
+          "predicted": "build_with_caveats",
+          "gold": "build_now",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "Bearer API key; both GraphQL and REST exposed. Open source and self-hostable, and Twenty Cloud workspaces ship a native MCP server."
+        },
+        {
+          "id": 28,
+          "app": "WhatsApp Business",
+          "field": "verdict",
+          "predicted": "build_now",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 0.5,
+          "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+        }
+      ]
+    },
+    {
+      "key": "pass3",
+      "label": "arbitrated",
+      "note": "evidence updates the prior instead of replacing it",
+      "n_apps": 20,
+      "n_labels": 100,
+      "accuracy": 0.74,
+      "per_field": {
+        "primary_auth": {
+          "accuracy": 0.7,
+          "correct": 14,
+          "wrong": 5,
+          "overclaimed": 1
+        },
+        "access": {
+          "accuracy": 0.75,
+          "wrong": 5,
+          "correct": 15
+        },
+        "api_surface": {
+          "accuracy": 0.8,
+          "wrong": 3,
+          "correct": 16,
+          "overclaimed": 1
+        },
+        "has_mcp": {
+          "accuracy": 0.8,
+          "correct": 16,
+          "wrong": 4
+        },
+        "verdict": {
+          "accuracy": 0.65,
+          "wrong": 7,
+          "correct": 13
+        }
+      },
+      "misses": [
+        {
+          "id": 49,
+          "app": "Amazon Selling Partner",
+          "field": "access",
+          "predicted": "self_serve_paid",
+          "gold": "approval_required",
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "LWA OAuth2; AWS SigV4 signing dropped in Oct 2023. Requires a registered developer profile and app registration before credentials exist. Community MCP servers only."
+        },
+        {
+          "id": 20,
+          "app": "Gladly",
+          "field": "access",
+          "predicted": "approval_required",
+          "gold": "partner_gated",
+          "outcome": "wrong",
+          "confidence": 0.85,
+          "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
+        },
+        {
+          "id": 90,
+          "app": "PitchBook",
+          "field": "access",
+          "predicted": "approval_required",
+          "gold": "partner_gated",
+          "outcome": "wrong",
+          "confidence": 0.85,
+          "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        },
+        {
+          "id": 21,
+          "app": "Slack",
+          "field": "access",
+          "predicted": "approval_required",
+          "gold": "self_serve_free",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+        },
+        {
+          "id": 28,
+          "app": "WhatsApp Business",
+          "field": "access",
+          "predicted": "self_serve_free",
+          "gold": "approval_required",
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+        },
+        {
+          "id": 60,
+          "app": "Clay",
+          "field": "api_surface",
+          "predicted": "none",
+          "gold": "rest",
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "HTTP API available on paid plans; users report the API throttled and gated at the Explorer tier upward. First-party Clay MCP."
+        },
+        {
+          "id": 90,
+          "app": "PitchBook",
+          "field": "api_surface",
+          "predicted": "rest",
+          "gold": "unknown",
+          "outcome": "overclaimed",
+          "confidence": 0.85,
+          "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        },
+        {
+          "id": 58,
+          "app": "Sherlock",
+          "field": "api_surface",
+          "predicted": "rest",
+          "gold": "sdk_only",
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+        },
+        {
+          "id": 21,
+          "app": "Slack",
+          "field": "api_surface",
+          "predicted": "rpc",
+          "gold": "rest",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+        },
+        {
+          "id": 4,
+          "app": "Attio",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.85,
+          "note": "Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."
+        },
+        {
+          "id": 71,
+          "app": "Notion",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.85,
+          "note": "Internal integration token or public OAuth, self-serve on the free plan. First-party hosted MCP."
+        },
+        {
+          "id": 90,
+          "app": "PitchBook",
+          "field": "has_mcp",
+          "predicted": true,
+          "gold": false,
+          "outcome": "wrong",
+          "confidence": 1.0,
+          "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        },
+        {
+          "id": 5,
+          "app": "Twenty",
+          "field": "has_mcp",
+          "predicted": false,
+          "gold": true,
+          "outcome": "wrong",
+          "confidence": 0.85,
+          "note": "Bearer API key; both GraphQL and REST exposed. Open source and self-hostable, and Twenty Cloud workspaces ship a native MCP server."
+        },
+        {
+          "id": 14,
+          "app": "Front",
+          "field": "primary_auth",
+          "predicted": "OAUTH2",
+          "gold": "BEARER_TOKEN",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
+        },
+        {
+          "id": 19,
+          "app": "Gorgias",
+          "field": "primary_auth",
+          "predicted": "OAUTH2",
+          "gold": "BASIC",
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."
+        },
+        {
+          "id": 73,
+          "app": "Linear",
+          "field": "primary_auth",
+          "predicted": "API_KEY",
+          "gold": "OAUTH2",
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "GraphQL only, no REST. Personal API key or OAuth, free plan. First-party MCP at mcp.linear.app."
+        },
+        {
+          "id": 90,
+          "app": "PitchBook",
+          "field": "primary_auth",
+          "predicted": "OAUTH2",
+          "gold": "UNKNOWN",
+          "outcome": "overclaimed",
+          "confidence": 0.9,
+          "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        },
+        {
+          "id": 58,
+          "app": "Sherlock",
+          "field": "primary_auth",
+          "predicted": "API_KEY",
+          "gold": "NO_AUTH",
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+        },
+        {
+          "id": 28,
+          "app": "WhatsApp Business",
+          "field": "primary_auth",
+          "predicted": "S2S_OAUTH2",
+          "gold": "OAUTH2",
+          "outcome": "wrong",
+          "confidence": 0.7,
+          "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+        },
+        {
+          "id": 49,
+          "app": "Amazon Selling Partner",
+          "field": "verdict",
+          "predicted": "build_now",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "LWA OAuth2; AWS SigV4 signing dropped in Oct 2023. Requires a registered developer profile and app registration before credentials exist. Community MCP servers only."
+        },
+        {
+          "id": 60,
+          "app": "Clay",
+          "field": "verdict",
+          "predicted": "not_buildable",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "HTTP API available on paid plans; users report the API throttled and gated at the Explorer tier upward. First-party Clay MCP."
+        },
+        {
+          "id": 33,
+          "app": "LinkedIn Ads",
+          "field": "verdict",
+          "predicted": "build_with_caveats",
+          "gold": "needs_outreach",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "3-legged OAuth. Every product requires an application; Standard tier needs a support ticket and LinkedIn 'reserves the right to select partners at its discretion'. Only unofficial "
+        },
+        {
+          "id": 90,
+          "app": "PitchBook",
+          "field": "verdict",
+          "predicted": "build_with_caveats",
+          "gold": "needs_outreach",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        },
+        {
+          "id": 58,
+          "app": "Sherlock",
+          "field": "verdict",
+          "predicted": "build_now",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 0.9,
+          "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+        },
+        {
+          "id": 21,
+          "app": "Slack",
+          "field": "verdict",
+          "predicted": "build_with_caveats",
+          "gold": "build_now",
+          "outcome": "wrong",
+          "confidence": 0.8,
+          "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+        },
+        {
+          "id": 28,
+          "app": "WhatsApp Business",
+          "field": "verdict",
+          "predicted": "build_now",
+          "gold": "build_with_caveats",
+          "outcome": "wrong",
+          "confidence": 0.5,
+          "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+        }
+      ]
+    }
+  ],
   "pass1": {
     "n_apps": 20,
     "n_labels": 100,
     "accuracy": 0.68,
     "per_field": {
       "primary_auth": {
-        "accuracy": 0.75,
-        "correct": 15,
-        "wrong": 5
+        "accuracy": 0.7,
+        "correct": 14,
+        "wrong": 5,
+        "overclaimed": 1
       },
       "access": {
-        "accuracy": 0.6,
-        "correct": 12,
-        "wrong": 7,
-        "abstained": 1
+        "accuracy": 0.7,
+        "wrong": 6,
+        "correct": 14
       },
       "api_surface": {
-        "accuracy": 0.9,
-        "correct": 18,
-        "wrong": 2
+        "accuracy": 0.8,
+        "correct": 16,
+        "overclaimed": 1,
+        "wrong": 3
       },
       "has_mcp": {
-        "accuracy": 0.55,
-        "correct": 11,
-        "wrong": 8,
-        "abstained": 1
+        "accuracy": 0.5,
+        "wrong": 10,
+        "correct": 10
       },
       "verdict": {
-        "accuracy": 0.6,
-        "correct": 12,
-        "wrong": 7,
-        "abstained": 1
+        "accuracy": 0.7,
+        "wrong": 6,
+        "correct": 14
       }
     },
     "misses": [
       {
-        "id": 4,
-        "app": "Attio",
+        "id": 60,
+        "app": "Clay",
         "field": "access",
         "predicted": "self_serve_paid",
-        "gold": "self_serve_free",
+        "gold": "plan_gated",
         "outcome": "wrong",
-        "confidence": 0.6,
-        "note": "Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."
+        "confidence": 0.7,
+        "note": "HTTP API available on paid plans; users report the API throttled and gated at the Explorer tier upward. First-party Clay MCP."
       },
       {
         "id": 14,
         "app": "Front",
         "field": "access",
-        "predicted": "self_serve_paid",
+        "predicted": "plan_gated",
         "gold": "self_serve_free",
         "outcome": "wrong",
-        "confidence": 0.7,
+        "confidence": 0.8,
         "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
       },
       {
@@ -83,37 +1663,17 @@
         "predicted": "approval_required",
         "gold": "partner_gated",
         "outcome": "wrong",
-        "confidence": 0.7,
+        "confidence": 0.6,
         "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
-      },
-      {
-        "id": 19,
-        "app": "Gorgias",
-        "field": "access",
-        "predicted": "self_serve_paid",
-        "gold": "self_serve_free",
-        "outcome": "wrong",
-        "confidence": 0.7,
-        "note": "HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."
-      },
-      {
-        "id": 98,
-        "app": "Mermaid CLI",
-        "field": "access",
-        "predicted": "no_public_api",
-        "gold": "self_serve_free",
-        "outcome": "wrong",
-        "confidence": 0.9,
-        "note": "Local npm CLI, no auth and no network service. MermaidChart ships an MCP but that is a different company's hosted product, so the vendor-published test fails here."
       },
       {
         "id": 90,
         "app": "PitchBook",
         "field": "access",
-        "predicted": "unknown",
+        "predicted": "approval_required",
         "gold": "partner_gated",
-        "outcome": "abstained",
-        "confidence": null,
+        "outcome": "wrong",
+        "confidence": 0.7,
         "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
       },
       {
@@ -123,18 +1683,18 @@
         "predicted": "no_public_api",
         "gold": "self_serve_free",
         "outcome": "wrong",
-        "confidence": 0.9,
+        "confidence": 1.0,
         "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
       },
       {
-        "id": 81,
-        "app": "Stripe",
+        "id": 21,
+        "app": "Slack",
         "field": "access",
-        "predicted": "self_serve_paid",
+        "predicted": "approval_required",
         "gold": "self_serve_free",
         "outcome": "wrong",
-        "confidence": 0.9,
-        "note": "Secret key self-issued in dashboard with no activation; Connect OAuth exists but keys are the normal path. First-party MCP at mcp.stripe.com."
+        "confidence": 0.8,
+        "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
       },
       {
         "id": 98,
@@ -143,8 +1703,18 @@
         "predicted": "none",
         "gold": "sdk_only",
         "outcome": "wrong",
-        "confidence": 0.95,
+        "confidence": 1.0,
         "note": "Local npm CLI, no auth and no network service. MermaidChart ships an MCP but that is a different company's hosted product, so the vendor-published test fails here."
+      },
+      {
+        "id": 90,
+        "app": "PitchBook",
+        "field": "api_surface",
+        "predicted": "rest",
+        "gold": "unknown",
+        "outcome": "overclaimed",
+        "confidence": 0.8,
+        "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
       },
       {
         "id": 58,
@@ -153,8 +1723,18 @@
         "predicted": "none",
         "gold": "sdk_only",
         "outcome": "wrong",
-        "confidence": 0.95,
+        "confidence": 1.0,
         "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+      },
+      {
+        "id": 5,
+        "app": "Twenty",
+        "field": "api_surface",
+        "predicted": "graphql",
+        "gold": "rest+graphql",
+        "outcome": "wrong",
+        "confidence": 0.9,
+        "note": "Bearer API key; both GraphQL and REST exposed. Open source and self-hostable, and Twenty Cloud workspaces ship a native MCP server."
       },
       {
         "id": 4,
@@ -163,7 +1743,7 @@
         "predicted": false,
         "gold": true,
         "outcome": "wrong",
-        "confidence": 0.2,
+        "confidence": 0.6,
         "note": "Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."
       },
       {
@@ -173,7 +1753,7 @@
         "predicted": false,
         "gold": true,
         "outcome": "wrong",
-        "confidence": 0.3,
+        "confidence": 0.6,
         "note": "HTTP API available on paid plans; users report the API throttled and gated at the Explorer tier upward. First-party Clay MCP."
       },
       {
@@ -193,7 +1773,7 @@
         "predicted": false,
         "gold": true,
         "outcome": "wrong",
-        "confidence": 0.9,
+        "confidence": 0.85,
         "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
       },
       {
@@ -203,7 +1783,7 @@
         "predicted": false,
         "gold": true,
         "outcome": "wrong",
-        "confidence": 0.8,
+        "confidence": 0.9,
         "note": "HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."
       },
       {
@@ -217,24 +1797,34 @@
         "note": "Private API key from the account settings; free tier up to 250 contacts. First-party MCP server documented."
       },
       {
-        "id": 73,
-        "app": "Linear",
+        "id": 71,
+        "app": "Notion",
         "field": "has_mcp",
         "predicted": false,
         "gold": true,
         "outcome": "wrong",
-        "confidence": 0.6,
-        "note": "GraphQL only, no REST. Personal API key or OAuth, free plan. First-party MCP at mcp.linear.app."
+        "confidence": 0.7,
+        "note": "Internal integration token or public OAuth, self-serve on the free plan. First-party hosted MCP."
       },
       {
-        "id": 90,
-        "app": "PitchBook",
+        "id": 21,
+        "app": "Slack",
         "field": "has_mcp",
-        "predicted": null,
-        "gold": false,
-        "outcome": "abstained",
-        "confidence": null,
-        "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+        "predicted": false,
+        "gold": true,
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+      },
+      {
+        "id": 81,
+        "app": "Stripe",
+        "field": "has_mcp",
+        "predicted": false,
+        "gold": true,
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "Secret key self-issued in dashboard with no activation; Connect OAuth exists but keys are the normal path. First-party MCP at mcp.stripe.com."
       },
       {
         "id": 5,
@@ -250,7 +1840,7 @@
         "id": 10,
         "app": "DealCloud",
         "field": "primary_auth",
-        "predicted": "OAUTH2",
+        "predicted": "API_KEY",
         "gold": "S2S_OAUTH2",
         "outcome": "wrong",
         "confidence": 0.6,
@@ -260,10 +1850,10 @@
         "id": 14,
         "app": "Front",
         "field": "primary_auth",
-        "predicted": "OAUTH2",
+        "predicted": "S2S_OAUTH2",
         "gold": "BEARER_TOKEN",
         "outcome": "wrong",
-        "confidence": 0.8,
+        "confidence": 0.9,
         "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
       },
       {
@@ -273,7 +1863,7 @@
         "predicted": "API_KEY",
         "gold": "BASIC",
         "outcome": "wrong",
-        "confidence": 0.6,
+        "confidence": 0.7,
         "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
       },
       {
@@ -283,8 +1873,18 @@
         "predicted": "API_KEY",
         "gold": "BASIC",
         "outcome": "wrong",
-        "confidence": 0.9,
+        "confidence": 0.8,
         "note": "HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."
+      },
+      {
+        "id": 90,
+        "app": "PitchBook",
+        "field": "primary_auth",
+        "predicted": "API_KEY",
+        "gold": "UNKNOWN",
+        "outcome": "overclaimed",
+        "confidence": 0.8,
+        "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
       },
       {
         "id": 28,
@@ -297,34 +1897,24 @@
         "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
       },
       {
-        "id": 49,
-        "app": "Amazon Selling Partner",
-        "field": "verdict",
-        "predicted": "needs_outreach",
-        "gold": "build_with_caveats",
-        "outcome": "wrong",
-        "confidence": 0.8,
-        "note": "LWA OAuth2; AWS SigV4 signing dropped in Oct 2023. Requires a registered developer profile and app registration before credentials exist. Community MCP servers only."
-      },
-      {
-        "id": 4,
-        "app": "Attio",
-        "field": "verdict",
-        "predicted": "build_with_caveats",
-        "gold": "build_now",
-        "outcome": "wrong",
-        "confidence": 0.6,
-        "note": "Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."
-      },
-      {
         "id": 10,
         "app": "DealCloud",
         "field": "verdict",
         "predicted": "needs_outreach",
         "gold": "build_with_caveats",
         "outcome": "wrong",
-        "confidence": 0.7,
+        "confidence": 0.6,
         "note": "OAuth2 client-credentials. Docs are public but credentials are provisioned by DealCloud for an existing client tenant. First-party MCP server in client preview from July 2026."
+      },
+      {
+        "id": 14,
+        "app": "Front",
+        "field": "verdict",
+        "predicted": "build_with_caveats",
+        "gold": "build_now",
+        "outcome": "wrong",
+        "confidence": 0.85,
+        "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
       },
       {
         "id": 20,
@@ -337,34 +1927,14 @@
         "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
       },
       {
-        "id": 33,
-        "app": "LinkedIn Ads",
-        "field": "verdict",
-        "predicted": "build_with_caveats",
-        "gold": "needs_outreach",
-        "outcome": "wrong",
-        "confidence": 0.7,
-        "note": "3-legged OAuth. Every product requires an application; Standard tier needs a support ticket and LinkedIn 'reserves the right to select partners at its discretion'. Only unofficial "
-      },
-      {
         "id": 98,
         "app": "Mermaid CLI",
         "field": "verdict",
         "predicted": "not_buildable",
-        "gold": "build_now",
+        "gold": "build_with_caveats",
         "outcome": "wrong",
-        "confidence": 0.95,
+        "confidence": 1.0,
         "note": "Local npm CLI, no auth and no network service. MermaidChart ships an MCP but that is a different company's hosted product, so the vendor-published test fails here."
-      },
-      {
-        "id": 90,
-        "app": "PitchBook",
-        "field": "verdict",
-        "predicted": "unknown",
-        "gold": "needs_outreach",
-        "outcome": "abstained",
-        "confidence": null,
-        "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
       },
       {
         "id": 58,
@@ -373,45 +1943,493 @@
         "predicted": "not_buildable",
         "gold": "build_with_caveats",
         "outcome": "wrong",
-        "confidence": 0.9,
+        "confidence": 1.0,
         "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+      },
+      {
+        "id": 21,
+        "app": "Slack",
+        "field": "verdict",
+        "predicted": "build_with_caveats",
+        "gold": "build_now",
+        "outcome": "wrong",
+        "confidence": 0.85,
+        "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
       }
     ]
   },
   "pass2": {
     "n_apps": 20,
     "n_labels": 100,
-    "accuracy": 0.0,
+    "accuracy": 0.74,
     "per_field": {
       "primary_auth": {
-        "accuracy": 0.0,
-        "missing": 20
+        "accuracy": 0.7,
+        "correct": 14,
+        "wrong": 5,
+        "overclaimed": 1
       },
       "access": {
-        "accuracy": 0.0,
-        "missing": 20
+        "accuracy": 0.75,
+        "wrong": 5,
+        "correct": 15
       },
       "api_surface": {
-        "accuracy": 0.0,
-        "missing": 20
+        "accuracy": 0.8,
+        "wrong": 3,
+        "correct": 16,
+        "overclaimed": 1
       },
       "has_mcp": {
-        "accuracy": 0.0,
-        "missing": 20
+        "accuracy": 0.8,
+        "correct": 16,
+        "wrong": 4
       },
       "verdict": {
-        "accuracy": 0.0,
-        "missing": 20
+        "accuracy": 0.65,
+        "wrong": 7,
+        "correct": 13
       }
     },
-    "misses": []
+    "misses": [
+      {
+        "id": 49,
+        "app": "Amazon Selling Partner",
+        "field": "access",
+        "predicted": "self_serve_paid",
+        "gold": "approval_required",
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "LWA OAuth2; AWS SigV4 signing dropped in Oct 2023. Requires a registered developer profile and app registration before credentials exist. Community MCP servers only."
+      },
+      {
+        "id": 20,
+        "app": "Gladly",
+        "field": "access",
+        "predicted": "approval_required",
+        "gold": "partner_gated",
+        "outcome": "wrong",
+        "confidence": 0.85,
+        "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
+      },
+      {
+        "id": 90,
+        "app": "PitchBook",
+        "field": "access",
+        "predicted": "approval_required",
+        "gold": "partner_gated",
+        "outcome": "wrong",
+        "confidence": 0.85,
+        "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+      },
+      {
+        "id": 21,
+        "app": "Slack",
+        "field": "access",
+        "predicted": "approval_required",
+        "gold": "self_serve_free",
+        "outcome": "wrong",
+        "confidence": 0.9,
+        "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+      },
+      {
+        "id": 28,
+        "app": "WhatsApp Business",
+        "field": "access",
+        "predicted": "self_serve_free",
+        "gold": "approval_required",
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+      },
+      {
+        "id": 60,
+        "app": "Clay",
+        "field": "api_surface",
+        "predicted": "none",
+        "gold": "rest",
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "HTTP API available on paid plans; users report the API throttled and gated at the Explorer tier upward. First-party Clay MCP."
+      },
+      {
+        "id": 90,
+        "app": "PitchBook",
+        "field": "api_surface",
+        "predicted": "rest",
+        "gold": "unknown",
+        "outcome": "overclaimed",
+        "confidence": 0.85,
+        "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+      },
+      {
+        "id": 58,
+        "app": "Sherlock",
+        "field": "api_surface",
+        "predicted": "rest",
+        "gold": "sdk_only",
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+      },
+      {
+        "id": 21,
+        "app": "Slack",
+        "field": "api_surface",
+        "predicted": "rpc",
+        "gold": "rest",
+        "outcome": "wrong",
+        "confidence": 0.8,
+        "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+      },
+      {
+        "id": 4,
+        "app": "Attio",
+        "field": "has_mcp",
+        "predicted": false,
+        "gold": true,
+        "outcome": "wrong",
+        "confidence": 0.85,
+        "note": "Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."
+      },
+      {
+        "id": 71,
+        "app": "Notion",
+        "field": "has_mcp",
+        "predicted": false,
+        "gold": true,
+        "outcome": "wrong",
+        "confidence": 0.85,
+        "note": "Internal integration token or public OAuth, self-serve on the free plan. First-party hosted MCP."
+      },
+      {
+        "id": 90,
+        "app": "PitchBook",
+        "field": "has_mcp",
+        "predicted": true,
+        "gold": false,
+        "outcome": "wrong",
+        "confidence": 1.0,
+        "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+      },
+      {
+        "id": 5,
+        "app": "Twenty",
+        "field": "has_mcp",
+        "predicted": false,
+        "gold": true,
+        "outcome": "wrong",
+        "confidence": 0.85,
+        "note": "Bearer API key; both GraphQL and REST exposed. Open source and self-hostable, and Twenty Cloud workspaces ship a native MCP server."
+      },
+      {
+        "id": 14,
+        "app": "Front",
+        "field": "primary_auth",
+        "predicted": "OAUTH2",
+        "gold": "BEARER_TOKEN",
+        "outcome": "wrong",
+        "confidence": 0.9,
+        "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
+      },
+      {
+        "id": 19,
+        "app": "Gorgias",
+        "field": "primary_auth",
+        "predicted": "OAUTH2",
+        "gold": "BASIC",
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."
+      },
+      {
+        "id": 73,
+        "app": "Linear",
+        "field": "primary_auth",
+        "predicted": "API_KEY",
+        "gold": "OAUTH2",
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "GraphQL only, no REST. Personal API key or OAuth, free plan. First-party MCP at mcp.linear.app."
+      },
+      {
+        "id": 90,
+        "app": "PitchBook",
+        "field": "primary_auth",
+        "predicted": "OAUTH2",
+        "gold": "UNKNOWN",
+        "outcome": "overclaimed",
+        "confidence": 0.9,
+        "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+      },
+      {
+        "id": 58,
+        "app": "Sherlock",
+        "field": "primary_auth",
+        "predicted": "API_KEY",
+        "gold": "NO_AUTH",
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+      },
+      {
+        "id": 28,
+        "app": "WhatsApp Business",
+        "field": "primary_auth",
+        "predicted": "S2S_OAUTH2",
+        "gold": "OAUTH2",
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+      },
+      {
+        "id": 49,
+        "app": "Amazon Selling Partner",
+        "field": "verdict",
+        "predicted": "build_now",
+        "gold": "build_with_caveats",
+        "outcome": "wrong",
+        "confidence": 0.8,
+        "note": "LWA OAuth2; AWS SigV4 signing dropped in Oct 2023. Requires a registered developer profile and app registration before credentials exist. Community MCP servers only."
+      },
+      {
+        "id": 60,
+        "app": "Clay",
+        "field": "verdict",
+        "predicted": "not_buildable",
+        "gold": "build_with_caveats",
+        "outcome": "wrong",
+        "confidence": 0.8,
+        "note": "HTTP API available on paid plans; users report the API throttled and gated at the Explorer tier upward. First-party Clay MCP."
+      },
+      {
+        "id": 33,
+        "app": "LinkedIn Ads",
+        "field": "verdict",
+        "predicted": "build_with_caveats",
+        "gold": "needs_outreach",
+        "outcome": "wrong",
+        "confidence": 0.8,
+        "note": "3-legged OAuth. Every product requires an application; Standard tier needs a support ticket and LinkedIn 'reserves the right to select partners at its discretion'. Only unofficial "
+      },
+      {
+        "id": 90,
+        "app": "PitchBook",
+        "field": "verdict",
+        "predicted": "build_with_caveats",
+        "gold": "needs_outreach",
+        "outcome": "wrong",
+        "confidence": 0.8,
+        "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+      },
+      {
+        "id": 58,
+        "app": "Sherlock",
+        "field": "verdict",
+        "predicted": "build_now",
+        "gold": "build_with_caveats",
+        "outcome": "wrong",
+        "confidence": 0.9,
+        "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+      },
+      {
+        "id": 21,
+        "app": "Slack",
+        "field": "verdict",
+        "predicted": "build_with_caveats",
+        "gold": "build_now",
+        "outcome": "wrong",
+        "confidence": 0.8,
+        "note": "Bot tokens are issued through the OAuth install flow; free workspace is enough. First-party MCP server shipped."
+      },
+      {
+        "id": 28,
+        "app": "WhatsApp Business",
+        "field": "verdict",
+        "predicted": "build_now",
+        "gold": "build_with_caveats",
+        "outcome": "wrong",
+        "confidence": 0.5,
+        "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+      }
+    ]
   },
-  "calibration_pass2": [],
+  "rules": [
+    {
+      "rule": "agreed",
+      "n": 54,
+      "accuracy": 0.87,
+      "correct": 47,
+      "wrong": 6,
+      "overclaimed": 1
+    },
+    {
+      "rule": "evidence_overrides_prior",
+      "n": 26,
+      "accuracy": 0.538,
+      "wrong": 11,
+      "correct": 14,
+      "overclaimed": 1
+    },
+    {
+      "rule": "derived",
+      "n": 20,
+      "accuracy": 0.65,
+      "wrong": 7,
+      "correct": 13
+    }
+  ],
+  "calibration_pass2": [
+    {
+      "bucket": "0.9-1.0",
+      "n": 40,
+      "accuracy": 0.875
+    },
+    {
+      "bucket": "0.7-0.9",
+      "n": 59,
+      "accuracy": 0.661
+    },
+    {
+      "bucket": "0.5-0.7",
+      "n": 1,
+      "accuracy": 0.0
+    }
+  ],
   "oracle": {
-    "n_checked": 3,
+    "n_checked": 59,
     "n_abstained": 0,
-    "agreement": 1.0,
-    "disagreements": [],
+    "agreement": 0.7627,
+    "disagreements": [
+      {
+        "id": 8,
+        "app": "Close",
+        "predicted": "OAUTH2",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 15,
+        "app": "Pylon",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 28,
+        "app": "WhatsApp Business",
+        "predicted": "S2S_OAUTH2",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 55,
+        "app": "Apify",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 57,
+        "app": "Bright Data",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 62,
+        "app": "Vercel",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 64,
+        "app": "Cloudflare",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 67,
+        "app": "Snowflake",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 70,
+        "app": "Sentry",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 76,
+        "app": "Monday.com",
+        "predicted": "API_KEY",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 78,
+        "app": "Coda",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 88,
+        "app": "Brex",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 89,
+        "app": "Ramp",
+        "predicted": "S2S_OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 94,
+        "app": "Consensus",
+        "predicted": "OAUTH2",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "disagrees"
+      }
+    ],
     "rows": [
       {
         "id": 1,
@@ -436,14 +2454,539 @@
       {
         "id": 3,
         "app": "Pipedrive",
+        "predicted": "OAUTH2",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 4,
+        "app": "Attio",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 7,
+        "app": "Zoho CRM",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 8,
+        "app": "Close",
+        "predicted": "OAUTH2",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 11,
+        "app": "Zendesk",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 12,
+        "app": "Intercom",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 13,
+        "app": "Freshdesk",
+        "predicted": "API_KEY",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 15,
+        "app": "Pylon",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 17,
+        "app": "Plain",
+        "predicted": "API_KEY",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 18,
+        "app": "Help Scout",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 19,
+        "app": "Gorgias",
+        "predicted": "OAUTH2",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 21,
+        "app": "Slack",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 26,
+        "app": "Discord",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 27,
+        "app": "Telegram",
+        "predicted": "API_KEY",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 28,
+        "app": "WhatsApp Business",
+        "predicted": "S2S_OAUTH2",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 31,
+        "app": "Google Ads",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 32,
+        "app": "Meta Ads",
+        "predicted": "OAUTH2",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 33,
+        "app": "LinkedIn Ads",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 34,
+        "app": "GoHighLevel",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 35,
+        "app": "Mailchimp",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 36,
+        "app": "Klaviyo",
         "predicted": "API_KEY",
         "composio": [
           "API_KEY",
           "OAUTH2"
         ],
         "status": "agrees"
+      },
+      {
+        "id": 38,
+        "app": "Pinterest",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 40,
+        "app": "SendGrid",
+        "predicted": "API_KEY",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 41,
+        "app": "Shopify",
+        "predicted": "OAUTH2",
+        "composio": [
+          "API_KEY",
+          "OAUTH2",
+          "S2S_OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 48,
+        "app": "Gumroad",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 51,
+        "app": "DataForSEO",
+        "predicted": "BASIC",
+        "composio": [
+          "BASIC"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 53,
+        "app": "Ahrefs",
+        "predicted": "API_KEY",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 54,
+        "app": "MrScraper",
+        "predicted": "API_KEY",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 55,
+        "app": "Apify",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 56,
+        "app": "Firecrawl",
+        "predicted": "API_KEY",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 57,
+        "app": "Bright Data",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 61,
+        "app": "GitHub",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 62,
+        "app": "Vercel",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 64,
+        "app": "Cloudflare",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 65,
+        "app": "Supabase",
+        "predicted": "OAUTH2",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 66,
+        "app": "Neo4j",
+        "predicted": "S2S_OAUTH2",
+        "composio": [
+          "API_KEY",
+          "BASIC",
+          "OAUTH2",
+          "S2S_OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 67,
+        "app": "Snowflake",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 69,
+        "app": "Datadog",
+        "predicted": "API_KEY",
+        "composio": [
+          "API_KEY",
+          "BEARER_TOKEN",
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 70,
+        "app": "Sentry",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 71,
+        "app": "Notion",
+        "predicted": "OAUTH2",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 72,
+        "app": "Airtable",
+        "predicted": "OAUTH2",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 73,
+        "app": "Linear",
+        "predicted": "API_KEY",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 74,
+        "app": "Jira",
+        "predicted": "OAUTH2",
+        "composio": [
+          "API_KEY",
+          "OAUTH2",
+          "S2S_OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 75,
+        "app": "Asana",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 76,
+        "app": "Monday.com",
+        "predicted": "API_KEY",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 77,
+        "app": "ClickUp",
+        "predicted": "OAUTH2",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 78,
+        "app": "Coda",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 80,
+        "app": "Harvest",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 81,
+        "app": "Stripe",
+        "predicted": "API_KEY",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 86,
+        "app": "QuickBooks",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 87,
+        "app": "Xero",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 88,
+        "app": "Brex",
+        "predicted": "BEARER_TOKEN",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 89,
+        "app": "Ramp",
+        "predicted": "S2S_OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 91,
+        "app": "NotebookLM",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 93,
+        "app": "Fathom",
+        "predicted": "API_KEY",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 94,
+        "app": "Consensus",
+        "predicted": "OAUTH2",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "disagrees"
+      },
+      {
+        "id": 96,
+        "app": "Devin",
+        "predicted": "API_KEY",
+        "composio": [
+          "API_KEY"
+        ],
+        "status": "agrees"
       }
     ]
   },
-  "lift": -0.68
+  "lift": 0.06
 }

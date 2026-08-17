@@ -1,22 +1,40 @@
 {
   "llm": {
-    "calls": 3,
-    "input_tokens": 21896,
-    "output_tokens": 923,
-    "llm_seconds": 14.5,
-    "notional_usd": 0.0069,
+    "calls": 299,
+    "input_tokens": 1751608,
+    "output_tokens": 227264,
+    "llm_seconds": 4190.0,
+    "notional_usd": 1.1163,
     "by_model": {
       "deepseek-v4-flash": {
-        "calls": 3,
-        "in": 21896,
-        "out": 923,
-        "secs": 14.5
+        "calls": 100,
+        "in": 666093,
+        "out": 180000,
+        "secs": 2506.8
+      },
+      "glm-5.1": {
+        "calls": 99,
+        "in": 627549,
+        "out": 27349,
+        "secs": 1159.5
+      },
+      "kimi-k2.6": {
+        "calls": 59,
+        "in": 267076,
+        "out": 12468,
+        "secs": 256.2
+      },
+      "minimax-m3": {
+        "calls": 41,
+        "in": 190890,
+        "out": 7447,
+        "secs": 267.5
       }
     }
   },
   "firecrawl": {
-    "search": 6,
-    "scrape": 9,
-    "cache_hits": 0
+    "search": 0,
+    "scrape": 80,
+    "cache_hits": 500
   }
 }

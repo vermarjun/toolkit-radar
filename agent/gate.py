@@ -54,8 +54,8 @@ SIGNALS: list[tuple[str, str, list[str]]] = [
          r"upgrade\s+to\s+.{0,20}(access|use)\s+the\s+api"],
     ),
     (
-        "self_serve_free",
-        "a free or trial signup exists and issues a credential",
+        "no_gate_found",
+        "a free or trial signup is offered and no gate was detected",
         [r"start\s+(for\s+)?free", r"free\s+trial", r"sign\s+up\s+free",
          r"get\s+started\s+free", r"free\s+forever", r"free\s+plan",
          r"create\s+a\s+free\s+account", r"\$0\s*/", r"try\s+it\s+free"],
@@ -81,28 +81,64 @@ def targets(app: dict, finding: dict) -> list[str]:
     return list(dict.fromkeys(urls))[:2]
 
 
-def classify(text: str) -> tuple[str | None, str, list[str]]:
-    low = re.sub(r"\s+", " ", text.lower())
-    hits: list[str] = []
-    found: str | None = None
-    why = ""
-    for verdict, why_text, patterns in SIGNALS:
+def _scan(text: str) -> tuple[dict[str, int], dict[str, list[str]]]:
+    counts: dict[str, int] = {}
+    quotes: dict[str, list[str]] = {}
+    for verdict, _why, patterns in SIGNALS:
         for pat in patterns:
-            m = re.search(pat, low)
-            if m:
-                s = max(0, m.start() - 60)
-                hits.append(re.sub(r"\s+", " ", low[s : m.end() + 60]).strip())
-                if found is None:
-                    found, why = verdict, why_text
-                break
-    return found, why, hits[:4]
+            for m in re.finditer(pat, text):
+                counts[verdict] = counts.get(verdict, 0) + 1
+                if len(quotes.setdefault(verdict, [])) < 3:
+                    s = max(0, m.start() - 70)
+                    quotes[verdict].append(text[s : m.end() + 70].strip())
+    return counts, quotes
+
+
+def classify(text: str) -> tuple[str | None, str, list[str]]:
+    """Decide the gate from the *balance* of signals, not the first match.
+
+    The first version of this took the strongest matching pattern and was wrong
+    on the easiest apps in the set: it called HubSpot and Pipedrive
+    ``partner_gated`` because "Contact sales" sits in the navigation bar of very
+    nearly every B2B SaaS site, next to the free trial button. The phrase is
+    real; it just is not evidence about the API.
+
+    So the order is now: specific gates first (an approval flow or a named plan
+    is stated deliberately and rarely by accident), then any credible free-signup
+    signal, and only then "contact sales" — which counts as a gate solely when
+    nothing on the page offers a way in without one.
+
+    The second lesson was about precision. The gate patterns are specific: nobody
+    writes "submit your app for review" by accident. The free-signup patterns are
+    not — "Start free" is on the pricing page of almost every product in this set,
+    and it describes the *product*, not API access. PitchBook's page says it while
+    the API is sold through a rep. So a free CTA no longer resolves to
+    ``self_serve_free``; it resolves to ``no_gate_found``, which is all it
+    actually licenses anyone to conclude.
+    """
+    low = re.sub(r"\s+", " ", text.lower())
+    counts, quotes = _scan(low)
+    why = {v: w for v, w, _ in SIGNALS}
+
+    if counts.get("approval_required"):
+        v = "approval_required"
+    elif counts.get("plan_gated"):
+        v = "plan_gated"
+    elif counts.get("no_gate_found"):
+        v = "no_gate_found"
+    elif counts.get("partner_gated", 0) >= 2:
+        # No free CTA anywhere on the page and sales is mentioned repeatedly.
+        v = "partner_gated"
+    else:
+        return None, "", []
+    return v, why[v], quotes.get(v, [])[:3]
 
 
 async def probe_one(browser, app: dict, finding: dict) -> dict:
     slug = re.sub(r"[^a-z0-9]+", "-", app["app"].lower()).strip("-")
     out = {"id": int(app["id"]), "app": app["app"], "pages": [], "browser_access": None}
     for url in targets(app, finding):
-        page = await browser.new_page(viewport={"width": 1280, "height": 900})
+        page = await browser.new_page()
         record = {"url": url}
         try:
             resp = await page.goto(url, wait_until="domcontentloaded", timeout=35000)
@@ -121,8 +157,9 @@ async def probe_one(browser, app: dict, finding: dict) -> dict:
             await page.close()
         out["pages"].append(record)
 
-    # Strongest signal seen across the pages wins, matching SIGNALS order.
-    order = [s[0] for s in SIGNALS]
+    # Across pages, the same precedence as within one: a deliberately stated gate
+    # outranks a free CTA, and a free CTA outranks a bare "contact sales".
+    order = ["approval_required", "plan_gated", "partner_gated", "no_gate_found"]
     seen = [p.get("signal") for p in out["pages"] if p.get("signal")]
     if seen:
         out["browser_access"] = sorted(seen, key=order.index)[0]
@@ -137,6 +174,7 @@ async def run(apps: list[dict], findings: dict[int, dict], concurrency: int = 4)
     async with async_playwright() as pw:
         browser = await pw.chromium.launch()
         ctx = await browser.new_context(
+            viewport={"width": 1280, "height": 900},
             user_agent=("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
                         "(KHTML, like Gecko) Chrome/125.0 Safari/537.36"),
         )
@@ -174,7 +212,7 @@ def main() -> None:
     from agent.research import load_apps
 
     apps = load_apps()
-    findings = {r["id"]: r for r in json.loads((ROOT / "data" / "pass2.json").read_text())}
+    findings = {r["id"]: r for r in json.loads((ROOT / "data" / "pass3.json").read_text())}
     chosen = select(apps, findings)
     if len(sys.argv) > 1:
         chosen = chosen[: int(sys.argv[1])]
