@@ -10,3 +10,4 @@ pw_install.log
 /tmp
 .vercel
 .env*
+*.log

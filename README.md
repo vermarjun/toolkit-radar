@@ -66,6 +66,11 @@ python peek.py url https://docs.example.com/auth   # what a human uses to check 
 Every Firecrawl call is cached to `research_cache/` by content hash, so a re-run
 costs no credits and the pipeline is reproducible without draining an account.
 
+**You do not need any keys to check my work.** `data/` holds the output of every
+pass, so a clean clone plus `python evals/score.py && python -m agent.report`
+regenerates the graded numbers and the report page byte-for-byte identical to
+what is deployed. Keys are only needed to research the apps again from scratch.
+
 ### Keys
 
 ```
@@ -170,6 +175,8 @@ agent/
   catalog.py   Composio catalog pull + conservative join
   score.py     build score, effort tier, lane assignment
   report.py    merges everything into site/data.json and renders index.html
+peek.py          scrape a doc page and show the auth/pricing lines: what I used to label by hand
+shot.py          screenshot the rendered page, for checking layout in both themes
 evals/
   gold.csv       20 apps x 5 fields, each with the URL it came from
   LABELLING.md   how the labels were decided, and the tie-break rules
