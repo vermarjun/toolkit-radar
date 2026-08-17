@@ -1,0 +1,28 @@
+# Toolkit Radar — can these 100 apps become agent toolkits today?
+
+Research output for a Composio AI Product Ops take-home. 100 SaaS apps
+researched by an agent, verified against a hand-labelled gold set and
+against Composio's own production toolkit catalog.
+
+## Headline
+- 100.0% of the 100 let an outside developer self-issue a credential.
+- 0.0% are gated by a plan, an approval, or a sales conversation.
+- 0.0% already ship a vendor-published MCP server.
+- 3 of the 100 are already Composio toolkits; 0 are not.
+- Of that gap, 0 are buildable now and 0 need partnerships, not engineering.
+
+## Machine-readable data
+- data.json    every field for every app, plus the eval and the scoring model
+- findings.csv the flat table
+
+## Field vocabulary
+primary_auth: OAUTH2 S2S_OAUTH2 API_KEY BEARER_TOKEN BASIC JWT AWS_SIGV4 NO_AUTH UNKNOWN
+access: self_serve_free self_serve_paid plan_gated approval_required partner_gated no_public_api unknown
+lane: build_now quick_win needs_outreach park
+
+## How trustworthy
+- closed-book baseline: 68.0% on 100 hand-checked labels
+- grounded + critic:    0.0% on the same labels
+- agrees with Composio's shipped auth config on 100.0% of 3 apps it already covers
+
+Every row carries its evidence URLs. Rows the agent got wrong are listed on the page.

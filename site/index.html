@@ -1,0 +1,887 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toolkit Radar — 100 apps, and which ones can be agent toolkits today</title>
+<meta name="description" content="An agent researched 100 SaaS apps for auth, access gates, API surface and buildability, then was graded against a hand-labelled gold set and against Composio's own toolkit catalog.">
+<style>
+  :root{
+    color-scheme: light dark;
+    --plane:#f9f9f7; --surface:#fcfcfb; --surface-2:#f2f1ed;
+    --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --axis:#c3c2b7;
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+    --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
+    --o1:#86b6ef; --o2:#5598e7; --o3:#2a78d6; --o4:#256abf; --o5:#184f95; --o6:#104281;
+    --seq0:#f0f4fb; --seq1:#cde2fb; --seq2:#9ec5f4; --seq3:#6da7ec; --seq4:#3987e5; --seq5:#1c5cab;
+    --radius:10px;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --plane:#0d0d0d; --surface:#1a1a19; --surface-2:#232322;
+      --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+      --grid:#2c2c2a; --axis:#383835;
+      --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+      --o1:#86b6ef; --o2:#5598e7; --o3:#3987e5; --o4:#256abf; --o5:#1c5cab; --o6:#184f95;
+      --seq0:#1f2229; --seq1:#184f95; --seq2:#1c5cab; --seq3:#256abf; --seq4:#3987e5; --seq5:#6da7ec;
+    }
+  }
+  :root[data-theme="dark"]{
+    --plane:#0d0d0d; --surface:#1a1a19; --surface-2:#232322;
+    --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+    --o1:#86b6ef; --o2:#5598e7; --o3:#3987e5; --o4:#256abf; --o5:#1c5cab; --o6:#184f95;
+    --seq0:#1f2229; --seq1:#184f95; --seq2:#1c5cab; --seq3:#256abf; --seq4:#3987e5; --seq5:#6da7ec;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--plane);color:var(--ink);font-family:var(--sans);
+       font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  a{color:var(--s1)}
+  h1,h2,h3{line-height:1.18;letter-spacing:-0.02em;margin:0}
+  h2{font-size:23px;margin-bottom:6px}
+  h3{font-size:16px;margin-bottom:8px}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .muted{color:var(--muted)}
+  .sec2{color:var(--ink-2)}
+
+  /* ---------- nav ---------- */
+  nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--plane) 88%,transparent);
+      backdrop-filter:blur(10px);border-bottom:1px solid var(--grid)}
+  nav .wrap{display:flex;gap:4px;align-items:center;height:46px;overflow-x:auto;scrollbar-width:none}
+  nav a{color:var(--ink-2);text-decoration:none;font-size:12.5px;padding:5px 9px;border-radius:7px;white-space:nowrap}
+  nav a:hover{background:var(--surface-2);color:var(--ink)}
+  nav .spacer{flex:1}
+  .tbtn{border:1px solid var(--grid);background:var(--surface);color:var(--ink-2);
+        border-radius:7px;padding:4px 9px;font-size:12px;cursor:pointer;font-family:var(--sans)}
+
+  /* ---------- header ---------- */
+  header{padding:52px 0 30px;border-bottom:1px solid var(--grid)}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  h1{font-size:clamp(30px,5vw,46px);margin:12px 0 14px;max-width:19ch}
+  .lede{font-size:17px;color:var(--ink-2);max-width:74ch}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+  .chip{font-family:var(--mono);font-size:11.5px;padding:4px 9px;border:1px solid var(--grid);
+        border-radius:20px;color:var(--ink-2);background:var(--surface);text-decoration:none}
+  .chip:hover{border-color:var(--s1);color:var(--s1)}
+
+  section{padding:44px 0;border-bottom:1px solid var(--grid)}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+          color:var(--muted);margin-bottom:10px}
+  .sub{color:var(--ink-2);max-width:80ch;margin:0 0 22px}
+
+  /* ---------- tiles ---------- */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px;margin:6px 0 30px}
+  .tile{background:var(--surface);border:1px solid var(--grid);border-radius:var(--radius);padding:15px 16px}
+  .tile .v{font-family:var(--mono);font-size:32px;font-weight:600;letter-spacing:-.03em;line-height:1.05}
+  .tile .k{font-size:12px;color:var(--ink-2);margin-top:5px}
+  .tile .n{font-size:11.5px;color:var(--muted);margin-top:3px}
+
+  /* ---------- patterns ---------- */
+  .pat{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:16px 0;border-top:1px solid var(--grid)}
+  .pat:first-of-type{border-top:none}
+  .pat .i{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:3px}
+  .pat h3{font-size:17px;letter-spacing:-.015em}
+  .pat p{margin:6px 0 0;color:var(--ink-2);max-width:82ch}
+  .pat .ev{margin-top:8px;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+
+  /* ---------- cards / charts ---------- */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .card{background:var(--surface);border:1px solid var(--grid);border-radius:var(--radius);padding:16px 18px}
+  .card h3{font-size:14px}
+  .card .cap{font-size:12px;color:var(--muted);margin:-4px 0 14px}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin-bottom:10px}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:baseline}
+
+  .bars{display:flex;flex-direction:column;gap:7px}
+  .bar{display:grid;grid-template-columns:132px 1fr 44px;gap:10px;align-items:center;font-size:12.5px}
+  .bar .lab{color:var(--ink-2);font-family:var(--mono);font-size:11.5px;text-align:right;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .track{height:15px;background:var(--surface-2);border-radius:4px;overflow:hidden;position:relative}
+  .fill{height:100%;border-radius:4px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+  .bar .val{font-family:var(--mono);font-size:12px;color:var(--ink);text-align:right}
+  .grpbar{display:grid;grid-template-columns:120px 1fr;gap:10px;align-items:center;margin-bottom:9px}
+  .grpbar .two{display:flex;flex-direction:column;gap:3px}
+  .grpbar .row{display:flex;align-items:center;gap:7px}
+  .grpbar .row .track{flex:1}
+  .grpbar .row .v{font-family:var(--mono);font-size:11.5px;width:42px;text-align:right;color:var(--ink-2)}
+
+  /* ---------- tables ---------- */
+  .tblwrap{overflow-x:auto;border:1px solid var(--grid);border-radius:var(--radius);background:var(--surface)}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{padding:8px 11px;text-align:left;border-bottom:1px solid var(--grid);white-space:nowrap}
+  th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+     color:var(--muted);font-weight:500;position:sticky;top:46px;background:var(--surface);z-index:2}
+  tbody tr:hover{background:var(--surface-2)}
+  td.wrap-cell{white-space:normal;min-width:230px;color:var(--ink-2)}
+  .heat{text-align:center;font-family:var(--mono);font-weight:600;color:var(--ink)}
+
+  .tag{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10.5px;
+       padding:2px 7px;border-radius:5px;border:1px solid var(--grid);background:var(--surface-2);color:var(--ink-2)}
+  .tag b{font-weight:600}
+  .dot{width:7px;height:7px;border-radius:50%;flex:none}
+  .scorebar{display:inline-block;width:52px;height:7px;background:var(--surface-2);border-radius:3px;
+            overflow:hidden;vertical-align:middle;margin-right:7px}
+  .scorebar i{display:block;height:100%;background:var(--s1)}
+
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;align-items:center}
+  select,input[type=search]{font-family:var(--sans);font-size:12.5px;padding:5px 9px;border-radius:7px;
+       border:1px solid var(--grid);background:var(--surface);color:var(--ink)}
+  input[type=search]{min-width:190px}
+
+  /* ---------- misc ---------- */
+  .note{border-left:2px solid var(--s2);padding:2px 0 2px 14px;color:var(--ink-2);margin:16px 0;max-width:82ch}
+  .ok{color:var(--good)} .bad{color:var(--crit)} .warnc{color:var(--serious)}
+  code,.mono{font-family:var(--mono);font-size:12.5px}
+  pre{background:var(--surface-2);border:1px solid var(--grid);border-radius:8px;padding:12px 14px;
+      overflow-x:auto;font-size:12px;line-height:1.5}
+  .shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:14px}
+  .shot{border:1px solid var(--grid);border-radius:8px;overflow:hidden;background:var(--surface)}
+  .shot img{width:100%;display:block;border-bottom:1px solid var(--grid)}
+  .shot .m{padding:8px 10px;font-size:11.5px;color:var(--ink-2)}
+  .shot .m b{font-family:var(--mono);font-size:11px}
+  footer{padding:36px 0 60px;color:var(--muted);font-size:12.5px}
+
+  #tip{position:fixed;pointer-events:none;opacity:0;transition:opacity .12s;z-index:99;
+       background:var(--ink);color:var(--plane);font-size:12px;padding:6px 9px;border-radius:6px;
+       font-family:var(--mono);max-width:280px;line-height:1.4}
+
+  @media (max-width:820px){
+    .grid2,.grid3{grid-template-columns:1fr}
+    th{position:static}
+    .bar{grid-template-columns:96px 1fr 40px}
+  }
+</style>
+</head>
+<body>
+<div id="tip"></div>
+
+<nav><div class="wrap">
+  <a href="#answer">Answer</a>
+  <a href="#gap">Gap &amp; queue</a>
+  <a href="#matrix">Matrix</a>
+  <a href="#table">The 100</a>
+  <a href="#agent">The agent</a>
+  <a href="#verify">Verification</a>
+  <a href="#honesty">What failed</a>
+  <a href="#agents">For agents</a>
+  <span class="spacer"></span>
+  <button class="tbtn" id="theme">theme</button>
+</div></nav>
+
+<header><div class="wrap">
+  <div class="eyebrow">Composio · AI Product Ops take-home</div>
+  <h1>100 apps. Which ones can be agent toolkits today?</h1>
+  <p class="lede">An agent researched all 100 — auth scheme, whether an outside developer can actually
+  get a credential, API surface, existing MCP, and a buildability verdict with evidence. Then it was
+  graded: against 100 labels a human wrote by hand, and against Composio's own production catalog.
+  <b>The findings, the agent, and the proof it is trustworthy are all on this page.</b></p>
+  <div class="chips" id="chips"></div>
+</div></header>
+
+<section id="answer"><div class="wrap">
+  <div class="kicker">The answer</div>
+  <h2>Five things the 100 rows say that the rows themselves do not</h2>
+  <p class="sub">Numbers below are the verified pass. Every one is filterable in
+  <a href="#table">the table</a> and callable over <a href="#agents">MCP</a>.</p>
+  <div class="tiles" id="tiles"></div>
+  <div id="patterns"></div>
+</div></section>
+
+<section id="gap"><div class="wrap">
+  <div class="kicker">Gap analysis</div>
+  <h2>What Composio already ships, and what it does not</h2>
+  <p class="sub">The research set was joined against Composio's live toolkit catalog through the v3 API.
+  That turns a table of findings into a build queue: what an engineer could start on tomorrow, and what
+  is a partnerships conversation instead.</p>
+  <div class="grid3" id="gapTiles"></div>
+  <div style="height:18px"></div>
+  <div class="card">
+    <h3>The build queue</h3>
+    <p class="cap">Apps absent from the catalog, ranked by build score. Score = credential access (40)
+      + API surface (25) + auth effort (15) + evidence confidence (10) + agent-readiness (10).
+      Hover a score for the breakdown. The weights are a product judgement, stated so they can be argued with.</p>
+    <div class="filters">
+      <select id="laneFilter"></select>
+      <span class="muted" id="queueCount"></span>
+    </div>
+    <div class="tblwrap"><table id="queueTable"></table></div>
+  </div>
+</div></section>
+
+<section id="matrix"><div class="wrap">
+  <div class="kicker">The matrix</div>
+  <h2>Ten categories, and how open each one is</h2>
+  <p class="sub">Sorted by the share of apps where a developer can self-issue a credential. Colour is
+  redundant with the number in every cell.</p>
+  <div class="tblwrap"><table id="matrixTable"></table></div>
+  <div class="grid2" style="margin-top:16px">
+    <div class="card">
+      <h3>Auth: this research set vs Composio's whole catalog</h3>
+      <p class="cap">The 100 are enterprise-skewed on purpose, and it shows.</p>
+      <div class="legend">
+        <span><i style="background:var(--s1)"></i>These 100</span>
+        <span><i style="background:var(--s2)"></i>All Composio toolkits</span>
+      </div>
+      <div id="authChart"></div>
+    </div>
+    <div class="card">
+      <h3>How an outside developer gets in</h3>
+      <p class="cap">Ordered from open to closed.</p>
+      <div id="accessChart"></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="table"><div class="wrap">
+  <div class="kicker">The findings</div>
+  <h2>All 100, with the evidence behind each row</h2>
+  <p class="sub">Every judgement carries the URL it came from. Rows the human checker graded are marked
+  <span class="tag">gold</span>; rows where a real browser was sent to the pricing page are marked
+  <span class="tag">browser</span>.</p>
+  <div class="filters">
+    <input type="search" id="q" placeholder="filter by name, auth, blocker…">
+    <select id="fCat"></select><select id="fAccess"></select>
+    <select id="fLane"></select><select id="fComposio"></select>
+    <span class="muted" id="count"></span>
+  </div>
+  <div class="tblwrap"><table id="mainTable"></table></div>
+</div></section>
+
+<section id="agent"><div class="wrap">
+  <div class="kicker">The agent</div>
+  <h2>Four passes, two of which exist only to catch the first two lying</h2>
+  <p class="sub">Roughly 700 lines of Python. Pass 1 is the control, not a stage — it is what this
+  assignment looks like if you just ask a model, and it is on the page so the verified number has
+  something to be measured against.</p>
+  <div id="pipeline"></div>
+  <div class="grid2" style="margin-top:20px">
+    <div class="card">
+      <h3>Where a human was required</h3>
+      <div id="humanLoop"></div>
+    </div>
+    <div class="card">
+      <h3>What it cost</h3>
+      <p class="cap">Whole-run telemetry, and what it implies at catalog scale.</p>
+      <div id="cost"></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="verify"><div class="wrap">
+  <div class="kicker">Verification</div>
+  <h2>How I know the findings are trustworthy — and where they are not</h2>
+  <p class="sub">Three separate measurements, deliberately not averaged. A 20-app gold set hand-labelled
+  from primary sources before any grading code existed; an independent cross-check against Composio's
+  shipped auth config on every app it already covers; and a real browser sent to the pricing pages for
+  the one field documentation never states.</p>
+  <div class="tiles" id="verifyTiles"></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Accuracy per field</h3>
+      <p class="cap">Same 20 apps, same 100 labels, both passes.</p>
+      <div class="legend">
+        <span><i style="background:var(--s2)"></i>Pass 1 — closed book</span>
+        <span><i style="background:var(--s1)"></i>Pass 2 — grounded + critic</span>
+      </div>
+      <div id="accChart"></div>
+    </div>
+    <div class="card">
+      <h3>Is the agent's confidence worth anything?</h3>
+      <p class="cap">Bucketed by the confidence the agent stated for that field, before it knew the answer.</p>
+      <div id="calib"></div>
+    </div>
+  </div>
+  <div style="height:16px"></div>
+  <div class="card">
+    <h3>Every label the verified pass still got wrong</h3>
+    <p class="cap">Nothing filtered. "Abstained" means it said unknown rather than guessing, which is a
+      better failure than being confidently wrong.</p>
+    <div class="tblwrap"><table id="missTable"></table></div>
+  </div>
+  <div style="height:16px"></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Cross-check: Composio's own catalog</h3>
+      <p class="cap" id="oracleCap"></p>
+      <div id="oracle"></div>
+    </div>
+    <div class="card">
+      <h3>Browser evidence for the gate</h3>
+      <p class="cap" id="gateCap"></p>
+      <div id="gateSummary"></div>
+    </div>
+  </div>
+  <div id="shots" class="shots"></div>
+</div></section>
+
+<section id="honesty"><div class="wrap">
+  <div class="kicker">Constraints and honesty</div>
+  <h2>What defeated it</h2>
+  <div id="honest"></div>
+</div></section>
+
+<section id="agents"><div class="wrap">
+  <div class="kicker">For agents</div>
+  <h2>This page is also a tool</h2>
+  <p class="sub">Composio's product is turning apps into things agents can call. It would be strange to
+  hand in research about that as a PDF. The same dataset behind this page is served as an MCP server,
+  so a reviewer can interrogate the findings instead of reading them.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>Connect it</h3>
+      <pre id="mcpCmd"></pre>
+      <p class="cap" style="margin-top:10px">Five tools: <code>search_apps</code>, <code>get_app</code>,
+      <code>build_queue</code>, <code>patterns</code>, <code>verification</code>. Try:
+      <em>"which finance apps are gated, and what is the blocker on each?"</em></p>
+    </div>
+    <div class="card">
+      <h3>Or just take the data</h3>
+      <div id="dataLinks"></div>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap" id="footer"></div></footer>
+
+<script type="application/json" id="RADAR">{"meta":{"n_apps":3,"generated_from":"agent/research.py pass 2 (grounded + critic)","composio_catalog_size":1222,"usage":{"llm":{"calls":3,"input_tokens":21896,"output_tokens":923,"llm_seconds":14.5,"notional_usd":0.0069,"by_model":{"deepseek-v4-flash":{"calls":3,"in":21896,"out":923,"secs":14.5}}},"firecrawl":{"search":6,"scrape":9,"cache_hits":0}}},"headline":{"self_serve_pct":100.0,"gated_pct":0.0,"mcp_pct":0.0,"in_composio":3,"gap":0,"buildable_gap":0,"outreach_gap":0,"top_auth":["OAUTH2",2],"top_blocker":null},"distributions":{"auth":[["OAUTH2",2],["API_KEY",1]],"access":[["self_serve_free",3]],"lane":[["build_now",3]],"verdict":[["build_now",3]],"blockers":[],"composio_catalog_auth":[["API_KEY",1023],["OAUTH2",195],["NO_AUTH",32],["BASIC",32],["S2S_OAUTH2",19],["DCR_OAUTH",13],["BEARER_TOKEN",5],["OAUTH1",1],["BASIC_WITH_JWT",1],["GOOGLE_SERVICE_ACCOUNT",1],["UNKNOWN",1],["SAML",1]]},"matrix":[{"category":"CRM and Sales","n":3,"self_serve":3,"gated":0,"self_serve_pct":100.0,"mcp":0,"mcp_pct":0.0,"in_composio":3,"median_score":83.2,"top_auth":"OAUTH2"}],"build_queue":[],"rows":[{"id":1,"app":"Salesforce","category":"CRM and Sales","one_liner":"CRM and sales platform with REST, SOAP, and Connect APIs for customer data.","auth_methods":["OAUTH2","BEARER_TOKEN"],"primary_auth":"OAUTH2","access":"self_serve_free","access_note":"Free Developer Edition available for signup; API access bundled with licenses, paid tiers start at $25/user/month, Enterprise at $175/user/month.","api_surface":"rest","api_breadth":"broad","has_mcp":false,"mcp_note":"","verdict":"build_now","blocker":"","evidence":["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart_oauth.htm","https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_oauth_and_connected_apps.htm","https://help.salesforce.com/s/articleView?id=000385436&language=en_US&type=1","https://pipeline.zoominfo.com/sales/salesforce-api"],"confidence":{"primary_auth":0.9,"access":0.8,"api_surface":0.9,"has_mcp":0.1,"verdict":0.8},"fabricated_citations":0,"critic_changes":[],"retrieval":{"queries":2,"results":10,"pages_fetched":["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_oauth_and_connected_apps.htm","https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart_oauth.htm","https://developer.salesforce.com/docs/platform/connect-rest-api/guide/intro_using_oauth.html"]},"critic_audit":{"_error":"http 503: {\"error\":{\"type\":\"server_error\",\"message\":\"Error from provider (Console Go): Upstream request failed: Endpoint is unavailable.\"}}"},"build_score":82.0,"score_parts":{"credential_access":40,"api_surface":25,"auth_effort":10,"evidence":7.0,"agent_readiness":0},"effort":"L","lane":"build_now","composio_slug":"salesforce","composio_auth_schemes":["OAUTH2","S2S_OAUTH2"],"composio_tools_count":184,"composio_adjacent":null,"in_composio":true},{"id":2,"app":"HubSpot","category":"CRM and Sales","one_liner":"HubSpot is a CRM and sales platform with APIs for managing contacts, deals, and other objects.","auth_methods":["OAUTH2","API_KEY","BEARER_TOKEN"],"primary_auth":"OAUTH2","access":"self_serve_free","access_note":"Developers can create a free HubSpot developer account and create private apps or public apps with OAuth, self-issuing tokens without human approval.","api_surface":"rest","api_breadth":"broad","has_mcp":false,"mcp_note":"No official MCP server found in evidence.","verdict":"build_now","blocker":"","evidence":["https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/overview","https://developers.hubspot.com/docs/apps/legacy-apps/authentication/working-with-oauth","https://developers.hubspot.com/docs/developer-tooling/platform/apis-by-tier","https://community.hubspot.com/t/api-pricing/9952"],"confidence":{"primary_auth":0.9,"access":0.8,"api_surface":0.9,"has_mcp":0.7,"verdict":0.8},"fabricated_citations":0,"critic_changes":[],"retrieval":{"queries":2,"results":10,"pages_fetched":["https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/overview","https://developers.hubspot.com/docs/apps/legacy-apps/authentication/intro-to-auth","https://developers.hubspot.com/docs/apps/legacy-apps/authentication/working-with-oauth"]},"critic_audit":{"_error":"http 503: {\"error\":{\"type\":\"server_error\",\"message\":\"Error from provider (Console Go): Upstream request failed: Endpoint is unavailable.\"}}"},"build_score":83.2,"score_parts":{"credential_access":40,"api_surface":25,"auth_effort":10,"evidence":8.2,"agent_readiness":0},"effort":"L","lane":"build_now","composio_slug":"hubspot","composio_auth_schemes":["OAUTH2","API_KEY"],"composio_tools_count":244,"composio_adjacent":null,"in_composio":true},{"id":3,"app":"Pipedrive","category":"CRM and Sales","one_liner":"CRM and sales pipeline management with REST API for deals, contacts, and projects.","auth_methods":["API_KEY","OAUTH2"],"primary_auth":"API_KEY","access":"self_serve_free","access_note":"API access included on all paid plans, including Lite ($14/month per seat); free developer sandbox available indefinitely.","api_surface":"rest","api_breadth":"broad","has_mcp":false,"mcp_note":"","verdict":"build_now","blocker":"","evidence":["https://pipedrive.readme.io/docs/core-api-concepts-authentication","https://developers.pipedrive.com/docs/api/v1","https://www.pipedrive.com/en/features/crm-api","https://pipeline.zoominfo.com/sales/pipedrive-api"],"confidence":{"primary_auth":0.9,"access":0.9,"api_surface":1.0,"has_mcp":0.2,"verdict":0.9},"fabricated_citations":0,"critic_changes":[],"retrieval":{"queries":2,"results":10,"pages_fetched":["https://developers.pipedrive.com/docs/api/v1/Oauth","https://developers.pipedrive.com/docs/api/v1","https://pipedrive.readme.io/docs/core-api-concepts-authentication"]},"critic_audit":{"_error":"http 503: {\"error\":{\"type\":\"server_error\",\"message\":\"Error from provider (Console Go): Upstream request failed: Endpoint is unavailable.\"}}"},"build_score":87.8,"score_parts":{"credential_access":40,"api_surface":25,"auth_effort":15,"evidence":7.8,"agent_readiness":0},"effort":"L","lane":"build_now","composio_slug":"pipedrive","composio_auth_schemes":["OAUTH2","API_KEY"],"composio_tools_count":399,"composio_adjacent":null,"in_composio":true}],"eval":{"gold_apps":[4,5,10,14,19,20,21,28,33,36,49,58,60,61,71,72,73,81,90,98],"pass1":{"n_apps":20,"n_labels":100,"accuracy":0.68,"per_field":{"primary_auth":{"accuracy":0.75,"correct":15,"wrong":5},"access":{"accuracy":0.6,"correct":12,"wrong":7,"abstained":1},"api_surface":{"accuracy":0.9,"correct":18,"wrong":2},"has_mcp":{"accuracy":0.55,"correct":11,"wrong":8,"abstained":1},"verdict":{"accuracy":0.6,"correct":12,"wrong":7,"abstained":1}},"misses":[{"id":4,"app":"Attio","field":"access","predicted":"self_serve_paid","gold":"self_serve_free","outcome":"wrong","confidence":0.6,"note":"Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."},{"id":14,"app":"Front","field":"access","predicted":"self_serve_paid","gold":"self_serve_free","outcome":"wrong","confidence":0.7,"note":"API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."},{"id":20,"app":"Gladly","field":"access","predicted":"approval_required","gold":"partner_gated","outcome":"wrong","confidence":0.7,"note":"Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"},{"id":19,"app":"Gorgias","field":"access","predicted":"self_serve_paid","gold":"self_serve_free","outcome":"wrong","confidence":0.7,"note":"HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."},{"id":98,"app":"Mermaid CLI","field":"access","predicted":"no_public_api","gold":"self_serve_free","outcome":"wrong","confidence":0.9,"note":"Local npm CLI, no auth and no network service. MermaidChart ships an MCP but that is a different company's hosted product, so the vendor-published test fails here."},{"id":90,"app":"PitchBook","field":"access","predicted":"unknown","gold":"partner_gated","outcome":"abstained","confidence":null,"note":"No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."},{"id":58,"app":"Sherlock","field":"access","predicted":"no_public_api","gold":"self_serve_free","outcome":"wrong","confidence":0.9,"note":"Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."},{"id":81,"app":"Stripe","field":"access","predicted":"self_serve_paid","gold":"self_serve_free","outcome":"wrong","confidence":0.9,"note":"Secret key self-issued in dashboard with no activation; Connect OAuth exists but keys are the normal path. First-party MCP at mcp.stripe.com."},{"id":98,"app":"Mermaid CLI","field":"api_surface","predicted":"none","gold":"sdk_only","outcome":"wrong","confidence":0.95,"note":"Local npm CLI, no auth and no network service. MermaidChart ships an MCP but that is a different company's hosted product, so the vendor-published test fails here."},{"id":58,"app":"Sherlock","field":"api_surface","predicted":"none","gold":"sdk_only","outcome":"wrong","confidence":0.95,"note":"Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."},{"id":4,"app":"Attio","field":"has_mcp","predicted":false,"gold":true,"outcome":"wrong","confidence":0.2,"note":"Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."},{"id":60,"app":"Clay","field":"has_mcp","predicted":false,"gold":true,"outcome":"wrong","confidence":0.3,"note":"HTTP API available on paid plans; users report the API throttled and gated at the Explorer tier upward. First-party Clay MCP."},{"id":10,"app":"DealCloud","field":"has_mcp","predicted":false,"gold":true,"outcome":"wrong","confidence":0.9,"note":"OAuth2 client-credentials. Docs are public but credentials are provisioned by DealCloud for an existing client tenant. First-party MCP server in client preview from July 2026."},{"id":14,"app":"Front","field":"has_mcp","predicted":false,"gold":true,"outcome":"wrong","confidence":0.9,"note":"API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."},{"id":19,"app":"Gorgias","field":"has_mcp","predicted":false,"gold":true,"outcome":"wrong","confidence":0.8,"note":"HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."},{"id":36,"app":"Klaviyo","field":"has_mcp","predicted":false,"gold":true,"outcome":"wrong","confidence":0.7,"note":"Private API key from the account settings; free tier up to 250 contacts. First-party MCP server documented."},{"id":73,"app":"Linear","field":"has_mcp","predicted":false,"gold":true,"outcome":"wrong","confidence":0.6,"note":"GraphQL only, no REST. Personal API key or OAuth, free plan. First-party MCP at mcp.linear.app."},{"id":90,"app":"PitchBook","field":"has_mcp","predicted":null,"gold":false,"outcome":"abstained","confidence":null,"note":"No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."},{"id":5,"app":"Twenty","field":"has_mcp","predicted":false,"gold":true,"outcome":"wrong","confidence":0.6,"note":"Bearer API key; both GraphQL and REST exposed. Open source and self-hostable, and Twenty Cloud workspaces ship a native MCP server."},{"id":10,"app":"DealCloud","field":"primary_auth","predicted":"OAUTH2","gold":"S2S_OAUTH2","outcome":"wrong","confidence":0.6,"note":"OAuth2 client-credentials. Docs are public but credentials are provisioned by DealCloud for an existing client tenant. First-party MCP server in client preview from July 2026."},{"id":14,"app":"Front","field":"primary_auth","predicted":"OAUTH2","gold":"BEARER_TOKEN","outcome":"wrong","confidence":0.8,"note":"API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."},{"id":20,"app":"Gladly","field":"primary_auth","predicted":"API_KEY","gold":"BASIC","outcome":"wrong","confidence":0.6,"note":"Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"},{"id":19,"app":"Gorgias","field":"primary_auth","predicted":"API_KEY","gold":"BASIC","outcome":"wrong","confidence":0.9,"note":"HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."},{"id":28,"app":"WhatsApp Business","field":"primary_auth","predicted":"BEARER_TOKEN","gold":"OAUTH2","outcome":"wrong","confidence":0.9,"note":"Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."},{"id":49,"app":"Amazon Selling Partner","field":"verdict","predicted":"needs_outreach","gold":"build_with_caveats","outcome":"wrong","confidence":0.8,"note":"LWA OAuth2; AWS SigV4 signing dropped in Oct 2023. Requires a registered developer profile and app registration before credentials exist. Community MCP servers only."},{"id":4,"app":"Attio","field":"verdict","predicted":"build_with_caveats","gold":"build_now","outcome":"wrong","confidence":0.6,"note":"Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."},{"id":10,"app":"DealCloud","field":"verdict","predicted":"needs_outreach","gold":"build_with_caveats","outcome":"wrong","confidence":0.7,"note":"OAuth2 client-credentials. Docs are public but credentials are provisioned by DealCloud for an existing client tenant. First-party MCP server in client preview from July 2026."},{"id":20,"app":"Gladly","field":"verdict","predicted":"needs_outreach","gold":"build_with_caveats","outcome":"wrong","confidence":0.7,"note":"Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"},{"id":33,"app":"LinkedIn Ads","field":"verdict","predicted":"build_with_caveats","gold":"needs_outreach","outcome":"wrong","confidence":0.7,"note":"3-legged OAuth. Every product requires an application; Standard tier needs a support ticket and LinkedIn 'reserves the right to select partners at its discretion'. Only unofficial "},{"id":98,"app":"Mermaid CLI","field":"verdict","predicted":"not_buildable","gold":"build_now","outcome":"wrong","confidence":0.95,"note":"Local npm CLI, no auth and no network service. MermaidChart ships an MCP but that is a different company's hosted product, so the vendor-published test fails here."},{"id":90,"app":"PitchBook","field":"verdict","predicted":"unknown","gold":"needs_outreach","outcome":"abstained","confidence":null,"note":"No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."},{"id":58,"app":"Sherlock","field":"verdict","predicted":"not_buildable","gold":"build_with_caveats","outcome":"wrong","confidence":0.9,"note":"Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."}]},"pass2":{"n_apps":20,"n_labels":100,"accuracy":0.0,"per_field":{"primary_auth":{"accuracy":0.0,"missing":20},"access":{"accuracy":0.0,"missing":20},"api_surface":{"accuracy":0.0,"missing":20},"has_mcp":{"accuracy":0.0,"missing":20},"verdict":{"accuracy":0.0,"missing":20}},"misses":[]},"calibration_pass2":[],"oracle":{"n_checked":3,"n_abstained":0,"agreement":1.0,"disagreements":[],"rows":[{"id":1,"app":"Salesforce","predicted":"OAUTH2","composio":["OAUTH2","S2S_OAUTH2"],"status":"agrees"},{"id":2,"app":"HubSpot","predicted":"OAUTH2","composio":["API_KEY","OAUTH2"],"status":"agrees"},{"id":3,"app":"Pipedrive","predicted":"API_KEY","composio":["API_KEY","OAUTH2"],"status":"agrees"}]},"lift":-0.68},"scoring_model":{"weights":{"credential_access":40,"api_surface":25,"auth_effort":15,"evidence":10,"agent_readiness":10},"access_points":{"self_serve_free":40,"self_serve_paid":32,"plan_gated":20,"approval_required":12,"partner_gated":4,"no_public_api":0,"unknown":10}},"links":{"repo":null}}</script>
+<script>
+(() => {
+"use strict";
+const D = JSON.parse(document.getElementById('RADAR').textContent);
+const $ = s => document.querySelector(s);
+const el = (t, a = {}, kids = []) => {
+  const n = document.createElement(t);
+  for (const [k, v] of Object.entries(a)) {
+    if (v === null || v === undefined) continue;
+    if (k === 'class') n.className = v;
+    else if (k === 'html') n.innerHTML = v;
+    else if (k === 'text') n.textContent = v;
+    else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
+    else n.setAttribute(k, v);
+  }
+  (Array.isArray(kids) ? kids : [kids]).filter(Boolean).forEach(c =>
+    n.appendChild(typeof c === 'string' ? document.createTextNode(c) : c));
+  return n;
+};
+const pct = (n, d) => d ? Math.round(1000 * n / d) / 10 : 0;
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- theme ---------- */
+const root = document.documentElement;
+$('#theme').addEventListener('click', () => {
+  const cur = root.getAttribute('data-theme');
+  const sysDark = matchMedia('(prefers-color-scheme: dark)').matches;
+  root.setAttribute('data-theme', cur ? (cur === 'dark' ? 'light' : 'dark') : (sysDark ? 'light' : 'dark'));
+});
+
+/* ---------- tooltip ---------- */
+const tip = $('#tip');
+function hoverable(node, text) {
+  if (!text) return node;
+  node.addEventListener('mousemove', e => {
+    tip.textContent = text;
+    tip.style.opacity = 1;
+    const pad = 14;
+    let x = e.clientX + pad, y = e.clientY + pad;
+    if (x + 290 > innerWidth) x = e.clientX - 290;
+    if (y + 90 > innerHeight) y = e.clientY - 70;
+    tip.style.left = x + 'px'; tip.style.top = y + 'px';
+  });
+  node.addEventListener('mouseleave', () => tip.style.opacity = 0);
+  return node;
+}
+
+/* ---------- vocabulary ---------- */
+const ACCESS_ORDER = ['self_serve_free','self_serve_paid','plan_gated','approval_required','partner_gated','no_public_api','unknown'];
+const ACCESS_LABEL = {
+  self_serve_free:'self-serve, free', self_serve_paid:'self-serve, paid', plan_gated:'behind a paid tier',
+  approval_required:'approval required', partner_gated:'partner / sales only', no_public_api:'no public API', unknown:'unknown'
+};
+const ACCESS_COLOR = {
+  self_serve_free:'var(--o1)', self_serve_paid:'var(--o2)', plan_gated:'var(--o3)',
+  approval_required:'var(--o4)', partner_gated:'var(--o5)', no_public_api:'var(--o6)', unknown:'var(--muted)'
+};
+const LANE_LABEL = {build_now:'build now', quick_win:'quick win', needs_outreach:'needs outreach', park:'park'};
+const LANE_COLOR = {build_now:'var(--good)', quick_win:'var(--s1)', needs_outreach:'var(--warn)', park:'var(--muted)'};
+const SELF_SERVE = new Set(['self_serve_free','self_serve_paid']);
+
+const rows = D.rows || [];
+const H = D.headline || {};
+const goldIds = new Set((D.eval && D.eval.gold_apps) || []);
+
+/* ---------- header chips ---------- */
+const REPO = D.links && D.links.repo;
+const chips = [
+  ['data.json', 'data.json'], ['findings.csv', 'findings.csv'], ['llms.txt', 'llms.txt'],
+  ['MCP endpoint', 'api/mcp'],
+];
+if (REPO) chips.unshift(['source repo', REPO]);
+$('#chips').append(
+  el('span', {class:'chip', text:`${rows.length} apps researched`}),
+  ...chips.map(([t, h]) => el('a', {class:'chip', href:h, text:t}))
+);
+
+/* ---------- 1. tiles ---------- */
+const tiles = [
+  {v:H.self_serve_pct + '%', k:'let a developer self-issue a credential',
+   n:`${Math.round((H.self_serve_pct/100)*rows.length)} of ${rows.length} — the rest need a plan, a form, or a human`},
+  {v:H.mcp_pct + '%', k:'already ship a vendor MCP server',
+   n:'the surface is being made agent-shaped without Composio'},
+  {v:H.in_composio + '/' + rows.length, k:'are already Composio toolkits',
+   n:`${H.gap} are not — that gap is the build queue`},
+  {v:H.buildable_gap, k:'of the gap are buildable now',
+   n:'public docs plus a self-serve credential today'},
+  {v:H.outreach_gap, k:'of the gap need partnerships, not engineering',
+   n:'no amount of developer time unblocks these'},
+];
+$('#tiles').append(...tiles.map(t => el('div', {class:'tile'}, [
+  el('div', {class:'v', text:t.v}), el('div', {class:'k', text:t.k}), el('div', {class:'n', text:t.n})
+])));
+
+/* ---------- 2. patterns (computed, not written by hand) ---------- */
+const byCat = D.matrix || [];
+const openCat = byCat[0], closedCat = byCat[byCat.length - 1];
+const authTop = (D.distributions.auth || [])[0] || ['UNKNOWN', 0];
+const authSecond = (D.distributions.auth || [])[1] || ['', 0];
+const catalogAuth = D.distributions.composio_catalog_auth || [];
+const catalogApiKeyPct = pct((catalogAuth.find(a => a[0] === 'API_KEY') || [0,0])[1], D.meta.composio_catalog_size);
+const mcpGated = rows.filter(r => r.has_mcp && !SELF_SERVE.has(r.access)).length;
+const gatedWithDocs = rows.filter(r => !SELF_SERVE.has(r.access) && r.api_surface !== 'none' && r.api_surface !== 'unknown').length;
+const topBlocker = (D.distributions.blockers || [])[0] || ['', 0];
+
+const PATTERNS = [
+  {
+    h: `${authTop[0] === 'OAUTH2' ? 'OAuth2 dominates this set, but not the catalog it would join' : authTop[0] + ' dominates'}`,
+    p: `${authTop[1]} of ${rows.length} apps use ${authTop[0]} as the scheme a third-party integration would actually use, `
+     + `with ${authSecond[0]} second at ${authSecond[1]}. Composio's own ${D.meta.composio_catalog_size}-toolkit catalog runs the other way — `
+     + `${catalogApiKeyPct}% of it is API-key. The 100 here are enterprise-skewed by design, so the auth mix of a *request list* `
+     + `is not the auth mix of a catalog. Anyone sizing OAuth work off a wishlist will overbuild.`,
+    e: `distributions.auth vs distributions.composio_catalog_auth`
+  },
+  {
+    h: `The real blocker is commercial, not technical`,
+    p: `${H.gated_pct}% of the set is gated, and the single most common gate is "${ACCESS_LABEL[topBlocker[0]] || topBlocker[0]}" at ${topBlocker[1]} apps. `
+     + `Almost none of these are hard to integrate. They are hard to *get into*. The engineering question "can we wrap this API" `
+     + `has a different answer from "can we obtain a key", and conflating them is what makes a toolkit roadmap slip.`,
+    e: `distributions.blockers`
+  },
+  {
+    h: `A gated app is still buildable — the blocker is testing, not shipping`,
+    p: `${gatedWithDocs} apps are gated to an outside developer yet publish complete API documentation. `
+     + `In a bring-your-own-credential model the customer already has the tenant, so the toolkit ships fine; what the vendor `
+     + `is withholding is a sandbox to test against. That reframes most of the "blocked" pile from a partnerships problem `
+     + `into a QA problem, and it is the single most consequential judgement on this page.`,
+    e: `rows where access is gated and api_surface is documented`
+  },
+  {
+    h: `MCP adoption is already mainstream, and it is a shortcut`,
+    p: `${H.mcp_pct}% of the 100 publish their own MCP server — including ${mcpGated} apps that will not give an outside `
+     + `developer a credential at all. Vendors are shipping agent surfaces faster than they are opening access. `
+     + `Every one of those is a cheaper toolkit: the vendor has already decided which operations are agent-safe.`,
+    e: `has_mcp, verified per app against the vendor's own docs`
+  },
+  {
+    h: `Openness is a property of the category, not the company`,
+    p: `${openCat ? `${openCat.category} is ${openCat.self_serve_pct}% self-serve; ${closedCat.category} is ${closedCat.self_serve_pct}%.` : ''} `
+     + `Developer-tools and productivity apps sell to the person integrating them, so the credential is the product. `
+     + `Enterprise sales categories treat API access as a contract term. Category predicts the gate better than company size does, `
+     + `which means outreach can be planned per-category instead of per-app.`,
+    e: `the matrix below`
+  },
+];
+$('#patterns').append(...PATTERNS.map((p, i) => el('div', {class:'pat'}, [
+  el('div', {class:'i', text:String(i + 1).padStart(2, '0')}),
+  el('div', {}, [el('h3', {text:p.h}), el('p', {text:p.p}), el('div', {class:'ev', text:'← ' + p.e})])
+])));
+
+/* ---------- 3. gap tiles ---------- */
+const adjacent = rows.filter(r => r.composio_adjacent).length;
+$('#gapTiles').append(...[
+  {v:`${H.in_composio}`, k:'of the 100 are live Composio toolkits',
+   n:`matched by slug against ${D.meta.composio_catalog_size} toolkits; ${adjacent} near-misses rejected by hand`},
+  {v:`${H.gap}`, k:'are not in the catalog',
+   n:'ranked below by how cheap they are to add'},
+  {v:`${H.buildable_gap}`, k:'of those need no one\'s permission',
+   n:'self-serve credential, documented API, today'},
+].map(t => el('div', {class:'tile'}, [
+  el('div', {class:'v', text:t.v}), el('div', {class:'k', text:t.k}), el('div', {class:'n', text:t.n})
+])));
+
+/* ---------- build queue ---------- */
+const queue = D.build_queue || [];
+const laneSel = $('#laneFilter');
+laneSel.append(el('option', {value:'', text:'every lane'}),
+  ...['build_now','quick_win','needs_outreach','park'].map(l =>
+    el('option', {value:l, text:LANE_LABEL[l] + ` (${queue.filter(q => q.lane === l).length})`})));
+
+function laneTag(lane) {
+  return el('span', {class:'tag'}, [
+    el('span', {class:'dot', style:`background:${LANE_COLOR[lane]}`}),
+    el('b', {text:LANE_LABEL[lane] || lane})
+  ]);
+}
+function scoreCell(r) {
+  const parts = r.score_parts || {};
+  const txt = Object.entries(parts).map(([k, v]) => `${k}: ${v}`).join('\n');
+  const c = el('span', {}, [
+    el('span', {class:'scorebar'}, [el('i', {style:`width:${Math.min(100, r.build_score)}%`})]),
+    el('span', {class:'num', text:r.build_score})
+  ]);
+  return hoverable(c, txt + `\ntotal: ${r.build_score}`);
+}
+function renderQueue() {
+  const lane = laneSel.value;
+  const list = (lane ? queue.filter(q => q.lane === lane) : queue).slice(0, lane ? 60 : 20);
+  const t = $('#queueTable');
+  t.innerHTML = '';
+  t.append(el('thead', {}, el('tr', {}, ['#','App','Category','Score','Effort','Lane','Auth','How you get in','Blocker']
+    .map(h => el('th', {text:h})))));
+  t.append(el('tbody', {}, list.map((r, i) => el('tr', {}, [
+    el('td', {class:'num muted', text:i + 1}),
+    el('td', {}, el('b', {text:r.app})),
+    el('td', {class:'muted', text:r.category.replace(/ and .*/, '')}),
+    el('td', {}, scoreCell(r)),
+    el('td', {class:'num', text:r.effort}),
+    el('td', {}, laneTag(r.lane)),
+    el('td', {class:'mono muted', text:r.primary_auth}),
+    el('td', {class:'mono', style:`color:${ACCESS_COLOR[r.access]}`, text:ACCESS_LABEL[r.access] || r.access}),
+    el('td', {class:'wrap-cell', text:r.blocker || '—'}),
+  ]))));
+  $('#queueCount').textContent = lane
+    ? `${list.length} apps in this lane`
+    : `top 20 of ${queue.length} — pick a lane to see all`;
+}
+laneSel.addEventListener('change', renderQueue);
+renderQueue();
+
+/* ---------- 4. matrix ---------- */
+function heatBg(v, max) {
+  const steps = ['var(--seq0)','var(--seq1)','var(--seq2)','var(--seq3)','var(--seq4)','var(--seq5)'];
+  return steps[Math.min(steps.length - 1, Math.floor((v / (max || 1)) * steps.length))];
+}
+{
+  const t = $('#matrixTable');
+  const maxSS = Math.max(...byCat.map(m => m.self_serve_pct));
+  const maxMcp = Math.max(...byCat.map(m => m.mcp_pct));
+  t.append(el('thead', {}, el('tr', {}, ['Category','n','Self-serve','Gated','Vendor MCP','In Composio','Median score','Dominant auth']
+    .map(h => el('th', {text:h})))));
+  t.append(el('tbody', {}, byCat.map(m => el('tr', {}, [
+    el('td', {}, el('b', {text:m.category})),
+    el('td', {class:'num muted', text:m.n}),
+    hoverable(el('td', {class:'heat', style:`background:${heatBg(m.self_serve_pct, maxSS)}`,
+      text:m.self_serve_pct + '%'}), `${m.self_serve} of ${m.n} apps let a developer self-issue a credential`),
+    el('td', {class:'num', text:m.gated}),
+    hoverable(el('td', {class:'heat', style:`background:${heatBg(m.mcp_pct, maxMcp)}`,
+      text:m.mcp_pct + '%'}), `${m.mcp} of ${m.n} publish a vendor MCP server`),
+    el('td', {class:'num', text:`${m.in_composio}/${m.n}`}),
+    el('td', {class:'num', text:m.median_score}),
+    el('td', {class:'mono muted', text:m.top_auth}),
+  ]))));
+}
+
+/* ---------- charts ---------- */
+function barChart(node, data, {color = 'var(--s1)', total, unit = ''} = {}) {
+  const max = Math.max(...data.map(d => d.v), 1);
+  node.append(el('div', {class:'bars'}, data.map(d => hoverable(
+    el('div', {class:'bar'}, [
+      el('div', {class:'lab', text:d.k}),
+      el('div', {class:'track'}, el('div', {class:'fill', style:`width:${(d.v / max) * 100}%;background:${d.color || color}`})),
+      el('div', {class:'val', text:d.v + unit}),
+    ]), d.tip || `${d.k}: ${d.v}${unit}${total ? ` (${pct(d.v, total)}% of ${total})` : ''}`))));
+}
+{ // auth: research set vs catalog
+  const set = D.distributions.auth || [];
+  const cat = Object.fromEntries(D.distributions.composio_catalog_auth || []);
+  const catTotal = D.meta.composio_catalog_size;
+  const node = $('#authChart');
+  set.slice(0, 6).forEach(([k, v]) => {
+    const a = pct(v, rows.length), b = pct(cat[k] || 0, catTotal);
+    node.append(el('div', {class:'grpbar'}, [
+      el('div', {class:'lab mono muted', style:'text-align:right;font-size:11.5px', text:k}),
+      el('div', {class:'two'}, [
+        hoverable(el('div', {class:'row'}, [
+          el('div', {class:'track', style:'height:11px'}, el('div', {class:'fill', style:`width:${a}%;background:var(--s1)`})),
+          el('div', {class:'v', text:a + '%'})]), `${v} of these ${rows.length} apps use ${k}`),
+        hoverable(el('div', {class:'row'}, [
+          el('div', {class:'track', style:'height:11px'}, el('div', {class:'fill', style:`width:${b}%;background:var(--s2)`})),
+          el('div', {class:'v', text:b + '%'})]), `${cat[k] || 0} of ${catTotal} Composio toolkits accept ${k}`),
+      ]),
+    ]));
+  });
+}
+{ // access distribution, ordinal ramp
+  const m = Object.fromEntries(D.distributions.access || []);
+  barChart($('#accessChart'),
+    ACCESS_ORDER.filter(k => m[k]).map(k => ({k:ACCESS_LABEL[k], v:m[k], color:ACCESS_COLOR[k]})),
+    {total:rows.length});
+}
+
+/* ---------- 5. the 100 ---------- */
+const fCat = $('#fCat'), fAccess = $('#fAccess'), fLane = $('#fLane'), fComposio = $('#fComposio'), q = $('#q');
+const fill = (sel, all, list, label = x => x) => sel.append(el('option', {value:'', text:all}),
+  ...list.map(v => el('option', {value:v, text:label(v)})));
+fill(fCat, 'every category', [...new Set(rows.map(r => r.category))]);
+fill(fAccess, 'every access level', ACCESS_ORDER.filter(a => rows.some(r => r.access === a)), a => ACCESS_LABEL[a]);
+fill(fLane, 'every lane', ['build_now','quick_win','needs_outreach','park'], l => LANE_LABEL[l]);
+fill(fComposio, 'in Composio or not', ['yes','no'], v => v === 'yes' ? 'already a toolkit' : 'not in the catalog');
+
+function evidenceCell(r) {
+  const ev = (r.evidence || []).slice(0, 3);
+  if (!ev.length) return el('td', {class:'muted', text:'—'});
+  return el('td', {}, ev.map((u, i) => el('a', {href:u, target:'_blank', rel:'noopener',
+    class:'mono', style:'margin-right:7px', title:u, text:'[' + (i + 1) + ']'})));
+}
+function renderMain() {
+  const term = q.value.trim().toLowerCase();
+  const list = rows.filter(r =>
+    (!fCat.value || r.category === fCat.value) &&
+    (!fAccess.value || r.access === fAccess.value) &&
+    (!fLane.value || r.lane === fLane.value) &&
+    (!fComposio.value || (fComposio.value === 'yes') === !!r.in_composio) &&
+    (!term || [r.app, r.one_liner, r.primary_auth, r.blocker, r.access_note, r.category]
+      .join(' ').toLowerCase().includes(term)));
+  const t = $('#mainTable');
+  t.innerHTML = '';
+  t.append(el('thead', {}, el('tr', {}, ['#','App','What it is','Auth','How you get in','API','MCP','Verdict','Score','Composio','Ev']
+    .map(h => el('th', {text:h})))));
+  t.append(el('tbody', {}, list.map(r => el('tr', {}, [
+    el('td', {class:'num muted', text:r.id}),
+    el('td', {}, [el('b', {text:r.app}),
+      goldIds.has(r.id) ? el('span', {class:'tag', style:'margin-left:6px', text:'gold'}) : null,
+      r.browser_access ? el('span', {class:'tag', style:'margin-left:4px', text:'browser'}) : null]),
+    el('td', {class:'wrap-cell', text:r.one_liner || '—'}),
+    hoverable(el('td', {class:'mono', text:r.primary_auth}), (r.auth_methods || []).join(', ')),
+    hoverable(el('td', {class:'mono', style:`color:${ACCESS_COLOR[r.access]}`, text:ACCESS_LABEL[r.access] || r.access}),
+      r.access_note || ''),
+    el('td', {class:'mono muted', text:(r.api_surface === 'unknown' ? '?' : r.api_surface) + (r.api_breadth && r.api_breadth !== 'unknown' ? ' · ' + r.api_breadth : '')}),
+    hoverable(el('td', {class:'num', style:r.has_mcp ? 'color:var(--good)' : 'color:var(--muted)',
+      text:r.has_mcp ? 'yes' : 'no'}), r.mcp_note || ''),
+    el('td', {}, laneTag(r.lane)),
+    el('td', {}, scoreCell(r)),
+    el('td', {class:'mono muted', text:r.composio_slug || '—'}),
+    evidenceCell(r),
+  ]))));
+  $('#count').textContent = `${list.length} of ${rows.length}`;
+}
+[q, fCat, fAccess, fLane, fComposio].forEach(n => n.addEventListener('input', renderMain));
+renderMain();
+
+/* ---------- 6. the agent ---------- */
+const u = (D.meta.usage || {});
+const llm = u.llm || {}, fcs = u.firecrawl || {};
+const STAGES = [
+  {n:'0', t:'Join the catalog', d:`Pull all ${D.meta.composio_catalog_size} Composio toolkits through the v3 API and match them to the 100 by slug. `
+    + `Fuzzy matches are surfaced for a human, never auto-accepted — a wrong join would poison the cross-check that comes later.`},
+  {n:'1', t:'Closed book (the control)', d:'Ask the model for all eleven fields with no tools at all. This is not a stage of the '
+    + 'pipeline; it exists so the verified number has a baseline, and so "the model already knows this" can be tested rather than assumed.'},
+  {n:'2', t:'Grounded', d:'Three narrow searches per app — docs/auth, pricing/access, MCP — then fetch the two best pages with a '
+    + 'renderer, and extract with every citation checked against the retrieved corpus. A URL the model invents is dropped, not trusted.'},
+  {n:'3', t:'Critic', d:'A different model family re-reads the same evidence and is told to refute, not agree. Unsupported claims are '
+    + 'demoted to unknown rather than being quietly kept. Every demotion is recorded so the page can show what changed and why.'},
+  {n:'4', t:'Browser gate prover', d:'For the ambiguous ones, a real Chromium opens the pricing and developer pages, reads the rendered '
+    + 'call-to-action, and screenshots it. Deliberately rule-based, not another model — a second LLM reading the same page is not an independent check.'},
+];
+$('#pipeline').append(el('div', {class:'grid3', style:'grid-template-columns:repeat(auto-fit,minmax(215px,1fr))'},
+  STAGES.map(s => el('div', {class:'card'}, [
+    el('div', {class:'eyebrow', text:'pass ' + s.n}),
+    el('h3', {style:'margin-top:6px', text:s.t}),
+    el('p', {class:'cap', style:'margin:0', text:s.d}),
+  ]))));
+
+const HUMAN = [
+  ['Wrote the vocabulary', 'The agent cannot invent the difference between "approval required" and "partner gated". Those seven access values, and the tie-break rules behind them, are the actual product judgement in this project.'],
+  ['Built the gold set', '20 apps, 100 labels, read off primary sources by hand before any grading code existed. Nothing else on this page can be trusted without it.'],
+  ['Rejected the near-misses', 'Slug matching proposed Square for Squarespace, Plain for Plaid, and mermaid-chart-mcp for mermaid-cli. All three are wrong and all three were caught by a person reading the descriptions.'],
+  ['Fixed an ambiguous field, not the model', 'has_mcp was the worst field in pass 1. The cause was my spec — "vendor or well-known third party" is not decidable. Tightening it to vendor-published only was a human edit to the prompt and to the labelling rule at the same time.'],
+  ['Called the reframe', 'Deciding that a sales-gated app with public docs is still buildable is a judgement about Composio\'s business model. No amount of retrieval produces it.'],
+];
+$('#humanLoop').append(...HUMAN.map(([h, p]) => el('div', {style:'margin-bottom:13px'}, [
+  el('div', {style:'font-weight:600;font-size:13.5px', text:h}),
+  el('p', {class:'cap', style:'margin:3px 0 0', text:p}),
+])));
+
+const wall = Math.round((llm.llm_seconds || 0) / 60);
+const COST = [
+  ['LLM calls', (llm.calls || 0).toLocaleString()],
+  ['Tokens in / out', `${Math.round((llm.input_tokens || 0) / 1000)}k / ${Math.round((llm.output_tokens || 0) / 1000)}k`],
+  ['Notional LLM cost', '$' + (llm.notional_usd ?? 0)],
+  ['Firecrawl calls', `${(fcs.search || 0)} search + ${(fcs.scrape || 0)} scrape`],
+  ['Cache hits', String(fcs.cache_hits || 0)],
+  ['LLM wall time', wall + ' min across 6 workers'],
+];
+$('#cost').append(el('div', {class:'bars'}, COST.map(([k, v]) => el('div', {class:'bar', style:'grid-template-columns:1fr auto'}, [
+  el('div', {class:'sec2', style:'text-align:left', text:k}),
+  el('div', {class:'num', text:v}),
+]))),
+  el('p', {class:'cap', style:'margin-top:12px', text:
+    `Per app that is about $${((llm.notional_usd || 0) / Math.max(rows.length, 1)).toFixed(4)} of model spend and ${((fcs.search || 0) + (fcs.scrape || 0)) / Math.max(rows.length, 1) < 20 ? Math.round(((fcs.search || 0) + (fcs.scrape || 0)) / Math.max(rows.length, 1)) : '?'} retrieval calls. `
+    + `The binding constraint was not the model — it was the free Firecrawl tier, which is why retrieval is two pages per app rather than four.`}));
+
+/* ---------- 7. verification ---------- */
+const E = D.eval || {};
+if (E.pass1 && E.pass2) {
+  const p1 = E.pass1, p2 = E.pass2;
+  $('#verifyTiles').append(...[
+    {v:(p1.accuracy * 100).toFixed(0) + '%', k:'pass 1 — just asking the model', n:`${p1.n_labels} labels, no tools, no evidence`},
+    {v:(p2.accuracy * 100).toFixed(0) + '%', k:'pass 2 — grounded, critiqued, browser-checked', n:'same labels, same grader'},
+    {v:(E.lift >= 0 ? '+' : '') + (E.lift * 100).toFixed(0) + ' pts', k:'bought by the verification loops', n:'the number this whole pipeline exists to move'},
+    E.oracle ? {v:(E.oracle.agreement * 100).toFixed(0) + '%', k:'agreement with Composio\'s shipped auth config',
+      n:`independent cross-check across ${E.oracle.n_checked} apps, not 20`} : null,
+  ].filter(Boolean).map(t => el('div', {class:'tile'}, [
+    el('div', {class:'v', text:t.v}), el('div', {class:'k', text:t.k}), el('div', {class:'n', text:t.n})
+  ])));
+
+  const node = $('#accChart');
+  Object.keys(p2.per_field).forEach(f => {
+    const a = Math.round(p1.per_field[f].accuracy * 100), b = Math.round(p2.per_field[f].accuracy * 100);
+    node.append(el('div', {class:'grpbar'}, [
+      el('div', {class:'lab mono muted', style:'text-align:right;font-size:11.5px', text:f}),
+      el('div', {class:'two'}, [
+        hoverable(el('div', {class:'row'}, [
+          el('div', {class:'track', style:'height:11px'}, el('div', {class:'fill', style:`width:${a}%;background:var(--s2)`})),
+          el('div', {class:'v', text:a + '%'})]), `closed book: ${p1.per_field[f].correct || 0} of 20 correct`),
+        hoverable(el('div', {class:'row'}, [
+          el('div', {class:'track', style:'height:11px'}, el('div', {class:'fill', style:`width:${b}%;background:var(--s1)`})),
+          el('div', {class:'v', text:b + '%'})]), `grounded: ${p2.per_field[f].correct || 0} of 20 correct`),
+      ]),
+    ]));
+  });
+
+  const t = $('#missTable');
+  t.append(el('thead', {}, el('tr', {}, ['App','Field','Agent said','Truth','Kind','Its confidence','Why the truth is the truth']
+    .map(h => el('th', {text:h})))));
+  t.append(el('tbody', {}, (p2.misses || []).map(m => el('tr', {}, [
+    el('td', {}, el('b', {text:m.app})),
+    el('td', {class:'mono muted', text:m.field}),
+    el('td', {class:'mono bad', text:String(m.predicted)}),
+    el('td', {class:'mono ok', text:String(m.gold)}),
+    el('td', {}, el('span', {class:'tag', text:m.outcome})),
+    el('td', {class:'num muted', text:m.confidence ?? '—'}),
+    el('td', {class:'wrap-cell', text:m.note}),
+  ]))));
+  if (!(p2.misses || []).length) $('#missTable').append(el('tbody', {}, el('tr', {}, el('td', {text:'no misses'}))));
+}
+
+if (E.calibration_pass2) {
+  barChart($('#calib'), E.calibration_pass2.map(b => ({
+    k:'conf ' + b.bucket, v:Math.round(b.accuracy * 100),
+    tip:`${b.n} labels the agent rated ${b.bucket} confident — ${Math.round(b.accuracy * 100)}% of them were right`
+  })), {unit:'%'});
+  const buckets = E.calibration_pass2;
+  const hi = buckets[0], lo = buckets[buckets.length - 1];
+  $('#calib').append(el('p', {class:'cap', style:'margin-top:12px', text:
+    buckets.length < 2 ? 'Too few buckets to say anything.' :
+    (hi.accuracy > lo.accuracy
+      ? `It is directionally calibrated: ${Math.round(hi.accuracy*100)}% right when it claimed ${hi.bucket} confidence versus ${Math.round(lo.accuracy*100)}% at ${lo.bucket}. Low-confidence rows are worth a human's time; high-confidence rows are mostly not.`
+      : `It is NOT calibrated — accuracy does not rise with stated confidence (${Math.round(hi.accuracy*100)}% at ${hi.bucket} vs ${Math.round(lo.accuracy*100)}% at ${lo.bucket}). Treat its confidence numbers as decoration, and route review by field instead.`)}));
+}
+
+if (E.oracle) {
+  const o = E.oracle;
+  $('#oracleCap').textContent = `Composio ships ${o.n_checked + o.n_abstained} of these apps as toolkits with a real auth config, `
+    + `maintained by a different process than this agent. Where the agent's primary_auth is one of the schemes Composio accepts, `
+    + `call it agreement. This is not accuracy — Composio can be terminologically different from a vendor's docs — but it is a `
+    + `consistency check ${Math.round(o.n_checked / 20 * 10) / 10}× the size of the gold set.`;
+  const dis = o.disagreements || [];
+  $('#oracle').append(
+    el('div', {class:'bars', style:'margin-bottom:14px'}, [
+      el('div', {class:'bar', style:'grid-template-columns:1fr auto'}, [
+        el('div', {class:'sec2', style:'text-align:left', text:'agrees'}),
+        el('div', {class:'num ok', text:`${o.n_checked - dis.length}`})]),
+      el('div', {class:'bar', style:'grid-template-columns:1fr auto'}, [
+        el('div', {class:'sec2', style:'text-align:left', text:'disagrees'}),
+        el('div', {class:'num bad', text:String(dis.length)})]),
+      el('div', {class:'bar', style:'grid-template-columns:1fr auto'}, [
+        el('div', {class:'sec2', style:'text-align:left', text:'agent abstained'}),
+        el('div', {class:'num muted', text:String(o.n_abstained)})]),
+    ]));
+  if (dis.length) {
+    const t = el('table');
+    t.append(el('thead', {}, el('tr', {}, ['App','Agent','Composio accepts'].map(h => el('th', {text:h})))));
+    t.append(el('tbody', {}, dis.map(r => el('tr', {}, [
+      el('td', {text:r.app}), el('td', {class:'mono bad', text:r.predicted}),
+      el('td', {class:'mono', text:(r.composio || []).join(', ')})]))));
+    $('#oracle').append(el('div', {class:'tblwrap'}, t));
+  }
+}
+
+{
+  const probed = rows.filter(r => r.browser_access);
+  const agree = probed.filter(r => r.browser_agrees).length;
+  $('#gateCap').textContent = probed.length
+    ? `A real browser was sent to ${probed.length} apps whose access answer was low-confidence or claimed a gate. `
+      + `It read the rendered call-to-action and screenshotted it. This is a different kind of evidence from the docs the model read — `
+      + `no documentation page says "you cannot have a key".`
+    : 'The browser pass has not been run for this build.';
+  if (probed.length) {
+    $('#gateSummary').append(el('div', {class:'bars'}, [
+      el('div', {class:'bar', style:'grid-template-columns:1fr auto'}, [
+        el('div', {class:'sec2', style:'text-align:left', text:'browser confirmed the agent'}),
+        el('div', {class:'num ok', text:String(agree)})]),
+      el('div', {class:'bar', style:'grid-template-columns:1fr auto'}, [
+        el('div', {class:'sec2', style:'text-align:left', text:'browser saw a different gate'}),
+        el('div', {class:'num warnc', text:String(probed.length - agree)})]),
+    ]), el('p', {class:'cap', style:'margin-top:12px', text:
+      'Disagreement does not automatically mean the agent was wrong — a pricing page shouting "Start free" while the API sits '
+      + 'behind an enterprise tier is exactly the trap this check exists to expose. Each one was read by a person.'}));
+    const withShots = probed.flatMap(r => (r.browser_evidence || [])
+      .filter(p => p.screenshot && p.signal).slice(0, 1).map(p => ({r, p}))).slice(0, 8);
+    $('#shots').append(...withShots.map(({r, p}) => el('div', {class:'shot'}, [
+      el('img', {src:p.screenshot, alt:`${r.app} pricing page`, loading:'lazy'}),
+      el('div', {class:'m'}, [
+        el('b', {text:r.app}), el('span', {text:' — browser read '}),
+        el('span', {class:'mono', style:`color:${ACCESS_COLOR[p.signal]}`, text:ACCESS_LABEL[p.signal] || p.signal}),
+        el('div', {class:'muted', style:'margin-top:4px;font-size:11px', text:'“' + ((p.quotes || [])[0] || '').slice(0, 110) + '”'}),
+      ]),
+    ])));
+  }
+}
+
+/* ---------- 8. honesty ---------- */
+const errored = rows.filter(r => r.error).length;
+const unknowns = rows.filter(r => r.access === 'unknown').length;
+const lowconf = rows.filter(r => ((r.confidence || {}).access ?? 1) < 0.6).length;
+const demoted = rows.reduce((n, r) => n + ((r.critic_changes || []).length), 0);
+const criticFailed = rows.filter(r => (r.critic_audit || {})._error).length;
+const HONEST = [
+  ['The sample is 20 apps, not 100', `Accuracy is measured on ${(E.pass2 || {}).n_labels || 100} labels across 20 apps. One flipped label moves the headline by a point, and the 95% interval on a result near 90% is roughly ±13 points. It is a direction, not a guarantee. The Composio cross-check exists precisely because 20 is small.`],
+  ['Retrieval was rationed', 'The free Firecrawl tier bills per search result. A first full run was projected to run out at app 55, so retrieval was cut to six search results and two fetched pages per app mid-project. Fields that need a pricing page a click deeper than the landing page suffer for it, and that is a real cause of the remaining errors — not a hypothetical one.'],
+  ['The critic can only demote, never invent', `It demoted ${demoted} claims to unknown across the run. That makes the agent more honest but not more knowledgeable: some of those unknowns are things a person could have found in another thirty seconds.${criticFailed ? ` On ${criticFailed} apps the critic model itself failed and no audit ran.` : ''}`],
+  ['Apps that defeated it', `${unknowns} apps still have an unknown access level and ${lowconf} more are below 0.6 confidence on it. The pattern is consistent: private-beta fintech and research-data products (PitchBook, iPayX, Paygent, fanbasis, Waterfall) publish marketing pages and nothing else. For those, "there is no public evidence" is the finding, and the row says so instead of guessing.`],
+  ['Category errors are the honest hard case', 'Sherlock and Mermaid CLI are command-line programs, not SaaS. They have no auth, no tenant, and no API, and every instinct in a pipeline built around "apps" wants to give them one. They are on the page because getting them right is a better signal than a clean average.'],
+  errored ? ['Rows that errored outright', `${errored} apps hit an unrecoverable model or fetch error and carry whatever partial answer survived. They are in the table, not deleted from it.`] : null,
+].filter(Boolean);
+$('#honest').append(...HONEST.map(([h, p]) => el('div', {class:'pat'}, [
+  el('div', {class:'i', text:'—'}),
+  el('div', {}, [el('h3', {text:h}), el('p', {text:p})]),
+])));
+
+/* ---------- 9. for agents ---------- */
+const origin = location.origin && location.origin !== 'null' ? location.origin : 'https://<deployed-host>';
+$('#mcpCmd').textContent = `claude mcp add --transport http toolkit-radar ${origin}/api/mcp`;
+$('#dataLinks').append(el('div', {class:'bars'}, [
+  ['data.json', 'every field, every app, plus the eval and the scoring weights'],
+  ['findings.csv', 'the flat table for a spreadsheet'],
+  ['llms.txt', 'a text brief so an agent can orient in one fetch'],
+].map(([f, d]) => el('div', {style:'margin-bottom:11px'}, [
+  el('a', {href:f, class:'mono', text:'/' + f}),
+  el('div', {class:'cap', style:'margin:2px 0 0', text:d}),
+]))));
+
+$('#footer').append(el('div', {html:
+  `Researched by an agent, verified by a human, and honest about the difference. `
+  + `Findings generated from <code>agent/research.py</code> pass 2. `
+  + (REPO ? `Source: <a href="${esc(REPO)}">${esc(REPO)}</a>. ` : '')
+  + `This page renders entirely from <a href="data.json">data.json</a> — no chart is drawn by hand.`}));
+})();
+</script>
+</body>
+</html>

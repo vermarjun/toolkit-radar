@@ -1,0 +1,449 @@
+{
+  "gold_apps": [
+    4,
+    5,
+    10,
+    14,
+    19,
+    20,
+    21,
+    28,
+    33,
+    36,
+    49,
+    58,
+    60,
+    61,
+    71,
+    72,
+    73,
+    81,
+    90,
+    98
+  ],
+  "pass1": {
+    "n_apps": 20,
+    "n_labels": 100,
+    "accuracy": 0.68,
+    "per_field": {
+      "primary_auth": {
+        "accuracy": 0.75,
+        "correct": 15,
+        "wrong": 5
+      },
+      "access": {
+        "accuracy": 0.6,
+        "correct": 12,
+        "wrong": 7,
+        "abstained": 1
+      },
+      "api_surface": {
+        "accuracy": 0.9,
+        "correct": 18,
+        "wrong": 2
+      },
+      "has_mcp": {
+        "accuracy": 0.55,
+        "correct": 11,
+        "wrong": 8,
+        "abstained": 1
+      },
+      "verdict": {
+        "accuracy": 0.6,
+        "correct": 12,
+        "wrong": 7,
+        "abstained": 1
+      }
+    },
+    "misses": [
+      {
+        "id": 4,
+        "app": "Attio",
+        "field": "access",
+        "predicted": "self_serve_paid",
+        "gold": "self_serve_free",
+        "outcome": "wrong",
+        "confidence": 0.6,
+        "note": "Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."
+      },
+      {
+        "id": 14,
+        "app": "Front",
+        "field": "access",
+        "predicted": "self_serve_paid",
+        "gold": "self_serve_free",
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
+      },
+      {
+        "id": 20,
+        "app": "Gladly",
+        "field": "access",
+        "predicted": "approval_required",
+        "gold": "partner_gated",
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
+      },
+      {
+        "id": 19,
+        "app": "Gorgias",
+        "field": "access",
+        "predicted": "self_serve_paid",
+        "gold": "self_serve_free",
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."
+      },
+      {
+        "id": 98,
+        "app": "Mermaid CLI",
+        "field": "access",
+        "predicted": "no_public_api",
+        "gold": "self_serve_free",
+        "outcome": "wrong",
+        "confidence": 0.9,
+        "note": "Local npm CLI, no auth and no network service. MermaidChart ships an MCP but that is a different company's hosted product, so the vendor-published test fails here."
+      },
+      {
+        "id": 90,
+        "app": "PitchBook",
+        "field": "access",
+        "predicted": "unknown",
+        "gold": "partner_gated",
+        "outcome": "abstained",
+        "confidence": null,
+        "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+      },
+      {
+        "id": 58,
+        "app": "Sherlock",
+        "field": "access",
+        "predicted": "no_public_api",
+        "gold": "self_serve_free",
+        "outcome": "wrong",
+        "confidence": 0.9,
+        "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+      },
+      {
+        "id": 81,
+        "app": "Stripe",
+        "field": "access",
+        "predicted": "self_serve_paid",
+        "gold": "self_serve_free",
+        "outcome": "wrong",
+        "confidence": 0.9,
+        "note": "Secret key self-issued in dashboard with no activation; Connect OAuth exists but keys are the normal path. First-party MCP at mcp.stripe.com."
+      },
+      {
+        "id": 98,
+        "app": "Mermaid CLI",
+        "field": "api_surface",
+        "predicted": "none",
+        "gold": "sdk_only",
+        "outcome": "wrong",
+        "confidence": 0.95,
+        "note": "Local npm CLI, no auth and no network service. MermaidChart ships an MCP but that is a different company's hosted product, so the vendor-published test fails here."
+      },
+      {
+        "id": 58,
+        "app": "Sherlock",
+        "field": "api_surface",
+        "predicted": "none",
+        "gold": "sdk_only",
+        "outcome": "wrong",
+        "confidence": 0.95,
+        "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+      },
+      {
+        "id": 4,
+        "app": "Attio",
+        "field": "has_mcp",
+        "predicted": false,
+        "gold": true,
+        "outcome": "wrong",
+        "confidence": 0.2,
+        "note": "Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."
+      },
+      {
+        "id": 60,
+        "app": "Clay",
+        "field": "has_mcp",
+        "predicted": false,
+        "gold": true,
+        "outcome": "wrong",
+        "confidence": 0.3,
+        "note": "HTTP API available on paid plans; users report the API throttled and gated at the Explorer tier upward. First-party Clay MCP."
+      },
+      {
+        "id": 10,
+        "app": "DealCloud",
+        "field": "has_mcp",
+        "predicted": false,
+        "gold": true,
+        "outcome": "wrong",
+        "confidence": 0.9,
+        "note": "OAuth2 client-credentials. Docs are public but credentials are provisioned by DealCloud for an existing client tenant. First-party MCP server in client preview from July 2026."
+      },
+      {
+        "id": 14,
+        "app": "Front",
+        "field": "has_mcp",
+        "predicted": false,
+        "gold": true,
+        "outcome": "wrong",
+        "confidence": 0.9,
+        "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
+      },
+      {
+        "id": 19,
+        "app": "Gorgias",
+        "field": "has_mcp",
+        "predicted": false,
+        "gold": true,
+        "outcome": "wrong",
+        "confidence": 0.8,
+        "note": "HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."
+      },
+      {
+        "id": 36,
+        "app": "Klaviyo",
+        "field": "has_mcp",
+        "predicted": false,
+        "gold": true,
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "Private API key from the account settings; free tier up to 250 contacts. First-party MCP server documented."
+      },
+      {
+        "id": 73,
+        "app": "Linear",
+        "field": "has_mcp",
+        "predicted": false,
+        "gold": true,
+        "outcome": "wrong",
+        "confidence": 0.6,
+        "note": "GraphQL only, no REST. Personal API key or OAuth, free plan. First-party MCP at mcp.linear.app."
+      },
+      {
+        "id": 90,
+        "app": "PitchBook",
+        "field": "has_mcp",
+        "predicted": null,
+        "gold": false,
+        "outcome": "abstained",
+        "confidence": null,
+        "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+      },
+      {
+        "id": 5,
+        "app": "Twenty",
+        "field": "has_mcp",
+        "predicted": false,
+        "gold": true,
+        "outcome": "wrong",
+        "confidence": 0.6,
+        "note": "Bearer API key; both GraphQL and REST exposed. Open source and self-hostable, and Twenty Cloud workspaces ship a native MCP server."
+      },
+      {
+        "id": 10,
+        "app": "DealCloud",
+        "field": "primary_auth",
+        "predicted": "OAUTH2",
+        "gold": "S2S_OAUTH2",
+        "outcome": "wrong",
+        "confidence": 0.6,
+        "note": "OAuth2 client-credentials. Docs are public but credentials are provisioned by DealCloud for an existing client tenant. First-party MCP server in client preview from July 2026."
+      },
+      {
+        "id": 14,
+        "app": "Front",
+        "field": "primary_auth",
+        "predicted": "OAUTH2",
+        "gold": "BEARER_TOKEN",
+        "outcome": "wrong",
+        "confidence": 0.8,
+        "note": "API tokens created in settings; OAuth exists for public apps. First-party MCP documented. Note: developer.frontapp.com is login-walled, dev.frontapp.com is not."
+      },
+      {
+        "id": 20,
+        "app": "Gladly",
+        "field": "primary_auth",
+        "predicted": "API_KEY",
+        "gold": "BASIC",
+        "outcome": "wrong",
+        "confidence": 0.6,
+        "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
+      },
+      {
+        "id": 19,
+        "app": "Gorgias",
+        "field": "primary_auth",
+        "predicted": "API_KEY",
+        "gold": "BASIC",
+        "outcome": "wrong",
+        "confidence": 0.9,
+        "note": "HTTP Basic with email + API key. No free plan but a self-serve trial issues working credentials. First-party MCP in open beta."
+      },
+      {
+        "id": 28,
+        "app": "WhatsApp Business",
+        "field": "primary_auth",
+        "predicted": "BEARER_TOKEN",
+        "gold": "OAUTH2",
+        "outcome": "wrong",
+        "confidence": 0.9,
+        "note": "Meta system-user access token via Meta app; requires business verification and app review before production messaging. No first-party MCP."
+      },
+      {
+        "id": 49,
+        "app": "Amazon Selling Partner",
+        "field": "verdict",
+        "predicted": "needs_outreach",
+        "gold": "build_with_caveats",
+        "outcome": "wrong",
+        "confidence": 0.8,
+        "note": "LWA OAuth2; AWS SigV4 signing dropped in Oct 2023. Requires a registered developer profile and app registration before credentials exist. Community MCP servers only."
+      },
+      {
+        "id": 4,
+        "app": "Attio",
+        "field": "verdict",
+        "predicted": "build_with_caveats",
+        "gold": "build_now",
+        "outcome": "wrong",
+        "confidence": 0.6,
+        "note": "Access token for own workspace, OAuth for third-party apps acting on a customer's workspace. Free plan. First-party MCP."
+      },
+      {
+        "id": 10,
+        "app": "DealCloud",
+        "field": "verdict",
+        "predicted": "needs_outreach",
+        "gold": "build_with_caveats",
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "OAuth2 client-credentials. Docs are public but credentials are provisioned by DealCloud for an existing client tenant. First-party MCP server in client preview from July 2026."
+      },
+      {
+        "id": 20,
+        "app": "Gladly",
+        "field": "verdict",
+        "predicted": "needs_outreach",
+        "gold": "build_with_caveats",
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "Token-based HTTP Basic; admin grants the API User permission in-product. No self-serve purchase path for Gladly itself, so an outside developer cannot obtain a tenant. Docs are pub"
+      },
+      {
+        "id": 33,
+        "app": "LinkedIn Ads",
+        "field": "verdict",
+        "predicted": "build_with_caveats",
+        "gold": "needs_outreach",
+        "outcome": "wrong",
+        "confidence": 0.7,
+        "note": "3-legged OAuth. Every product requires an application; Standard tier needs a support ticket and LinkedIn 'reserves the right to select partners at its discretion'. Only unofficial "
+      },
+      {
+        "id": 98,
+        "app": "Mermaid CLI",
+        "field": "verdict",
+        "predicted": "not_buildable",
+        "gold": "build_now",
+        "outcome": "wrong",
+        "confidence": 0.95,
+        "note": "Local npm CLI, no auth and no network service. MermaidChart ships an MCP but that is a different company's hosted product, so the vendor-published test fails here."
+      },
+      {
+        "id": 90,
+        "app": "PitchBook",
+        "field": "verdict",
+        "predicted": "unknown",
+        "gold": "needs_outreach",
+        "outcome": "abstained",
+        "confidence": null,
+        "note": "No public API documentation. API and Premium Connectors are sold to existing subscribers through sales; auth scheme is not publicly documented, so UNKNOWN is the correct answer."
+      },
+      {
+        "id": 58,
+        "app": "Sherlock",
+        "field": "verdict",
+        "predicted": "not_buildable",
+        "gold": "build_with_caveats",
+        "outcome": "wrong",
+        "confidence": 0.9,
+        "note": "Open-source Python CLI, not a hosted service. There is no API and no credential; a toolkit means wrapping the binary, which is a different build shape."
+      }
+    ]
+  },
+  "pass2": {
+    "n_apps": 20,
+    "n_labels": 100,
+    "accuracy": 0.0,
+    "per_field": {
+      "primary_auth": {
+        "accuracy": 0.0,
+        "missing": 20
+      },
+      "access": {
+        "accuracy": 0.0,
+        "missing": 20
+      },
+      "api_surface": {
+        "accuracy": 0.0,
+        "missing": 20
+      },
+      "has_mcp": {
+        "accuracy": 0.0,
+        "missing": 20
+      },
+      "verdict": {
+        "accuracy": 0.0,
+        "missing": 20
+      }
+    },
+    "misses": []
+  },
+  "calibration_pass2": [],
+  "oracle": {
+    "n_checked": 3,
+    "n_abstained": 0,
+    "agreement": 1.0,
+    "disagreements": [],
+    "rows": [
+      {
+        "id": 1,
+        "app": "Salesforce",
+        "predicted": "OAUTH2",
+        "composio": [
+          "OAUTH2",
+          "S2S_OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 2,
+        "app": "HubSpot",
+        "predicted": "OAUTH2",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      },
+      {
+        "id": 3,
+        "app": "Pipedrive",
+        "predicted": "API_KEY",
+        "composio": [
+          "API_KEY",
+          "OAUTH2"
+        ],
+        "status": "agrees"
+      }
+    ]
+  },
+  "lift": -0.68
+}

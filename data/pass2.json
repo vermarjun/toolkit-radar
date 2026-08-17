@@ -1,0 +1,141 @@
+[
+  {
+    "id": 1,
+    "app": "Salesforce",
+    "category": "CRM and Sales",
+    "one_liner": "CRM and sales platform with REST, SOAP, and Connect APIs for customer data.",
+    "auth_methods": [
+      "OAUTH2",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Free Developer Edition available for signup; API access bundled with licenses, paid tiers start at $25/user/month, Enterprise at $175/user/month.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [
+      "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart_oauth.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_oauth_and_connected_apps.htm",
+      "https://help.salesforce.com/s/articleView?id=000385436&language=en_US&type=1",
+      "https://pipeline.zoominfo.com/sales/salesforce-api"
+    ],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.9,
+      "has_mcp": 0.1,
+      "verdict": 0.8
+    },
+    "fabricated_citations": 0,
+    "critic_changes": [],
+    "retrieval": {
+      "queries": 2,
+      "results": 10,
+      "pages_fetched": [
+        "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_oauth_and_connected_apps.htm",
+        "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart_oauth.htm",
+        "https://developer.salesforce.com/docs/platform/connect-rest-api/guide/intro_using_oauth.html"
+      ]
+    },
+    "critic_audit": {
+      "_error": "http 503: {\"error\":{\"type\":\"server_error\",\"message\":\"Error from provider (Console Go): Upstream request failed: Endpoint is unavailable.\"}}"
+    }
+  },
+  {
+    "id": 2,
+    "app": "HubSpot",
+    "category": "CRM and Sales",
+    "one_liner": "HubSpot is a CRM and sales platform with APIs for managing contacts, deals, and other objects.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Developers can create a free HubSpot developer account and create private apps or public apps with OAuth, self-issuing tokens without human approval.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found in evidence.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [
+      "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/overview",
+      "https://developers.hubspot.com/docs/apps/legacy-apps/authentication/working-with-oauth",
+      "https://developers.hubspot.com/docs/developer-tooling/platform/apis-by-tier",
+      "https://community.hubspot.com/t/api-pricing/9952"
+    ],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.9,
+      "has_mcp": 0.7,
+      "verdict": 0.8
+    },
+    "fabricated_citations": 0,
+    "critic_changes": [],
+    "retrieval": {
+      "queries": 2,
+      "results": 10,
+      "pages_fetched": [
+        "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/overview",
+        "https://developers.hubspot.com/docs/apps/legacy-apps/authentication/intro-to-auth",
+        "https://developers.hubspot.com/docs/apps/legacy-apps/authentication/working-with-oauth"
+      ]
+    },
+    "critic_audit": {
+      "_error": "http 503: {\"error\":{\"type\":\"server_error\",\"message\":\"Error from provider (Console Go): Upstream request failed: Endpoint is unavailable.\"}}"
+    }
+  },
+  {
+    "id": 3,
+    "app": "Pipedrive",
+    "category": "CRM and Sales",
+    "one_liner": "CRM and sales pipeline management with REST API for deals, contacts, and projects.",
+    "auth_methods": [
+      "API_KEY",
+      "OAUTH2"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_free",
+    "access_note": "API access included on all paid plans, including Lite ($14/month per seat); free developer sandbox available indefinitely.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [
+      "https://pipedrive.readme.io/docs/core-api-concepts-authentication",
+      "https://developers.pipedrive.com/docs/api/v1",
+      "https://www.pipedrive.com/en/features/crm-api",
+      "https://pipeline.zoominfo.com/sales/pipedrive-api"
+    ],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.9,
+      "api_surface": 1.0,
+      "has_mcp": 0.2,
+      "verdict": 0.9
+    },
+    "fabricated_citations": 0,
+    "critic_changes": [],
+    "retrieval": {
+      "queries": 2,
+      "results": 10,
+      "pages_fetched": [
+        "https://developers.pipedrive.com/docs/api/v1/Oauth",
+        "https://developers.pipedrive.com/docs/api/v1",
+        "https://pipedrive.readme.io/docs/core-api-concepts-authentication"
+      ]
+    },
+    "critic_audit": {
+      "_error": "http 503: {\"error\":{\"type\":\"server_error\",\"message\":\"Error from provider (Console Go): Upstream request failed: Endpoint is unavailable.\"}}"
+    }
+  }
+]

@@ -1,0 +1,2672 @@
+[
+  {
+    "id": 1,
+    "app": "Salesforce",
+    "category": "CRM and Sales",
+    "one_liner": "Cloud-based CRM platform for sales, service, and marketing with extensive API ecosystem.",
+    "auth_methods": [
+      "OAUTH2",
+      "JWT",
+      "BASIC"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "Free Developer Edition and paid Enterprise/Unlimited plans; OAuth app creation is self-serve after signup.",
+    "api_surface": "rest+graphql",
+    "api_breadth": "broad",
+    "has_mcp": true,
+    "mcp_note": "Unofficial community MCP servers exist; Salesforce has not published an official one.",
+    "verdict": "build_with_caveats",
+    "blocker": "Per-tenant custom domains and complex OAuth flows; API rate limits and permissions require careful setup.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.95,
+      "access": 0.8,
+      "api_surface": 0.9,
+      "has_mcp": 0.6,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 2,
+    "app": "HubSpot",
+    "category": "CRM and Sales",
+    "one_liner": "CRM, marketing, sales, and service hub with a broad REST API for managing contacts, deals, and more.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Free developer account; create a private app and generate OAuth2 credentials or API keys without approval.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": true,
+    "mcp_note": "Official HubSpot MCP server on GitHub (github.com/HubSpot/mcp-server-hubspot).",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.95,
+      "access": 0.9,
+      "api_surface": 0.95,
+      "has_mcp": 0.9,
+      "verdict": 0.95
+    }
+  },
+  {
+    "id": 3,
+    "app": "Pipedrive",
+    "category": "CRM and Sales",
+    "one_liner": "Sales pipeline and CRM platform with API for managing deals, contacts, and activities.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "Free trial and paid plans available online; API access included in all plans, no approval needed.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 4,
+    "app": "Attio",
+    "category": "CRM and Sales",
+    "one_liner": "Attio is a modern CRM platform for managing relationships, deals, and workflows.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "Attio offers a free trial and paid plans; API access is available on paid plans, self-serve signup.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community MCPs may exist but not confirmed.",
+    "verdict": "build_with_caveats",
+    "blocker": "API documentation is limited and some endpoints may require specific plan tiers; no sandbox environment for free tier.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.7,
+      "access": 0.6,
+      "api_surface": 0.8,
+      "has_mcp": 0.2,
+      "verdict": 0.6
+    }
+  },
+  {
+    "id": 5,
+    "app": "Twenty",
+    "category": "CRM and Sales",
+    "one_liner": "Open-source CRM platform with REST and GraphQL APIs for managing contacts, companies, and opportunities.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_free",
+    "access_note": "Self-hosted or cloud signup; API keys available in settings for free tier.",
+    "api_surface": "rest+graphql",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community may have unofficial ones.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.7,
+      "access": 0.6,
+      "api_surface": 0.8,
+      "has_mcp": 0.6,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 6,
+    "app": "Podio",
+    "category": "CRM and Sales",
+    "one_liner": "Team collaboration and project management platform with customizable apps and workflows.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY",
+      "BASIC"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "Free tier available; API access requires a paid plan (e.g., Premium or Enterprise) and OAuth app registration via developer portal.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_with_caveats",
+    "blocker": "API access is limited to paid plans; OAuth app registration requires manual approval? (uncertain).",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.6,
+      "api_surface": 0.9,
+      "has_mcp": 0.1,
+      "verdict": 0.6
+    }
+  },
+  {
+    "id": 7,
+    "app": "Zoho CRM",
+    "category": "CRM and Sales",
+    "one_liner": "Cloud-based CRM for sales, marketing, and support with extensive customization.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY",
+      "BASIC"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "Free trial and paid plans; API access available with any plan, but some features require higher editions.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community projects may exist but not verified.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.7,
+      "api_surface": 0.95,
+      "has_mcp": 0.6,
+      "verdict": 0.8
+    }
+  },
+  {
+    "id": 8,
+    "app": "Close",
+    "category": "CRM and Sales",
+    "one_liner": "CRM and sales engagement platform with calling, email, and pipeline management.",
+    "auth_methods": [
+      "API_KEY",
+      "BASIC"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "API access available on paid plans; sign up and generate API key from settings.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_with_caveats",
+    "blocker": "API key tied to user account; some endpoints require specific permissions.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.6,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 9,
+    "app": "Copper",
+    "category": "CRM and Sales",
+    "one_liner": "CRM platform for relationship management and sales pipelines.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "Available on paid plans; API key or OAuth via developer portal after signup.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_with_caveats",
+    "blocker": "API access requires a paid plan; no free tier for API testing.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.7,
+      "access": 0.6,
+      "api_surface": 0.9,
+      "has_mcp": 0.2,
+      "verdict": 0.6
+    }
+  },
+  {
+    "id": 10,
+    "app": "DealCloud",
+    "category": "CRM and Sales",
+    "one_liner": "CRM and deal management platform for private equity and investment firms.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "approval_required",
+    "access_note": "DealCloud API access requires contacting DealCloud or their partner team; no self-serve signup for API credentials.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "needs_outreach",
+    "blocker": "No public self-serve credential issuance; must engage with vendor sales/partnership.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.6,
+      "access": 0.7,
+      "api_surface": 0.8,
+      "has_mcp": 0.9,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 11,
+    "app": "Zendesk",
+    "category": "Support and Helpdesk",
+    "one_liner": "Cloud-based customer support and helpdesk ticketing platform.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY",
+      "BASIC"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "Zendesk API tokens are available on all paid plans (e.g., Suite Team, Professional). Free trial available; no approval needed for API access.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community projects exist but not well-known.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 12,
+    "app": "Intercom",
+    "category": "Support and Helpdesk",
+    "one_liner": "Customer messaging, support inbox, and helpdesk platform for businesses.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "Sign up for any paid plan (e.g., Essential) and create an app in the developer hub; OAuth2 credentials are self-issued.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official or widely-known MCP server found.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 13,
+    "app": "Freshdesk",
+    "category": "Support and Helpdesk",
+    "one_liner": "Cloud-based customer support helpdesk with ticketing, automation, and multi-channel inbox.",
+    "auth_methods": [
+      "API_KEY",
+      "OAUTH2"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "API key available on all paid plans (including trial); no approval needed. Free plan may have limited API access.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community MCPs may exist but not well-known.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 14,
+    "app": "Front",
+    "category": "Support and Helpdesk",
+    "one_liner": "Shared team inbox and customer communication platform with API for messages, conversations, and contacts.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "API available on paid plans; sign up online and create API keys or OAuth app in dashboard.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.9,
+      "verdict": 0.8
+    }
+  },
+  {
+    "id": 15,
+    "app": "Pylon",
+    "category": "Support and Helpdesk",
+    "one_liner": "Customer support platform with shared inbox, helpdesk, and AI agents.",
+    "auth_methods": [
+      "API_KEY"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "unknown",
+    "access_note": "No public documentation found; likely requires contacting sales or partner program.",
+    "api_surface": "unknown",
+    "api_breadth": "unknown",
+    "has_mcp": false,
+    "mcp_note": "No known MCP server.",
+    "verdict": "needs_outreach",
+    "blocker": "No public API documentation or self-serve credential process found.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.2,
+      "access": 0.2,
+      "api_surface": 0.1,
+      "has_mcp": 0.1,
+      "verdict": 0.3
+    }
+  },
+  {
+    "id": 16,
+    "app": "LiveAgent",
+    "category": "Support and Helpdesk",
+    "one_liner": "Cloud-based help desk and live chat software with ticketing, knowledge base, and multi-channel support.",
+    "auth_methods": [
+      "API_KEY"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "API available on paid plans; credentials generated in admin panel after signup.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_with_caveats",
+    "blocker": "API key tied to specific agent account; some endpoints require additional permissions.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.7,
+      "access": 0.6,
+      "api_surface": 0.8,
+      "has_mcp": 0.9,
+      "verdict": 0.6
+    }
+  },
+  {
+    "id": 17,
+    "app": "Plain",
+    "category": "Support and Helpdesk",
+    "one_liner": "Customer support platform with shared inbox, helpdesk, and automation.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_free",
+    "access_note": "Free trial available; API key can be generated from dashboard after signup.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.7,
+      "access": 0.6,
+      "api_surface": 0.8,
+      "has_mcp": 0.9,
+      "verdict": 0.6
+    }
+  },
+  {
+    "id": 18,
+    "app": "Help Scout",
+    "category": "Support and Helpdesk",
+    "one_liner": "Help desk and shared inbox software for customer support teams.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "Anyone can sign up for a paid plan and create an API key or OAuth app from the account settings.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.6,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 19,
+    "app": "Gorgias",
+    "category": "Support and Helpdesk",
+    "one_liner": "Helpdesk and customer support platform for ecommerce, unifying tickets and orders.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "API keys are available to all plans; create in Settings > API Keys. No approval needed.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.7,
+      "api_surface": 0.95,
+      "has_mcp": 0.8,
+      "verdict": 0.8
+    }
+  },
+  {
+    "id": 20,
+    "app": "Gladly",
+    "category": "Support and Helpdesk",
+    "one_liner": "Customer service platform with omnichannel ticketing and AI-assisted agent tools.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "approval_required",
+    "access_note": "Gladly's public API requires contacting support or sales to enable API access; no self-serve signup for credentials.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "No known MCP server published by Gladly or well-known third party.",
+    "verdict": "needs_outreach",
+    "blocker": "API access is not self-serve; requires vendor approval and likely a paid plan.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.6,
+      "access": 0.7,
+      "api_surface": 0.8,
+      "has_mcp": 0.9,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 21,
+    "app": "Slack",
+    "category": "Communications and Messaging",
+    "one_liner": "Team messaging and collaboration platform with APIs for messages, files, conversations, and apps.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Create a Slack app at api.slack.com/apps, get tokens via OAuth (bot/user) or legacy tokens; free tier available.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": true,
+    "mcp_note": "Community MCP servers exist (e.g., Slack MCP by various developers); no official vendor MCP.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.95,
+      "access": 0.9,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.9
+    }
+  },
+  {
+    "id": 22,
+    "app": "Twilio",
+    "category": "Communications and Messaging",
+    "one_liner": "Cloud communications platform for SMS, voice, video, and messaging APIs.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN",
+      "BASIC"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "Sign up for a Twilio account, verify phone, and obtain Account SID and Auth Token from console. Pay-as-you-go.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community projects exist but not well-known.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.95,
+      "access": 0.9,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.9
+    }
+  },
+  {
+    "id": 23,
+    "app": "Zoho Cliq",
+    "category": "Communications and Messaging",
+    "one_liner": "Team messaging and collaboration with channels, chats, and workflow automation.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Free tier available; OAuth2 app creation via Zoho Developer Console, no approval required for basic scopes.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community MCPs may exist but not verified.",
+    "verdict": "build_with_caveats",
+    "blocker": "API rate limits and limited webhook documentation; some endpoints require paid plan.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.6,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 24,
+    "app": "Lark (Larksuite)",
+    "category": "Communications and Messaging",
+    "one_liner": "Collaboration suite with chat, docs, calendar, and workflow automation APIs.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Free developer account; create an app at open.larksuite.com to get App ID/Secret and enable OAuth2.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.6,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 25,
+    "app": "Pumble",
+    "category": "Communications and Messaging",
+    "one_liner": "Team communication and collaboration app with channels, direct messages, and voice calls.",
+    "auth_methods": [
+      "UNKNOWN"
+    ],
+    "primary_auth": "UNKNOWN",
+    "access": "no_public_api",
+    "access_note": "No public API documentation found; likely no third-party API.",
+    "api_surface": "none",
+    "api_breadth": "none",
+    "has_mcp": false,
+    "mcp_note": "No known MCP server.",
+    "verdict": "not_buildable",
+    "blocker": "No public API or developer documentation available.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.1,
+      "access": 0.6,
+      "api_surface": 0.5,
+      "has_mcp": 0.9,
+      "verdict": 0.6
+    }
+  },
+  {
+    "id": 26,
+    "app": "Discord",
+    "category": "Communications and Messaging",
+    "one_liner": "Chat and community platform with bots and integrations.",
+    "auth_methods": [
+      "OAUTH2",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Create a Discord application at the developer portal; no approval needed for basic bot tokens, but privileged intents require verification for larger bots.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "No official MCP; community projects exist but not well-known.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.9,
+      "has_mcp": 0.6,
+      "verdict": 0.8
+    }
+  },
+  {
+    "id": 27,
+    "app": "Telegram",
+    "category": "Communications and Messaging",
+    "one_liner": "Cloud-based instant messaging and voice-over-IP service with bots and API for sending messages and managing chats.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "approval_required",
+    "access_note": "Bot tokens are self-issued via BotFather, but user-level API (MTProto) requires obtaining api_id and api_hash via a form; no formal approval for bots.",
+    "api_surface": "rpc",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server; community MCPs exist but not well-known.",
+    "verdict": "build_with_caveats",
+    "blocker": "Bot API is limited to bot accounts; full user API requires MTProto and api_id/api_hash, which is not a standard REST API.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.6,
+      "verdict": 0.8
+    }
+  },
+  {
+    "id": 28,
+    "app": "WhatsApp Business",
+    "category": "Communications and Messaging",
+    "one_liner": "Cloud API for sending and receiving WhatsApp Business messages.",
+    "auth_methods": [
+      "BEARER_TOKEN",
+      "API_KEY"
+    ],
+    "primary_auth": "BEARER_TOKEN",
+    "access": "approval_required",
+    "access_note": "Requires Meta Business account, app creation, and WhatsApp Business account approval; phone number verification and message template review.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_with_caveats",
+    "blocker": "Credential requires manual approval and phone number verification; sandbox available but production access needs business verification.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.8
+    }
+  },
+  {
+    "id": 29,
+    "app": "Aircall",
+    "category": "Communications and Messaging",
+    "one_liner": "Cloud-based call center and phone system with API for calls, contacts, and analytics.",
+    "auth_methods": [
+      "API_KEY",
+      "BASIC"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "Aircall offers a public API; credentials are available to customers on paid plans, typically after sign-up and API key generation in dashboard.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "No known official or well-known third-party MCP server.",
+    "verdict": "build_with_caveats",
+    "blocker": "API access may require a paid plan and API keys are tied to the account; some endpoints may be limited to certain plan tiers.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.7,
+      "access": 0.6,
+      "api_surface": 0.8,
+      "has_mcp": 0.9,
+      "verdict": 0.6
+    }
+  },
+  {
+    "id": 30,
+    "app": "Vonage",
+    "category": "Communications and Messaging",
+    "one_liner": "Cloud communications platform for voice, SMS, video, and messaging APIs.",
+    "auth_methods": [
+      "API_KEY",
+      "BASIC",
+      "JWT"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "Sign up at Vonage developer portal, create an application, and obtain API key and secret. Free trial credits available, then pay-as-you-go.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community MCPs may exist but not well-known.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.9,
+      "has_mcp": 0.7,
+      "verdict": 0.8
+    }
+  },
+  {
+    "id": 31,
+    "app": "Google Ads",
+    "category": "Marketing, Ads, Email and Social",
+    "one_liner": "Manage Google Ads campaigns, keywords, and reports via API.",
+    "auth_methods": [
+      "OAUTH2",
+      "S2S_OAUTH2"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "approval_required",
+    "access_note": "Requires Google Ads manager account, developer token approval via application form, and OAuth consent screen verification.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_with_caveats",
+    "blocker": "Developer token approval process and per-account access requirements.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.9,
+      "has_mcp": 0.7,
+      "verdict": 0.8
+    }
+  },
+  {
+    "id": 32,
+    "app": "Meta Ads",
+    "category": "Marketing, Ads, Email and Social",
+    "one_liner": "API for managing Meta advertising campaigns, ad sets, ads, and reporting.",
+    "auth_methods": [
+      "OAUTH2",
+      "S2S_OAUTH2",
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "approval_required",
+    "access_note": "Requires Facebook developer account, app review, and access token generation; some endpoints need additional permissions and business verification.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_with_caveats",
+    "blocker": "App review and access token approval process can be time-consuming; some endpoints require additional permissions and business verification.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.8
+    }
+  },
+  {
+    "id": 33,
+    "app": "LinkedIn Ads",
+    "category": "Marketing, Ads, Email and Social",
+    "one_liner": "API for managing LinkedIn ad campaigns, targeting, analytics, and reporting.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "approval_required",
+    "access_note": "Requires LinkedIn developer app creation and review; access to Marketing API is gated by LinkedIn's partner program and app approval.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_with_caveats",
+    "blocker": "Credential requires LinkedIn app review and approval; not fully self-serve.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.7,
+      "api_surface": 0.95,
+      "has_mcp": 0.8,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 34,
+    "app": "GoHighLevel",
+    "category": "Marketing, Ads, Email and Social",
+    "one_liner": "Marketing and sales CRM platform with SaaS APIs for agencies.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "GoHighLevel offers a free trial and paid plans; API access is available with a paid subscription, no manual approval.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community MCPs may exist but not verified.",
+    "verdict": "build_with_caveats",
+    "blocker": "API documentation is public but some endpoints may require specific plan tiers or have rate limits.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.6,
+      "access": 0.5,
+      "api_surface": 0.7,
+      "has_mcp": 0.2,
+      "verdict": 0.5
+    }
+  },
+  {
+    "id": 35,
+    "app": "Mailchimp",
+    "category": "Marketing, Ads, Email and Social",
+    "one_liner": "Email marketing and automation platform for audiences, campaigns, and analytics.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "Free tier available; API keys and OAuth2 apps available to all users, no manual approval.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 36,
+    "app": "Klaviyo",
+    "category": "Marketing, Ads, Email and Social",
+    "one_liner": "Email marketing and automation platform for ecommerce, with customer data and segmentation APIs.",
+    "auth_methods": [
+      "API_KEY",
+      "OAUTH2"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_free",
+    "access_note": "Free trial signup; API keys available in account settings. Some features require paid plans.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 37,
+    "app": "systeme.io",
+    "category": "Marketing, Ads, Email and Social",
+    "one_liner": "All-in-one marketing platform for funnels, email, and automation.",
+    "auth_methods": [
+      "API_KEY"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "API available on paid plans; API key generated in account settings.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_with_caveats",
+    "blocker": "API documentation is sparse and may not cover all endpoints; rate limits and plan restrictions.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.7,
+      "access": 0.6,
+      "api_surface": 0.8,
+      "has_mcp": 0.9,
+      "verdict": 0.6
+    }
+  },
+  {
+    "id": 38,
+    "app": "Pinterest",
+    "category": "Marketing, Ads, Email and Social",
+    "one_liner": "Visual discovery and bookmarking platform for saving and sharing ideas.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "approval_required",
+    "access_note": "Requires creating a developer app and requesting access; some endpoints require approval via developer portal.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_with_caveats",
+    "blocker": "API access requires app review and approval; rate limits and scope restrictions may apply.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.8,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 39,
+    "app": "Threads (Meta)",
+    "category": "Marketing, Ads, Email and Social",
+    "one_liner": "Social media platform by Meta for text-based public conversations and sharing.",
+    "auth_methods": [
+      "OAUTH2",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "approval_required",
+    "access_note": "Requires a Meta developer account, app creation, and app review for production access; Threads API is in limited beta.",
+    "api_surface": "rest",
+    "api_breadth": "narrow",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "needs_outreach",
+    "blocker": "Threads API is in limited beta; access requires joining a waitlist and approval by Meta.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.9,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 40,
+    "app": "SendGrid",
+    "category": "Marketing, Ads, Email and Social",
+    "one_liner": "Email delivery and marketing automation API for transactional and bulk email.",
+    "auth_methods": [
+      "API_KEY"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "Sign up for a free trial or paid plan; API keys are self-issued from the dashboard.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.95,
+      "access": 0.9,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.9
+    }
+  },
+  {
+    "id": 41,
+    "app": "Shopify",
+    "category": "Ecommerce",
+    "one_liner": "Ecommerce platform for online stores, with APIs for products, orders, customers, and storefront data.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "approval_required",
+    "access_note": "Create a partner account, then create an app; install on a development store or request installation on a live store. App review required for public distribution.",
+    "api_surface": "rest+graphql",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server known; community projects exist but not well-established.",
+    "verdict": "build_with_caveats",
+    "blocker": "Requires partner account and app installation per store; OAuth flow per merchant, but self-serve for development stores.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.95,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 42,
+    "app": "WooCommerce",
+    "category": "Ecommerce",
+    "one_liner": "Open-source e-commerce plugin for WordPress that adds storefront, cart, and checkout.",
+    "auth_methods": [
+      "API_KEY",
+      "BASIC",
+      "OAUTH2"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_free",
+    "access_note": "Anyone with a WooCommerce store can generate REST API keys (Consumer Key/Secret) in WooCommerce > Settings > Advanced > REST API.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community projects may exist but not well-known.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.95,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.9
+    }
+  },
+  {
+    "id": 43,
+    "app": "BigCommerce",
+    "category": "Ecommerce",
+    "one_liner": "Ecommerce platform for online stores with APIs for catalog, orders, customers, and checkout.",
+    "auth_methods": [
+      "OAUTH2",
+      "S2S_OAUTH2",
+      "API_KEY",
+      "JWT"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "Create a developer account, then create an app and get API credentials. Requires a BigCommerce store (trial or paid) to obtain store hash and access token.",
+    "api_surface": "rest+graphql",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community MCPs may exist but not well-known.",
+    "verdict": "build_with_caveats",
+    "blocker": "Requires a store to get credentials; sandbox store available but may need paid plan for full API access.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.9,
+      "has_mcp": 0.7,
+      "verdict": 0.8
+    }
+  },
+  {
+    "id": 44,
+    "app": "Salesforce Commerce Cloud",
+    "category": "Ecommerce",
+    "one_liner": "Commerce cloud platform for B2C and B2B digital commerce, with APIs for storefront, catalog, and order management.",
+    "auth_methods": [
+      "OAUTH2",
+      "S2S_OAUTH2",
+      "JWT",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "approval_required",
+    "access_note": "Requires a Salesforce Commerce Cloud account and enabling API access via Salesforce setup; typically involves a paid subscription and manual enablement.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "needs_outreach",
+    "blocker": "Credential issuance requires an active Salesforce Commerce Cloud subscription and manual API client setup in the Salesforce admin console; not self-serve for outside developers.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.9,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "category": "Ecommerce",
+    "one_liner": "E-commerce platform for B2B and B2C commerce, offering APIs for catalog, order, customer, and inventory management.",
+    "auth_methods": [
+      "OAUTH2",
+      "BEARER_TOKEN",
+      "BASIC",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "approval_required",
+    "access_note": "Requires an Adobe Commerce license and an Adobe Developer account; credentials are issued after creating an integration in the Commerce Admin, which may require a paid plan and manual setup.",
+    "api_surface": "rest+graphql",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_with_caveats",
+    "blocker": "Requires a paid Adobe Commerce license and manual integration setup in the admin panel; no self-serve free tier.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.9,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 46,
+    "app": "Squarespace",
+    "category": "Ecommerce",
+    "one_liner": "Website builder and ecommerce platform with APIs for content, commerce, and orders.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "approval_required",
+    "access_note": "Squarespace Developer Platform requires application approval; API keys are issued after review.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "needs_outreach",
+    "blocker": "API access requires approval; no self-serve credential issuance.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.9,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 47,
+    "app": "Ecwid",
+    "category": "Ecommerce",
+    "one_liner": "E-commerce platform for selling on websites, social media, and marketplaces.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Free trial available; API credentials can be obtained by creating an Ecwid store and generating an API key in the control panel.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official or well-known MCP server found.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 48,
+    "app": "Gumroad",
+    "category": "Ecommerce",
+    "one_liner": "Sell digital products, memberships, and courses with hosted checkout and payments.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Free account creation; API credentials available in account settings after signup.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.7,
+      "access": 0.8,
+      "api_surface": 0.9,
+      "has_mcp": 0.1,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 49,
+    "app": "Amazon Selling Partner",
+    "category": "Ecommerce",
+    "one_liner": "Amazon's API suite for Selling Partners to manage listings, orders, reports, and fulfillment.",
+    "auth_methods": [
+      "OAUTH2",
+      "AWS_SIGV4"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "approval_required",
+    "access_note": "Requires SP-API application registration and approval via Seller Central partner network; no self-serve credential.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "needs_outreach",
+    "blocker": "Credential issuance requires Amazon approval and often a developer profile; not self-serve.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.9,
+      "has_mcp": 0.7,
+      "verdict": 0.8
+    }
+  },
+  {
+    "id": 50,
+    "app": "fanbasis",
+    "category": "Ecommerce",
+    "one_liner": "Fanbasis is a fan merchandise and ecommerce platform for creators and brands.",
+    "auth_methods": [
+      "UNKNOWN"
+    ],
+    "primary_auth": "UNKNOWN",
+    "access": "no_public_api",
+    "access_note": "No public API documentation or developer portal found; likely no third-party API.",
+    "api_surface": "none",
+    "api_breadth": "none",
+    "has_mcp": false,
+    "mcp_note": "No known MCP server.",
+    "verdict": "not_buildable",
+    "blocker": "No evidence of a public API or developer program.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.1,
+      "access": 0.6,
+      "api_surface": 0.5,
+      "has_mcp": 0.9,
+      "verdict": 0.6
+    }
+  },
+  {
+    "id": 51,
+    "app": "DataForSEO",
+    "category": "Data, SEO and Scraping",
+    "one_liner": "SEO and SERP data APIs for rank tracking, backlinks, on-page, and keyword research.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "Sign up at dataforseo.com, choose a paid plan (e.g., Standard or Advanced) and generate API credentials in dashboard.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.9,
+      "has_mcp": 0.7,
+      "verdict": 0.8
+    }
+  },
+  {
+    "id": 52,
+    "app": "SE Ranking",
+    "category": "Data, SEO and Scraping",
+    "one_liner": "SEO and rank tracking platform with API for keyword, competitor, and backlink data.",
+    "auth_methods": [
+      "API_KEY"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "API available on paid plans; sign up and generate API key from dashboard.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.9,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 53,
+    "app": "Ahrefs",
+    "category": "Data, SEO and Scraping",
+    "one_liner": "SEO tool suite with backlink analysis, keyword research, and site audits, exposed via REST API.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "Ahrefs API is available on paid plans starting at $99/month; credentials are issued after signup and payment, no manual approval.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community MCPs may exist but not well-known.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.6,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 54,
+    "app": "MrScraper",
+    "category": "Data, SEO and Scraping",
+    "one_liner": "Cloud API for web scraping, data extraction, and automated scraping workflows.",
+    "auth_methods": [
+      "API_KEY"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "Sign up on mrscraper.com, choose a paid plan (Starter or higher) and get API key from dashboard.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_with_caveats",
+    "blocker": "No official MCP server found; API key is straightforward but scraping may require per-site handling.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.6,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 55,
+    "app": "Apify",
+    "category": "Data, SEO and Scraping",
+    "one_liner": "Cloud platform for building, running, and scaling web scrapers and automation bots.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "Free tier available; paid plans start at $49/month, self-serve signup with API token in dashboard.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community projects may exist but not well-known.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 56,
+    "app": "Firecrawl",
+    "category": "Data, SEO and Scraping",
+    "one_liner": "Web scraping API that converts websites into clean markdown or structured data for AI and analytics.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "Sign up on firecrawl.dev, free tier available, paid plans start at $19/mo, API key issued immediately.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": true,
+    "mcp_note": "Official Firecrawl MCP server available on GitHub and npm (firecrawl-mcp).",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.9,
+      "has_mcp": 0.9,
+      "verdict": 0.9
+    }
+  },
+  {
+    "id": 57,
+    "app": "Bright Data",
+    "category": "Data, SEO and Scraping",
+    "one_liner": "Web scraping and data collection platform with proxy networks and dataset APIs.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "Sign up for a Bright Data account, add payment method, and generate API token from dashboard; no manual approval.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community MCPs may exist but not well-known.",
+    "verdict": "build_with_caveats",
+    "blocker": "API requires per-zone tokens and some endpoints are plan-gated; sandbox access may require paid plan.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.6,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 58,
+    "app": "Sherlock",
+    "category": "Data, SEO and Scraping",
+    "one_liner": "Open-source tool to find usernames across social networks by username.",
+    "auth_methods": [
+      "NO_AUTH"
+    ],
+    "primary_auth": "NO_AUTH",
+    "access": "no_public_api",
+    "access_note": "Sherlock is a CLI tool, not a hosted API. No credentials or API keys are issued.",
+    "api_surface": "none",
+    "api_breadth": "none",
+    "has_mcp": false,
+    "mcp_note": "No known MCP server for Sherlock.",
+    "verdict": "not_buildable",
+    "blocker": "Sherlock is a command-line tool, not a SaaS with a public API. It does not offer any hosted service or API endpoints.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.95,
+      "access": 0.9,
+      "api_surface": 0.95,
+      "has_mcp": 0.8,
+      "verdict": 0.9
+    }
+  },
+  {
+    "id": 59,
+    "app": "Waterfall.io",
+    "category": "Data, SEO and Scraping",
+    "one_liner": "B2B contact and company data enrichment API for sales and marketing.",
+    "auth_methods": [
+      "API_KEY"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "Sign up on website, choose a paid plan; API key issued after purchase.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_with_caveats",
+    "blocker": "No official public API documentation found; API access may require contacting sales for full details.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.6,
+      "access": 0.5,
+      "api_surface": 0.4,
+      "has_mcp": 0.9,
+      "verdict": 0.5
+    }
+  },
+  {
+    "id": 60,
+    "app": "Clay",
+    "category": "Data, SEO and Scraping",
+    "one_liner": "Data enrichment and lead generation platform that combines data sources into customizable workflows.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "plan_gated",
+    "access_note": "API access requires a paid plan; Clay offers a free trial but API credentials are only available on paid tiers (e.g., Starter or higher).",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community MCPs may exist but not well-known.",
+    "verdict": "build_with_caveats",
+    "blocker": "API access is gated behind paid plans; no self-serve free tier for API credentials.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.6,
+      "access": 0.7,
+      "api_surface": 0.8,
+      "has_mcp": 0.3,
+      "verdict": 0.6
+    }
+  },
+  {
+    "id": 61,
+    "app": "GitHub",
+    "category": "Developer, Infra and Data platforms",
+    "one_liner": "Hosts Git repositories with collaboration, CI/CD, and project management.",
+    "auth_methods": [
+      "OAUTH2",
+      "BEARER_TOKEN",
+      "BASIC",
+      "JWT"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Create a free GitHub account and register an OAuth app or personal access token; no approval needed for most scopes.",
+    "api_surface": "rest+graphql",
+    "api_breadth": "broad",
+    "has_mcp": true,
+    "mcp_note": "GitHub's official MCP server (github/github-mcp-server) available on GitHub and npm.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.95,
+      "access": 0.9,
+      "api_surface": 0.98,
+      "has_mcp": 0.9,
+      "verdict": 0.95
+    }
+  },
+  {
+    "id": 62,
+    "app": "Vercel",
+    "category": "Developer, Infra and Data platforms",
+    "one_liner": "Cloud platform for deploying and scaling frontend and serverless applications.",
+    "auth_methods": [
+      "OAUTH2",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Vercel offers a free Hobby plan; API tokens can be created in account settings without approval.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": true,
+    "mcp_note": "Vercel MCP server published by Vercel on GitHub (vercel/mcp).",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.9,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 63,
+    "app": "Netlify",
+    "category": "Developer, Infra and Data platforms",
+    "one_liner": "Hosting and continuous deployment platform for modern web projects.",
+    "auth_methods": [
+      "OAUTH2",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Sign up for a free Netlify account and create an OAuth app in user settings; no approval needed.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "No official or widely-known MCP server found.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 64,
+    "app": "Cloudflare",
+    "category": "Developer, Infra and Data platforms",
+    "one_liner": "Cloudflare's API for managing DNS, CDN, security, Workers, and other edge services.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_free",
+    "access_note": "Free tier available; API tokens can be created from the dashboard after signup, no approval required.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community projects exist but not well-known.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.9,
+      "api_surface": 0.95,
+      "has_mcp": 0.6,
+      "verdict": 0.9
+    }
+  },
+  {
+    "id": 65,
+    "app": "Supabase",
+    "category": "Developer, Infra and Data platforms",
+    "one_liner": "Open-source Firebase alternative providing Postgres database, auth, storage, and edge functions.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN",
+      "JWT"
+    ],
+    "primary_auth": "BEARER_TOKEN",
+    "access": "self_serve_free",
+    "access_note": "Sign up free at supabase.com, create a project, and use the service role key (JWT) or anon key from dashboard.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": true,
+    "mcp_note": "Official Supabase MCP server available at supabase.com/docs/guides/integrations/mcp",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.95,
+      "api_surface": 0.9,
+      "has_mcp": 0.9,
+      "verdict": 0.9
+    }
+  },
+  {
+    "id": 66,
+    "app": "Neo4j",
+    "category": "Developer, Infra and Data platforms",
+    "one_liner": "Graph database platform with query APIs for data management and analytics.",
+    "auth_methods": [
+      "BASIC",
+      "BEARER_TOKEN",
+      "API_KEY"
+    ],
+    "primary_auth": "BEARER_TOKEN",
+    "access": "self_serve_free",
+    "access_note": "Neo4j AuraDB offers free tier; API credentials via console. Enterprise on-prem requires license.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community projects exist but not well-known.",
+    "verdict": "build_with_caveats",
+    "blocker": "API surface is primarily for database queries (Cypher) via HTTP API; management APIs are limited and require AuraDB or enterprise setup.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.6,
+      "access": 0.7,
+      "api_surface": 0.8,
+      "has_mcp": 0.7,
+      "verdict": 0.6
+    }
+  },
+  {
+    "id": 67,
+    "app": "Snowflake",
+    "category": "Developer, Infra and Data platforms",
+    "one_liner": "Cloud data warehouse with SQL analytics, data sharing, and app development.",
+    "auth_methods": [
+      "OAUTH2",
+      "JWT",
+      "BASIC",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "Sign up for Snowflake account, choose edition (Standard, Enterprise, etc.) and pay as you go; credentials via UI or API.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community projects exist but not well-known.",
+    "verdict": "build_with_caveats",
+    "blocker": "Per-account hostname (e.g., <account>.snowflakecomputing.com) and complex key-pair authentication for service-to-service.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.9,
+      "api_surface": 0.9,
+      "has_mcp": 0.6,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 68,
+    "app": "MongoDB Atlas",
+    "category": "Developer, Infra and Data platforms",
+    "one_liner": "Managed MongoDB database service with REST API for cluster and project management.",
+    "auth_methods": [
+      "API_KEY",
+      "OAUTH2",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "Create a MongoDB Atlas account, choose a free or paid tier, then generate an API key in Organization Access Manager.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community projects exist but not well-known.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 69,
+    "app": "Datadog",
+    "category": "Developer, Infra and Data platforms",
+    "one_liner": "Cloud monitoring and analytics platform for infrastructure, applications, and logs.",
+    "auth_methods": [
+      "API_KEY",
+      "OAUTH2"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "Datadog offers a free trial and paid plans; API keys are self-issued from the UI after signup, no manual approval.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community projects exist but not well-known.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.6,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 70,
+    "app": "Sentry",
+    "category": "Developer, Infra and Data platforms",
+    "one_liner": "Error tracking and performance monitoring for software applications.",
+    "auth_methods": [
+      "BEARER_TOKEN",
+      "API_KEY",
+      "OAUTH2"
+    ],
+    "primary_auth": "BEARER_TOKEN",
+    "access": "self_serve_free",
+    "access_note": "Create a free Sentry account, then generate an auth token in Settings > Developer Settings. No approval needed.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community projects exist but not well-known.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.6,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 71,
+    "app": "Notion",
+    "category": "Productivity and Project Management",
+    "one_liner": "All-in-one workspace for notes, docs, wikis, projects, and collaboration.",
+    "auth_methods": [
+      "OAUTH2",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Create a free Notion account and create an integration at notion.so/my-integrations to get an API token.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": true,
+    "mcp_note": "Official Notion MCP server available at github.com/makenotion/notion-mcp-server.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.95,
+      "access": 0.9,
+      "api_surface": 0.95,
+      "has_mcp": 0.9,
+      "verdict": 0.9
+    }
+  },
+  {
+    "id": 72,
+    "app": "Airtable",
+    "category": "Productivity and Project Management",
+    "one_liner": "Cloud database/spreadsheet hybrid for building collaborative apps.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Free tier available; OAuth2 app creation requires developer account, no manual approval.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": true,
+    "mcp_note": "Official Airtable MCP server on GitHub (airtable/airtable-mcp).",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.9,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 73,
+    "app": "Linear",
+    "category": "Productivity and Project Management",
+    "one_liner": "Issue tracking and project management for software teams with a GraphQL API.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Free tier available; API keys and OAuth apps can be created from workspace settings without approval.",
+    "api_surface": "graphql",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community projects exist but not well-known.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 1.0,
+      "has_mcp": 0.6,
+      "verdict": 0.9
+    }
+  },
+  {
+    "id": 74,
+    "app": "Jira",
+    "category": "Productivity and Project Management",
+    "one_liner": "Issue tracking and project management for software teams.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY",
+      "BASIC",
+      "JWT"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Free tier available; create API token or OAuth app in account settings.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": true,
+    "mcp_note": "Atlassian provides official MCP servers for Jira (e.g., jira-mcp).",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.9
+    }
+  },
+  {
+    "id": 75,
+    "app": "Asana",
+    "category": "Productivity and Project Management",
+    "one_liner": "Project and task management SaaS with REST API for teams.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Free tier and paid plans; developers can self-register and create a personal access token or OAuth app without approval.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official or widely known MCP server found.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 76,
+    "app": "Monday.com",
+    "category": "Productivity and Project Management",
+    "one_liner": "Work management platform for teams to plan, track, and collaborate on projects and workflows.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "Free tier available; API access requires a paid plan (Basic or higher) and can be self-signed via developer.monday.com.",
+    "api_surface": "graphql",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official or widely known MCP server found.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 77,
+    "app": "ClickUp",
+    "category": "Productivity and Project Management",
+    "one_liner": "Cloud-based project management and productivity platform with tasks, docs, goals, and chat.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Free plan available; API key can be generated from workspace settings. OAuth2 app creation requires a form but is generally self-serve.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community projects may exist but not well-known.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.6,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 78,
+    "app": "Coda",
+    "category": "Productivity and Project Management",
+    "one_liner": "Collaborative document and project management platform with API for building custom integrations.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Free tier available; API tokens can be generated in user settings without approval.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.6,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 79,
+    "app": "Smartsheet",
+    "category": "Productivity and Project Management",
+    "one_liner": "Cloud-based work management and collaboration platform with spreadsheets, project tracking, and automation.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "Free trial available; paid plans required for full API access. Developers can self-register and create OAuth apps via Smartsheet Developer portal.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official or widely-known MCP server found.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.7,
+      "api_surface": 0.95,
+      "has_mcp": 0.6,
+      "verdict": 0.8
+    }
+  },
+  {
+    "id": 80,
+    "app": "Harvest",
+    "category": "Productivity and Project Management",
+    "one_liner": "Time tracking, invoicing, and project management for teams.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_paid",
+    "access_note": "Harvest offers a free trial and paid plans; API credentials are available to all users via the developer portal, no approval required.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 81,
+    "app": "Stripe",
+    "category": "Finance and Fintech",
+    "one_liner": "Payment processing platform for online businesses and marketplaces.",
+    "auth_methods": [
+      "API_KEY",
+      "OAUTH2"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "Sign up at stripe.com, API keys available immediately on free plan; no approval needed.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": true,
+    "mcp_note": "Stripe's official MCP server: github.com/stripe/agent-toolkit (also on npm).",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.95,
+      "access": 0.9,
+      "api_surface": 0.95,
+      "has_mcp": 0.9,
+      "verdict": 0.95
+    }
+  },
+  {
+    "id": 82,
+    "app": "Plaid",
+    "category": "Finance and Fintech",
+    "one_liner": "API for bank account connectivity, transaction data, and payment initiation.",
+    "auth_methods": [
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "approval_required",
+    "access_note": "Requires sign-up and approval from Plaid; production access requires review and often a paid plan.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_with_caveats",
+    "blocker": "Production access requires manual approval and may require a paid plan; sandbox is self-serve but limited.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.7,
+      "api_surface": 0.95,
+      "has_mcp": 0.8,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 83,
+    "app": "Binance",
+    "category": "Finance and Fintech",
+    "one_liner": "Cryptocurrency exchange offering spot, futures, and wallet APIs.",
+    "auth_methods": [
+      "API_KEY",
+      "JWT"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_free",
+    "access_note": "Free account creation; API keys generated in user dashboard after enabling 2FA.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.95,
+      "access": 0.9,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.9
+    }
+  },
+  {
+    "id": 84,
+    "app": "Paygent Connect",
+    "category": "Finance and Fintech",
+    "one_liner": "Payment gateway and merchant services platform powered by NMI for processing transactions.",
+    "auth_methods": [
+      "API_KEY"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "partner_gated",
+    "access_note": "Paygent Connect is a payment gateway for merchants, typically requires a merchant account and approval through Paygent or NMI. No self-serve signup.",
+    "api_surface": "unknown",
+    "api_breadth": "unknown",
+    "has_mcp": false,
+    "mcp_note": "No known MCP server published by vendor or third party.",
+    "verdict": "needs_outreach",
+    "blocker": "No public API documentation or self-serve credential; requires merchant account and vendor approval.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.3,
+      "access": 0.4,
+      "api_surface": 0.2,
+      "has_mcp": 0.9,
+      "verdict": 0.4
+    }
+  },
+  {
+    "id": 85,
+    "app": "iPayX",
+    "category": "Finance and Fintech",
+    "one_liner": "Payment processing and fintech API platform for businesses.",
+    "auth_methods": [
+      "API_KEY"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "unknown",
+    "access_note": "No public documentation or signup details found; likely requires contacting sales.",
+    "api_surface": "unknown",
+    "api_breadth": "unknown",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "needs_outreach",
+    "blocker": "No public API documentation or self-serve credential process found; must contact vendor.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.2,
+      "access": 0.1,
+      "api_surface": 0.1,
+      "has_mcp": 0.0,
+      "verdict": 0.2
+    }
+  },
+  {
+    "id": 86,
+    "app": "QuickBooks",
+    "category": "Finance and Fintech",
+    "one_liner": "Cloud accounting software for small businesses with APIs for invoices, payments, and reports.",
+    "auth_methods": [
+      "OAUTH2",
+      "S2S_OAUTH2",
+      "API_KEY",
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "approval_required",
+    "access_note": "Requires Intuit Developer account, app creation, and OAuth consent; sandbox available but production access needs app review.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_with_caveats",
+    "blocker": "OAuth flow requires app review for production; sandbox is free but limited.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.9,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.8
+    }
+  },
+  {
+    "id": 87,
+    "app": "Xero",
+    "category": "Finance and Fintech",
+    "one_liner": "Cloud accounting software for small businesses with APIs for invoices, contacts, and financial data.",
+    "auth_methods": [
+      "OAUTH2"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "self_serve_free",
+    "access_note": "Free 30-day trial and free developer account; create a connected app in the developer portal to get OAuth2 credentials.",
+    "api_surface": "rest",
+    "api_breadth": "broad",
+    "has_mcp": false,
+    "mcp_note": "No official MCP server found; community projects may exist but not well-known.",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.95,
+      "access": 0.8,
+      "api_surface": 0.95,
+      "has_mcp": 0.7,
+      "verdict": 0.85
+    }
+  },
+  {
+    "id": 88,
+    "app": "Brex",
+    "category": "Finance and Fintech",
+    "one_liner": "Corporate card and spend management platform with APIs for expenses, cards, and accounting.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "approval_required",
+    "access_note": "Requires applying for API access via Brex developer portal; approval and onboarding needed.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "needs_outreach",
+    "blocker": "API access requires manual approval and partnership; no self-serve credential.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.8,
+      "access": 0.7,
+      "api_surface": 0.9,
+      "has_mcp": 0.9,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 89,
+    "app": "Ramp",
+    "category": "Finance and Fintech",
+    "one_liner": "Corporate card and spend management platform with expense tracking and accounting integrations.",
+    "auth_methods": [
+      "OAUTH2",
+      "API_KEY"
+    ],
+    "primary_auth": "OAUTH2",
+    "access": "approval_required",
+    "access_note": "API access requires contacting Ramp and completing an application; not self-serve.",
+    "api_surface": "rest",
+    "api_breadth": "moderate",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "needs_outreach",
+    "blocker": "Credential issuance requires manual approval; no self-serve signup for API.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.7,
+      "access": 0.6,
+      "api_surface": 0.9,
+      "has_mcp": 0.8,
+      "verdict": 0.7
+    }
+  },
+  {
+    "id": 90,
+    "app": "PitchBook",
+    "category": "Finance and Fintech",
+    "one_liner": "",
+    "auth_methods": [
+      "UNKNOWN"
+    ],
+    "primary_auth": "UNKNOWN",
+    "access": "unknown",
+    "access_note": "",
+    "api_surface": "unknown",
+    "api_breadth": "unknown",
+    "has_mcp": null,
+    "mcp_note": "",
+    "verdict": "unknown",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {},
+    "error": "empty completion"
+  },
+  {
+    "id": 91,
+    "app": "NotebookLM",
+    "category": "AI, Research and Media-native",
+    "one_liner": "",
+    "auth_methods": [
+      "UNKNOWN"
+    ],
+    "primary_auth": "UNKNOWN",
+    "access": "unknown",
+    "access_note": "",
+    "api_surface": "unknown",
+    "api_breadth": "unknown",
+    "has_mcp": null,
+    "mcp_note": "",
+    "verdict": "unknown",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {},
+    "error": "empty completion"
+  },
+  {
+    "id": 92,
+    "app": "Otter AI",
+    "category": "AI, Research and Media-native",
+    "one_liner": "",
+    "auth_methods": [
+      "UNKNOWN"
+    ],
+    "primary_auth": "UNKNOWN",
+    "access": "unknown",
+    "access_note": "",
+    "api_surface": "unknown",
+    "api_breadth": "unknown",
+    "has_mcp": null,
+    "mcp_note": "",
+    "verdict": "unknown",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {},
+    "error": "empty completion"
+  },
+  {
+    "id": 93,
+    "app": "Fathom",
+    "category": "AI, Research and Media-native",
+    "one_liner": "",
+    "auth_methods": [
+      "UNKNOWN"
+    ],
+    "primary_auth": "UNKNOWN",
+    "access": "unknown",
+    "access_note": "",
+    "api_surface": "unknown",
+    "api_breadth": "unknown",
+    "has_mcp": null,
+    "mcp_note": "",
+    "verdict": "unknown",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {},
+    "error": "empty completion"
+  },
+  {
+    "id": 94,
+    "app": "Consensus",
+    "category": "AI, Research and Media-native",
+    "one_liner": "",
+    "auth_methods": [
+      "UNKNOWN"
+    ],
+    "primary_auth": "UNKNOWN",
+    "access": "unknown",
+    "access_note": "",
+    "api_surface": "unknown",
+    "api_breadth": "unknown",
+    "has_mcp": null,
+    "mcp_note": "",
+    "verdict": "unknown",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {},
+    "error": "empty completion"
+  },
+  {
+    "id": 95,
+    "app": "Reducto",
+    "category": "AI, Research and Media-native",
+    "one_liner": "AI-powered document parsing API that extracts structured data from complex PDFs, images, and other media.",
+    "auth_methods": [
+      "API_KEY"
+    ],
+    "primary_auth": "API_KEY",
+    "access": "self_serve_paid",
+    "access_note": "Sign up on reducto.ai, API key available on free trial and paid plans without manual approval.",
+    "api_surface": "rest",
+    "api_breadth": "narrow",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "build_now",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.7,
+      "access": 0.6,
+      "api_surface": 0.8,
+      "has_mcp": 0.9,
+      "verdict": 0.6
+    }
+  },
+  {
+    "id": 96,
+    "app": "Devin",
+    "category": "AI, Research and Media-native",
+    "one_liner": "AI software engineer that autonomously plans, codes, and executes tasks in a sandboxed environment.",
+    "auth_methods": [
+      "BEARER_TOKEN"
+    ],
+    "primary_auth": "BEARER_TOKEN",
+    "access": "unknown",
+    "access_note": "Devin API access is not publicly self-serve; likely requires contacting Cognition or being on a waitlist/partnership.",
+    "api_surface": "unknown",
+    "api_breadth": "unknown",
+    "has_mcp": true,
+    "mcp_note": "Official MCP server referenced in docs.devin.ai, likely for Devin's own integration.",
+    "verdict": "needs_outreach",
+    "blocker": "No public self-serve credential; API access appears gated behind human approval or partnership.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.3,
+      "access": 0.2,
+      "api_surface": 0.1,
+      "has_mcp": 0.6,
+      "verdict": 0.3
+    }
+  },
+  {
+    "id": 97,
+    "app": "higgsfield",
+    "category": "AI, Research and Media-native",
+    "one_liner": "AI-powered content creation and media generation suite with CLI tools.",
+    "auth_methods": [
+      "UNKNOWN"
+    ],
+    "primary_auth": "UNKNOWN",
+    "access": "unknown",
+    "access_note": "No public API documentation found; likely requires sign-up or contact.",
+    "api_surface": "unknown",
+    "api_breadth": "unknown",
+    "has_mcp": false,
+    "mcp_note": "",
+    "verdict": "not_buildable",
+    "blocker": "No evidence of a public third-party API; only CLI and web app.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.1,
+      "access": 0.2,
+      "api_surface": 0.1,
+      "has_mcp": 0.1,
+      "verdict": 0.3
+    }
+  },
+  {
+    "id": 98,
+    "app": "Mermaid CLI",
+    "category": "AI, Research and Media-native",
+    "one_liner": "Command-line tool to generate diagrams from Mermaid text files.",
+    "auth_methods": [
+      "NO_AUTH"
+    ],
+    "primary_auth": "NO_AUTH",
+    "access": "no_public_api",
+    "access_note": "Mermaid CLI is a local CLI tool; no hosted API or credential issuance.",
+    "api_surface": "none",
+    "api_breadth": "none",
+    "has_mcp": false,
+    "mcp_note": "No known MCP server for Mermaid CLI.",
+    "verdict": "not_buildable",
+    "blocker": "No public API; it is a local command-line tool, not a service.",
+    "evidence": [],
+    "confidence": {
+      "primary_auth": 0.95,
+      "access": 0.9,
+      "api_surface": 0.95,
+      "has_mcp": 0.8,
+      "verdict": 0.95
+    }
+  },
+  {
+    "id": 99,
+    "app": "YouTube Transcript",
+    "category": "AI, Research and Media-native",
+    "one_liner": "",
+    "auth_methods": [
+      "UNKNOWN"
+    ],
+    "primary_auth": "UNKNOWN",
+    "access": "unknown",
+    "access_note": "",
+    "api_surface": "unknown",
+    "api_breadth": "unknown",
+    "has_mcp": null,
+    "mcp_note": "",
+    "verdict": "unknown",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {},
+    "error": "empty completion"
+  },
+  {
+    "id": 100,
+    "app": "Grain",
+    "category": "AI, Research and Media-native",
+    "one_liner": "",
+    "auth_methods": [
+      "UNKNOWN"
+    ],
+    "primary_auth": "UNKNOWN",
+    "access": "unknown",
+    "access_note": "",
+    "api_surface": "unknown",
+    "api_breadth": "unknown",
+    "has_mcp": null,
+    "mcp_note": "",
+    "verdict": "unknown",
+    "blocker": "",
+    "evidence": [],
+    "confidence": {},
+    "error": "empty completion"
+  }
+]

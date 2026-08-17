@@ -1,0 +1,22 @@
+{
+  "llm": {
+    "calls": 3,
+    "input_tokens": 21896,
+    "output_tokens": 923,
+    "llm_seconds": 14.5,
+    "notional_usd": 0.0069,
+    "by_model": {
+      "deepseek-v4-flash": {
+        "calls": 3,
+        "in": 21896,
+        "out": 923,
+        "secs": 14.5
+      }
+    }
+  },
+  "firecrawl": {
+    "search": 6,
+    "scrape": 9,
+    "cache_hits": 0
+  }
+}

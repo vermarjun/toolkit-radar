@@ -1,0 +1,10 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+research_cache/
+node_modules/
+.vercel/
+run_full.log
+pw_install.log
+/tmp
