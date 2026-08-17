@@ -210,18 +210,18 @@ def to_csv(rows: list[dict]) -> str:
 def to_llms_txt(d: dict) -> str:
     h = d["headline"]
     lines = [
-        "# Toolkit Radar — can these 100 apps become agent toolkits today?",
+        "# Toolkit Radar: can these 100 apps become agent toolkits today?",
         "",
-        "Research output for a Composio AI Product Ops take-home. 100 SaaS apps",
-        "researched by an agent, verified against a hand-labelled gold set and",
+        "Research output for a Composio AI Product Ops take-home. An agent researched",
+        "100 SaaS apps, then got graded against 20 apps a human labelled by hand and",
         "against Composio's own production toolkit catalog.",
         "",
         "## Headline",
-        f"- {h['self_serve_pct']}% of the 100 let an outside developer self-issue a credential.",
-        f"- {h['gated_pct']}% are gated by a plan, an approval, or a sales conversation.",
+        f"- {h['self_serve_pct']}% let an outside developer issue their own credential.",
+        f"- {h['gated_pct']}% are gated by a plan, an approval, or a sales call.",
         f"- {h['mcp_pct']}% already ship a vendor-published MCP server.",
-        f"- {h['in_composio']} of the 100 are already Composio toolkits; {h['gap']} are not.",
-        f"- Of that gap, {h['buildable_gap']} are buildable now and {h['outreach_gap']} need partnerships, not engineering.",
+        f"- {h['in_composio']} of the 100 are already Composio toolkits. {h['gap']} are not.",
+        f"- Of that gap, {h['buildable_gap']} are buildable now and {h['outreach_gap']} need partnerships, not engineers.",
         "",
         "## Machine-readable data",
         "- data.json    every field for every app, plus the eval and the scoring model",
@@ -232,20 +232,20 @@ def to_llms_txt(d: dict) -> str:
         "access: self_serve_free self_serve_paid plan_gated approval_required partner_gated no_public_api unknown",
         "lane: build_now quick_win needs_outreach park",
         "",
-        "## How trustworthy",
+        "## How much to trust it",
     ]
     ev = d.get("eval") or {}
     if ev.get("pass1") and ev.get("pass2"):
         lines += [
             f"- closed-book baseline: {ev['pass1']['accuracy']:.1%} on 100 hand-checked labels",
-            f"- grounded + critic:    {ev['pass2']['accuracy']:.1%} on the same labels",
+            f"- the shipped pipeline: {ev['pass2']['accuracy']:.1%} on the same labels",
         ]
     if ev.get("oracle"):
         lines.append(
             f"- agrees with Composio's shipped auth config on {ev['oracle']['agreement']:.1%} "
             f"of {ev['oracle']['n_checked']} apps it already covers"
         )
-    lines += ["", "Every row carries its evidence URLs. Rows the agent got wrong are listed on the page."]
+    lines += ["", "Every row carries its evidence URLs. The rows the agent got wrong are listed on the page too."]
     return "\n".join(lines) + "\n"
 
 

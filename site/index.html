@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Toolkit Radar — 100 apps, and which ones can be agent toolkits today</title>
-<meta name="description" content="An agent researched 100 SaaS apps for auth, access gates, API surface and buildability, then was graded against a hand-labelled gold set and against Composio's own toolkit catalog.">
+<title>Toolkit Radar: 100 apps, and which ones can be agent toolkits today</title>
+<meta name="description" content="An agent researched 100 SaaS apps for auth, access gates, API surface and buildability. Then it got graded against a hand-labelled gold set and against Composio's own toolkit catalog.">
 <style>
   :root{
     color-scheme: light dark;
@@ -179,17 +179,17 @@
 <header><div class="wrap">
   <div class="eyebrow">Composio · AI Product Ops take-home</div>
   <h1>100 apps. Which ones can be agent toolkits today?</h1>
-  <p class="lede">An agent researched all 100 — auth scheme, whether an outside developer can actually
-  get a credential, API surface, existing MCP, and a buildability verdict with evidence. Then it was
-  graded: against 100 labels a human wrote by hand, and against Composio's own production catalog.
-  <b>The findings, the agent, and the proof it is trustworthy are all on this page.</b></p>
+  <p class="lede">An agent researched all 100. Auth scheme, whether an outside developer can actually get a
+  credential, API surface, existing MCP, and a buildability call with evidence behind each one. Then I graded
+  it against 100 labels I wrote by hand, and against Composio's own catalog.
+  <b>Findings, agent, and the proof it's trustworthy are all on this page.</b></p>
   <div class="chips" id="chips"></div>
 </div></header>
 
 <section id="answer"><div class="wrap">
   <div class="kicker">The answer</div>
-  <h2>Five things the 100 rows say that the rows themselves do not</h2>
-  <p class="sub">Numbers below are the verified pass. Every one is filterable in
+  <h2>Five things the rows don't say on their own</h2>
+  <p class="sub">Numbers come from the shipped pass. All of it is filterable in
   <a href="#table">the table</a> and callable over <a href="#agents">MCP</a>.</p>
   <div class="tiles" id="tiles"></div>
   <div id="patterns"></div>
@@ -197,17 +197,16 @@
 
 <section id="gap"><div class="wrap">
   <div class="kicker">Gap analysis</div>
-  <h2>What Composio already ships, and what it does not</h2>
-  <p class="sub">The research set was joined against Composio's live toolkit catalog through the v3 API.
-  That turns a table of findings into a build queue: what an engineer could start on tomorrow, and what
-  is a partnerships conversation instead.</p>
+  <h2>What Composio already ships, and what it doesn't</h2>
+  <p class="sub">I joined the research set against Composio's live catalog through the v3 API. That turns a
+  table into a build queue. What an engineer starts tomorrow, and what's a partnerships call instead.</p>
   <div class="grid3" id="gapTiles"></div>
   <div style="height:18px"></div>
   <div class="card">
     <h3>The build queue</h3>
-    <p class="cap">Apps absent from the catalog, ranked by build score. Score = credential access (40)
-      + API surface (25) + auth effort (15) + evidence confidence (10) + agent-readiness (10).
-      Hover a score for the breakdown. The weights are a product judgement, stated so they can be argued with.</p>
+    <p class="cap">Apps missing from the catalog, ranked. Score = credential access (40) + API surface (25)
+      + auth effort (15) + evidence confidence (10) + agent-readiness (10). Hover a score for the breakdown.
+      The weights are my judgement, written down so you can argue with them.</p>
     <div class="filters">
       <select id="laneFilter"></select>
       <span class="muted" id="queueCount"></span>
@@ -219,13 +218,13 @@
 <section id="matrix"><div class="wrap">
   <div class="kicker">The matrix</div>
   <h2>Ten categories, and how open each one is</h2>
-  <p class="sub">Sorted by the share of apps where a developer can self-issue a credential. Colour is
-  redundant with the number in every cell.</p>
+  <p class="sub">Sorted by the share of apps where a developer can issue their own credential. Every cell
+  prints its number, so colour never carries meaning alone.</p>
   <div class="tblwrap"><table id="matrixTable"></table></div>
   <div class="grid2" style="margin-top:16px">
     <div class="card">
-      <h3>Auth: this research set vs Composio's whole catalog</h3>
-      <p class="cap">The 100 are enterprise-skewed on purpose, and it shows.</p>
+      <h3>Auth: these 100 vs Composio's whole catalog</h3>
+      <p class="cap">The 100 skew enterprise by design, and it shows.</p>
       <div class="legend">
         <span><i style="background:var(--s1)"></i>These 100</span>
         <span><i style="background:var(--s2)"></i>All Composio toolkits</span>
@@ -234,7 +233,7 @@
     </div>
     <div class="card">
       <h3>How an outside developer gets in</h3>
-      <p class="cap">Ordered from open to closed.</p>
+      <p class="cap">Open at the top, closed at the bottom.</p>
       <div id="accessChart"></div>
     </div>
   </div>
@@ -243,9 +242,8 @@
 <section id="table"><div class="wrap">
   <div class="kicker">The findings</div>
   <h2>All 100, with the evidence behind each row</h2>
-  <p class="sub">Every judgement carries the URL it came from. Rows the human checker graded are marked
-  <span class="tag">gold</span>; rows where a real browser was sent to the pricing page are marked
-  <span class="tag">browser</span>.</p>
+  <p class="sub">Every judgement carries the URL it came from. Rows I graded by hand are tagged
+  <span class="tag">gold</span>. Rows a real browser visited are tagged <span class="tag">browser</span>.</p>
   <div class="filters">
     <input type="search" id="q" placeholder="filter by name, auth, blocker…">
     <select id="fCat"></select><select id="fAccess"></select>
@@ -257,10 +255,9 @@
 
 <section id="agent"><div class="wrap">
   <div class="kicker">The agent</div>
-  <h2>Five passes, three of which exist only to catch the other two lying</h2>
-  <p class="sub">Roughly 700 lines of Python. Pass 1 is the control, not a stage — it is what this
-  assignment looks like if you just ask a model, and it is on the page so the verified number has
-  something to be measured against.</p>
+  <h2>Six passes. Four exist to catch the other two lying.</h2>
+  <p class="sub">About 900 lines of Python. Pass 1 is the control, not a stage. It's what this assignment
+  looks like if you just ask a model, and it's here so the final number has something to beat.</p>
   <div id="pipeline"></div>
   <div class="grid2" style="margin-top:20px">
     <div class="card">
@@ -269,8 +266,8 @@
     </div>
     <div class="card">
       <h3>What it cost</h3>
-      <p class="cap">Measured on the final grounded run over all 100 apps. The control pass, the
-        browser pass and the API probe are not counted here, and neither are the runs that were thrown away.</p>
+      <p class="cap">Measured on the final grounded run over all 100 apps. The control pass, the browser
+        pass and the API probe aren't counted, and neither are the runs I threw away.</p>
       <div id="cost"></div>
     </div>
   </div>
@@ -278,30 +275,29 @@
 
 <section id="verify"><div class="wrap">
   <div class="kicker">Verification</div>
-  <h2>How I know the findings are trustworthy — and where they are not</h2>
-  <p class="sub">Three separate measurements, deliberately not averaged. A 20-app gold set hand-labelled
-  from primary sources before any grading code existed; an independent cross-check against Composio's
-  shipped auth config on every app it already covers; and a real browser sent to the pricing pages for
-  the one field documentation never states.</p>
+  <h2>How I know this is trustworthy, and where it isn't</h2>
+  <p class="sub">Three measurements, kept separate on purpose. 20 apps I labelled by hand from primary
+  sources before writing any grading code. A cross-check against Composio's shipped auth config on every
+  app it already covers. And a real browser on the pricing pages, for the one field docs never state.</p>
   <div class="tiles" id="verifyTiles"></div>
   <div class="grid2">
     <div class="card">
       <h3>Accuracy per field</h3>
-      <p class="cap">Same 20 apps, same 100 labels, both passes.</p>
+      <p class="cap">Same 20 apps, same 100 labels, every stage.</p>
       <div class="legend" id="accLegend"></div>
       <div id="accChart"></div>
     </div>
     <div class="card">
       <h3>Is the agent's confidence worth anything?</h3>
-      <p class="cap">Bucketed by the confidence the agent stated for that field, before it knew the answer.</p>
+      <p class="cap">Bucketed by what the agent claimed for that field before it knew the answer.</p>
       <div id="calib"></div>
     </div>
   </div>
   <div style="height:16px"></div>
   <div class="card">
-    <h3>Every label the verified pass still got wrong</h3>
-    <p class="cap">Nothing filtered. "Abstained" means it said unknown rather than guessing, which is a
-      better failure than being confidently wrong.</p>
+    <h3>Every label the shipped pass still got wrong</h3>
+    <p class="cap">Nothing filtered. Abstained means it said unknown instead of guessing, which is the
+      better way to be wrong.</p>
     <div class="tblwrap"><table id="missTable"></table></div>
   </div>
   <div style="height:16px"></div>
@@ -335,9 +331,9 @@
 <section id="agents"><div class="wrap">
   <div class="kicker">For agents</div>
   <h2>This page is also a tool</h2>
-  <p class="sub">Composio's product is turning apps into things agents can call. It would be strange to
-  hand in research about that as a PDF. The same dataset behind this page is served as an MCP server,
-  so a reviewer can interrogate the findings instead of reading them.</p>
+  <p class="sub">Composio turns apps into things agents can call. Handing in research about that as a PDF
+  would be odd. The dataset behind this page runs as an MCP server, so you can ask it questions instead of
+  reading it.</p>
   <div class="grid2">
     <div class="card">
       <h3>Connect it</h3>
@@ -435,15 +431,15 @@ $('#chips').append(
 
 /* ---------- 1. tiles ---------- */
 const tiles = [
-  {v:H.self_serve_pct + '%', k:'let a developer self-issue a credential',
-   n:`${Math.round((H.self_serve_pct/100)*rows.length)} of ${rows.length} — the rest need a plan, a form, or a human`},
+  {v:H.self_serve_pct + '%', k:'let a developer issue their own credential',
+   n:`${Math.round((H.self_serve_pct/100)*rows.length)} of ${rows.length}. The rest need a plan, a form, or a human.`},
   {v:H.mcp_pct + '%', k:'already ship a vendor MCP server',
-   n:'the surface is being made agent-shaped without Composio'},
+   n:'vendors are making themselves agent-shaped without Composio'},
   {v:H.in_composio + '/' + rows.length, k:'are already Composio toolkits',
-   n:`${H.gap} are not — that gap is the build queue`},
+   n:`${H.gap} aren't. That gap is the build queue.`},
   {v:H.buildable_gap, k:'of the gap are buildable now',
-   n:'public docs plus a self-serve credential today'},
-  {v:H.outreach_gap, k:'of the gap need partnerships, not engineering',
+   n:'public docs and a self-serve credential, today'},
+  {v:H.outreach_gap, k:'of the gap need partnerships, not engineers',
    n:'no amount of developer time unblocks these'},
 ];
 $('#tiles').append(...tiles.map(t => el('div', {class:'tile'}, [
@@ -463,41 +459,38 @@ const topBlocker = (D.distributions.blockers || [])[0] || ['', 0];
 
 const PATTERNS = [
   {
-    h: `${authTop[0] === 'OAUTH2' ? 'OAuth2 dominates this set, but not the catalog it would join' : authTop[0] + ' dominates'}`,
-    p: `${authTop[1]} of ${rows.length} apps use ${authTop[0]} as the scheme a third-party integration would actually use, `
-     + `with ${authSecond[0]} second at ${authSecond[1]}. Composio's own ${D.meta.composio_catalog_size}-toolkit catalog runs the other way — `
-     + `${catalogApiKeyPct}% of it is API-key. The 100 here are enterprise-skewed by design, so the auth mix of a *request list* `
-     + `is not the auth mix of a catalog. Anyone sizing OAuth work off a wishlist will overbuild.`,
+    h: authTop[0] === 'OAUTH2' ? `OAuth2 rules this set. It doesn't rule the catalog.` : `${authTop[0]} dominates`,
+    p: `${authTop[1]} of ${rows.length} use ${authTop[0]} as the scheme a third-party integration would actually reach for. `
+     + `${authSecond[0]} is second at ${authSecond[1]}. Composio's own ${D.meta.composio_catalog_size}-toolkit catalog runs the other way, `
+     + `${catalogApiKeyPct}% API-key. A request list is the worst possible sample of a catalog, so sizing OAuth work off a wishlist means overbuilding.`,
     e: `distributions.auth vs distributions.composio_catalog_auth`
   },
   {
-    h: `The real blocker is commercial, not technical`,
-    p: `${H.gated_pct}% of the set is gated, and the single most common gate is "${ACCESS_LABEL[topBlocker[0]] || topBlocker[0]}" at ${topBlocker[1]} apps. `
-     + `Almost none of these are hard to integrate. They are hard to *get into*. The engineering question "can we wrap this API" `
-     + `has a different answer from "can we obtain a key", and conflating them is what makes a toolkit roadmap slip.`,
+    h: `The blocker is commercial, not technical`,
+    p: `${H.gated_pct}% of the set is gated, most often by "${ACCESS_LABEL[topBlocker[0]] || topBlocker[0]}" at ${topBlocker[1]} apps. `
+     + `Almost none of these are hard to integrate. They're hard to get into. "Can we wrap this API" and "can we get a key" `
+     + `have different answers, and treating them as one question is how a toolkit roadmap slips.`,
     e: `distributions.blockers`
   },
   {
-    h: `A gated app is still buildable — the blocker is testing, not shipping`,
-    p: `${gatedWithDocs} apps are gated to an outside developer yet publish complete API documentation. `
-     + `In a bring-your-own-credential model the customer already has the tenant, so the toolkit ships fine; what the vendor `
-     + `is withholding is a sandbox to test against. That reframes most of the "blocked" pile from a partnerships problem `
-     + `into a QA problem, and it is the single most consequential judgement on this page.`,
+    h: `A gated app is still buildable. The blocker is testing, not shipping.`,
+    p: `${gatedWithDocs} apps are closed to an outside developer and publish full API docs anyway. With bring-your-own-credential `
+     + `the customer already has the tenant, so the toolkit ships. What the vendor withholds is a sandbox. That moves most of the `
+     + `blocked pile from a partnerships problem to a QA problem, and it's the biggest judgement call on this page.`,
     e: `rows where access is gated and api_surface is documented`
   },
   {
-    h: `MCP adoption is already mainstream, and it is a shortcut`,
-    p: `${H.mcp_pct}% of the 100 publish their own MCP server — including ${mcpGated} apps that will not give an outside `
-     + `developer a credential at all. Vendors are shipping agent surfaces faster than they are opening access. `
-     + `Every one of those is a cheaper toolkit: the vendor has already decided which operations are agent-safe.`,
-    e: `has_mcp, verified per app against the vendor's own docs`
+    h: `MCP is already mainstream, and it's a shortcut`,
+    p: `${Math.round((H.mcp_pct/100)*rows.length)} of the 100 publish their own MCP server, including ${mcpGated} that won't give an outside `
+     + `developer a credential at all. Vendors are shipping agent surfaces faster than they're opening access. Each one is a cheaper `
+     + `toolkit, because the vendor already decided which operations are safe for an agent.`,
+    e: `has_mcp, checked per app against the vendor's own docs`
   },
   {
-    h: `Openness is a property of the category, not the company`,
-    p: `${openCat ? `${openCat.category} is ${openCat.self_serve_pct}% self-serve; ${closedCat.category} is ${closedCat.self_serve_pct}%.` : ''} `
-     + `Developer-tools and productivity apps sell to the person integrating them, so the credential is the product. `
-     + `Enterprise sales categories treat API access as a contract term. Category predicts the gate better than company size does, `
-     + `which means outreach can be planned per-category instead of per-app.`,
+    h: `Openness belongs to the category, not the company`,
+    p: `${openCat ? `${openCat.category} is ${openCat.self_serve_pct}% self-serve. ${closedCat.category} is ${closedCat.self_serve_pct}%.` : ''} `
+     + `Dev tools sell to the person doing the integration, so the credential is the product. Enterprise categories treat API access `
+     + `as a contract term. Category predicts the gate better than company size, which means you can plan outreach one vertical at a time.`,
     e: `the matrix below`
   },
 ];
@@ -510,10 +503,10 @@ $('#patterns').append(...PATTERNS.map((p, i) => el('div', {class:'pat'}, [
 const adjacent = rows.filter(r => r.composio_adjacent).length;
 $('#gapTiles').append(...[
   {v:`${H.in_composio}`, k:'of the 100 are live Composio toolkits',
-   n:`matched by slug against ${D.meta.composio_catalog_size} toolkits; ${adjacent} near-misses rejected by hand`},
-  {v:`${H.gap}`, k:'are not in the catalog',
+   n:`matched by slug against ${D.meta.composio_catalog_size} toolkits. ${adjacent} near-misses rejected by hand.`},
+  {v:`${H.gap}`, k:"aren't in the catalog",
    n:'ranked below by how cheap they are to add'},
-  {v:`${H.buildable_gap}`, k:'of those need no one\'s permission',
+  {v:`${H.buildable_gap}`, k:"of those need nobody's permission",
    n:'self-serve credential, documented API, today'},
 ].map(t => el('div', {class:'tile'}, [
   el('div', {class:'v', text:t.v}), el('div', {class:'k', text:t.k}), el('div', {class:'n', text:t.n})
@@ -561,7 +554,7 @@ function renderQueue() {
   ]))));
   $('#queueCount').textContent = lane
     ? `${list.length} apps in this lane`
-    : `top 20 of ${queue.length} — pick a lane to see all`;
+    : `top 20 of ${queue.length}. Pick a lane to see all.`;
 }
 laneSel.addEventListener('change', renderQueue);
 renderQueue();
@@ -682,20 +675,22 @@ renderMain();
 const u = (D.meta.usage || {});
 const llm = u.llm || {}, fcs = u.firecrawl || {};
 const STAGES = [
-  {n:'0', t:'Join the catalog', d:`Pull all ${D.meta.composio_catalog_size} Composio toolkits through the v3 API and match them to the 100 by slug. `
-    + `Fuzzy matches are surfaced for a human, never auto-accepted — a wrong join would poison the cross-check that comes later.`},
-  {n:'1', t:'Closed book (the control)', d:'Ask the model for all eleven fields with no tools at all. This is not a stage of the '
-    + 'pipeline; it exists so the verified number has a baseline, and so "the model already knows this" can be tested rather than assumed.'},
-  {n:'2', t:'Grounded', d:'Three narrow searches per app — docs/auth, pricing/access, MCP — then fetch the two best pages with a '
-    + 'renderer, and extract with every citation checked against the retrieved corpus. A URL the model invents is dropped, not trusted.'},
-  {n:'3', t:'Critic', d:'A different model family re-reads the same evidence and is told to refute, not agree. It flags what it cannot '
-    + 'support — and, measured against the gold set, it lost the right to act on those flags. Its output is published per row for a human '
-    + 'to triage, but it no longer changes a value. See the verification section for why.'},
-  {n:'3b', t:'Arbitration', d:'The one pass that was not in the original design, added after the eval showed the first two were '
-    + 'losing information rather than adding it. Evidence updates the prior instead of replacing it, silence keeps the prior, and the '
-    + 'verdict is computed from the other fields so it cannot contradict them. Every field records which rule decided it.'},
-  {n:'4', t:'Browser gate prover', d:'For the ambiguous ones, a real Chromium opens the pricing and developer pages, reads the rendered '
-    + 'call-to-action, and screenshots it. Deliberately rule-based, not another model — a second LLM reading the same page is not an independent check.'},
+  {n:'0', t:'Join the catalog', d:`Pull all ${D.meta.composio_catalog_size} Composio toolkits through the v3 API and match them `
+    + `to the 100 by slug. Fuzzy matches go to a human, never auto-accepted. A wrong join would poison the cross-check later.`},
+  {n:'1', t:'Closed book (the control)', d:'Ask the model for all eleven fields with no tools at all. Not a stage of the pipeline. '
+    + 'It exists so "the model already knows this" gets tested instead of assumed.'},
+  {n:'2', t:'Grounded', d:'Three narrow searches per app. Docs, pricing, MCP. Fetch the three best pages with a renderer, then '
+    + 'extract with every citation checked against what was actually retrieved. Invented URLs get dropped.'},
+  {n:'3', t:'Critic', d:'A different model family re-reads the same evidence and is told to refute, not agree. It flags what it '
+    + "can't support. Measured against the gold set, it lost the right to act on those flags. Its output still ships per row for a "
+    + 'human to triage. It no longer changes a value.'},
+  {n:'3b', t:'Arbitration', d:'Not in the original design. Added once the eval showed the first two passes were losing information '
+    + 'instead of adding it. Evidence updates the prior, silence keeps the prior, and the verdict is computed from the other fields '
+    + "so it can't contradict its own row."},
+  {n:'4', t:'Browser gate prover', d:'Real Chromium opens the pricing and developer pages, reads the rendered call to action, '
+    + "screenshots it. Rule-based on purpose. A second LLM reading the same page isn't an independent check on the first."},
+  {n:'5', t:'Reachability', d:'One unauthenticated GET to the endpoint each app publishes in its own docs. Does it exist, does it '
+    + 'demand a key. Nothing else in the pipeline touches anything outside a documentation page.'},
 ];
 $('#pipeline').append(el('div', {class:'grid3', style:'grid-template-columns:repeat(auto-fit,minmax(215px,1fr))'},
   STAGES.map(s => el('div', {class:'card'}, [
@@ -705,11 +700,11 @@ $('#pipeline').append(el('div', {class:'grid3', style:'grid-template-columns:rep
   ]))));
 
 const HUMAN = [
-  ['Wrote the vocabulary', 'The agent cannot invent the difference between "approval required" and "partner gated". Those seven access values, and the tie-break rules behind them, are the actual product judgement in this project.'],
-  ['Built the gold set', '20 apps, 100 labels, read off primary sources by hand before any grading code existed. Nothing else on this page can be trusted without it.'],
-  ['Rejected the near-misses', 'Slug matching proposed Square for Squarespace, Plain for Plaid, and mermaid-chart-mcp for mermaid-cli. All three are wrong and all three were caught by a person reading the descriptions.'],
-  ['Fixed an ambiguous field, not the model', 'has_mcp was the worst field in pass 1. The cause was my spec — "vendor or well-known third party" is not decidable. Tightening it to vendor-published only was a human edit to the prompt and to the labelling rule at the same time.'],
-  ['Called the reframe', 'Deciding that a sales-gated app with public docs is still buildable is a judgement about Composio\'s business model. No amount of retrieval produces it.'],
+  ['Wrote the vocabulary', 'The agent can\'t invent the difference between "approval required" and "partner gated". Those seven access values, and the tie-break rules under them, are the real product judgement here.'],
+  ['Built the gold set', '20 apps, 100 labels, read off primary sources by hand before any grading code existed. Nothing else on this page means anything without it.'],
+  ['Rejected the near-misses', 'Slug matching offered Square for Squarespace, Plain for Plaid, mermaid-chart-mcp for mermaid-cli. All three wrong, all three caught by reading the descriptions.'],
+  ['Fixed the spec, not the model', 'has_mcp was the worst field in pass 1, and the cause was my definition. "Vendor or well-known third party" isn\'t decidable. Tightening it to vendor-published was one human edit to the prompt and the labelling rule at once.'],
+  ['Called the reframe', 'Deciding a sales-gated app with public docs is still buildable is a judgement about Composio\'s business model. No amount of retrieval produces that.'],
 ];
 $('#humanLoop').append(...HUMAN.map(([h, p]) => el('div', {style:'margin-bottom:13px'}, [
   el('div', {style:'font-weight:600;font-size:13.5px', text:h}),
@@ -723,15 +718,17 @@ const COST = [
   ['Notional LLM cost', '$' + (llm.notional_usd ?? 0)],
   ['Firecrawl calls', `${(fcs.search || 0)} search + ${(fcs.scrape || 0)} scrape`],
   ['Cache hits', String(fcs.cache_hits || 0)],
-  ['LLM wall time', wall + ' min across 6 workers'],
+  ['LLM wall time', wall + ' min across 10 workers'],
 ];
 $('#cost').append(el('div', {class:'bars'}, COST.map(([k, v]) => el('div', {class:'bar', style:'grid-template-columns:1fr auto'}, [
   el('div', {class:'sec2', style:'text-align:left', text:k}),
   el('div', {class:'num', text:v}),
 ]))),
   el('p', {class:'cap', style:'margin-top:12px', text:
-    `Per app that is about $${((llm.notional_usd || 0) / Math.max(rows.length, 1)).toFixed(4)} of model spend and ${((fcs.search || 0) + (fcs.scrape || 0)) / Math.max(rows.length, 1) < 20 ? Math.round(((fcs.search || 0) + (fcs.scrape || 0)) / Math.max(rows.length, 1)) : '?'} retrieval calls. `
-    + `The binding constraint was never the model — it was the free Firecrawl tier, which bills per search result and is why retrieval is three pages per app rather than eight. At this rate the whole 1,222-toolkit catalog would re-research for roughly $${(((llm.notional_usd || 0) / Math.max(rows.length, 1)) * 1222).toFixed(0)} of model spend, and the search bill would dwarf it.`}));
+    `That's about $${((llm.notional_usd || 0) / Math.max(rows.length, 1)).toFixed(4)} of model spend per app. `
+    + `The model was never the constraint. The free Firecrawl tier was, and it bills per search result, which is why retrieval `
+    + `is three pages per app instead of eight. Re-researching all 1,222 toolkits at this rate runs about $${(((llm.notional_usd || 0) / Math.max(rows.length, 1)) * 1222).toFixed(0)} `
+    + `in model spend, and the search bill would dwarf that.`}));
 
 /* ---------- 7. verification ---------- */
 const E = D.eval || {};
@@ -742,19 +739,19 @@ if (E.pass1 && E.pass2) {
     {key:'pass1', label:'closed book', ...p1}, {key:'pass2', label:'verified', ...p2}];
 
   $('#verifyTiles').append(...[
-    {v:(p1.accuracy * 100).toFixed(0) + '%', k:'pass 1 — just asking the model', n:`${p1.n_labels} labels, no tools, no evidence`},
+    {v:(p1.accuracy * 100).toFixed(0) + '%', k:'pass 1, just asking the model', n:`${p1.n_labels} labels, no tools, no evidence`},
     {v:(p2.accuracy * 100).toFixed(0) + '%', k:'the shipped answer, after every loop', n:'same labels, same grader, same 20 apps'},
-    {v:(E.lift >= 0 ? '+' : '') + (E.lift * 100).toFixed(0) + ' pts', k:'bought by the verification loops',
-     n:E.lift <= 0.03 ? 'small — and the honest story is on the right' : 'the number this pipeline exists to move'},
+    {v:(E.lift >= 0 ? '+' : '') + (E.lift * 100).toFixed(0) + ' pts', k:'net movement',
+     n:'the middle of the chart below is the interesting part'},
     E.oracle ? {v:(E.oracle.agreement * 100).toFixed(0) + '%', k:"agreement with Composio's shipped auth config",
-      n:`independent cross-check across ${E.oracle.n_checked} apps, not 20`} : null,
+      n:`a second check across ${E.oracle.n_checked} apps, not 20`} : null,
   ].filter(Boolean).map(t => el('div', {class:'tile'}, [
     el('div', {class:'v', text:t.v}), el('div', {class:'k', text:t.k}), el('div', {class:'n', text:t.n})
   ])));
 
   $('#accLegend').append(...stages.map((st, i) => el('span', {}, [
     el('i', {style:`background:${STAGE_COLOR[i % STAGE_COLOR.length]}`}),
-    document.createTextNode(`${st.key} — ${st.label} (${(st.accuracy * 100).toFixed(0)}%)`)])));
+    document.createTextNode(`${st.key}, ${st.label} (${(st.accuracy * 100).toFixed(0)}%)`)])));
 
   const node = $('#accChart');
   Object.keys(p2.per_field).forEach(f => {
@@ -773,9 +770,9 @@ if (E.pass1 && E.pass2) {
 
   if (E.rules && E.rules.length) {
     $('#accChart').append(el('p', {class:'cap', style:'margin-top:16px', text:
-      'Per-rule hit rate inside the final pass: ' + E.rules.map(r =>
+      'Hit rate per rule inside the shipped pass: ' + E.rules.map(r =>
         `${r.rule} ${Math.round(r.accuracy * 100)}% (n=${r.n})`).join(' · ')
-      + '. This is how the critic lost the right to propose corrections.'}));
+      + '. This is how the critic lost the right to change anything.'}));
   }
 
   const t = $('#missTable');
@@ -796,23 +793,27 @@ if (E.pass1 && E.pass2) {
 if (E.calibration_pass2) {
   barChart($('#calib'), E.calibration_pass2.map(b => ({
     k:'conf ' + b.bucket, v:Math.round(b.accuracy * 100),
-    tip:`${b.n} labels the agent rated ${b.bucket} confident — ${Math.round(b.accuracy * 100)}% of them were right`
+    tip:`${b.n} labels the agent rated ${b.bucket} confident. ${Math.round(b.accuracy * 100)}% of them were right.`
   })), {unit:'%'});
   const buckets = E.calibration_pass2;
-  const hi = buckets[0], lo = buckets[buckets.length - 1];
+  // A bucket holding one label says nothing. Compare the biggest two instead.
+  const sized = buckets.filter(b => b.n >= 5);
+  const hi = sized[0] || buckets[0];
+  const lo = sized[sized.length - 1] || buckets[buckets.length - 1];
+  const tiny = buckets.filter(b => b.n < 5);
   $('#calib').append(el('p', {class:'cap', style:'margin-top:12px', text:
     buckets.length < 2 ? 'Too few buckets to say anything.' :
     (hi.accuracy > lo.accuracy
-      ? `It is directionally calibrated: ${Math.round(hi.accuracy*100)}% right when it claimed ${hi.bucket} confidence versus ${Math.round(lo.accuracy*100)}% at ${lo.bucket}. Low-confidence rows are worth a human's time; high-confidence rows are mostly not.`
-      : `It is NOT calibrated — accuracy does not rise with stated confidence (${Math.round(hi.accuracy*100)}% at ${hi.bucket} vs ${Math.round(lo.accuracy*100)}% at ${lo.bucket}). Treat its confidence numbers as decoration, and route review by field instead.`)}));
+      ? `Calibrated, roughly. ${Math.round(hi.accuracy*100)}% right on the ${hi.n} labels it called ${hi.bucket} confident, ${Math.round(lo.accuracy*100)}% on the ${lo.n} at ${lo.bucket}. So the low-confidence rows are the ones worth a human's afternoon. The confident ones mostly aren't.${tiny.length ? ` The ${tiny.map(b => b.bucket).join(' and ')} band is left out of that sentence, since it holds ${tiny.map(b => b.n).join(' and ')} label${tiny[0].n === 1 ? '' : 's'}.` : ''}`
+      : `Not calibrated. Accuracy doesn't rise with stated confidence: ${Math.round(hi.accuracy*100)}% at ${hi.bucket} against ${Math.round(lo.accuracy*100)}% at ${lo.bucket}. Treat the confidence numbers as decoration and route review by field instead.`)}));
 }
 
 if (E.oracle) {
   const o = E.oracle;
-  $('#oracleCap').textContent = `Composio ships ${o.n_checked + o.n_abstained} of these apps as toolkits with a real auth config, `
-    + `maintained by a different process than this agent. Where the agent's primary_auth is one of the schemes Composio accepts, `
-    + `call it agreement. This is not accuracy — Composio can be terminologically different from a vendor's docs — but it is a `
-    + `consistency check ${Math.round(o.n_checked / 20 * 10) / 10}× the size of the gold set.`;
+  $('#oracleCap').textContent = `Composio ships ${o.n_checked + o.n_abstained} of these apps with a real auth config, maintained by `
+    + `a completely different process than this agent. Where the agent's primary_auth is one of the schemes Composio accepts, call it `
+    + `agreement. It isn't accuracy, since Composio's vocabulary isn't a vendor's. It is a consistency check `
+    + `${Math.round(o.n_checked / 20 * 10) / 10}x the size of the gold set.`;
   const dis = o.disagreements || [];
   const bearerish = dis.filter(r => ['BEARER_TOKEN','API_KEY'].includes(r.predicted)
     && (r.composio || []).some(c => ['BEARER_TOKEN','API_KEY'].includes(c))).length;
@@ -830,10 +831,10 @@ if (E.oracle) {
     ]));
   if (dis.length) {
     $('#oracle').append(el('p', {class:'cap', style:'margin:-4px 0 12px', text:
-      `${bearerish} of the ${dis.length} disagreements are the same fact under two names: the agent reads `
-      + '"Authorization: Bearer <token>" off a docs page and records BEARER_TOKEN, while Composio classifies the '
-      + 'same static credential as API_KEY. They are not counted as agreement — collapsing them would flatter the '
-      + 'number — but they are a different kind of miss from getting the scheme wrong.'}));
+      `${bearerish} of the ${dis.length} disagreements are one fact under two names. The agent reads `
+      + '"Authorization: Bearer <token>" off a docs page and files BEARER_TOKEN. Composio files the same static '
+      + "credential as API_KEY. I'm not counting those as agreement, because collapsing them would flatter the number. "
+      + "They're still a milder miss than getting the scheme wrong."}));
     const t = el('table');
     t.append(el('thead', {}, el('tr', {}, ['App','Agent','Composio accepts'].map(h => el('th', {text:h})))));
     t.append(el('tbody', {}, dis.map(r => el('tr', {}, [
@@ -846,11 +847,10 @@ if (E.oracle) {
 {
   const L = (D.loops || {}).browser || {};
   $('#gateCap').textContent = L.probed
-    ? `A real browser opened the pricing and developer pages for ${L.probed} apps whose access answer was `
-      + `low-confidence or already claimed a gate, read the rendered call-to-action, and screenshotted it. `
-      + `It only reports what it can prove: "submit your app for review" is written deliberately, while `
-      + `"Start free" is on almost every pricing page in this set and describes the product, not the API. `
-      + `A free CTA therefore resolves to "no gate found", which is all it licenses.`
+    ? `A real browser opened the pricing and developer pages for ${L.probed} apps whose access answer was shaky or `
+      + `already claimed a gate, read the rendered call to action, and screenshotted it. It reports only what it can prove. `
+      + `"Submit your app for review" gets written on purpose. "Start free" is on almost every pricing page here and `
+      + `describes the product, not the API. So a free CTA resolves to "no gate found", which is all it licenses.`
     : 'The browser pass has not been run for this build.';
   if (L.probed) {
     $('#gateSummary').append(el('div', {class:'bars'}, [
@@ -862,17 +862,17 @@ if (E.oracle) {
       el('div', {class:'sec2', style:'text-align:left', text:k}),
       el('div', {class:'num', style:`color:${c}`, text:String(v ?? 0)})]))),
       el('p', {class:'cap', style:'margin-top:12px', text:
-        `The ${L.corrected_agent} corrections are rows where the agent had called the app open and a real page said `
-        + 'otherwise — iPayX, where the agent had no answer at all, is the clearest. The '
-        + `${L.no_gate_found} "no gate found" rows are the honest hard case: a free product sitting in front of an `
-        + 'API that may still be sold separately, which is precisely the ambiguity a regex cannot resolve.'}));
+        `The ${L.corrected_agent} corrections are rows where the agent called the app open and a real page said otherwise. `
+        + `iPayX is the clearest, since the agent had no answer at all there. The ${L.no_gate_found} "no gate found" rows `
+        + 'are the honest hard case. A free product can sit in front of an API that is still sold separately, and no regex '
+        + 'resolves that.'}));
     const withShots = rows.flatMap(r => (r.browser_evidence || [])
       .filter(p => p.screenshot && p.signal && p.signal !== 'no_gate_found').slice(0, 1)
       .map(p => ({r, p}))).slice(0, 8);
     $('#shots').append(...withShots.map(({r, p}) => el('div', {class:'shot'}, [
       el('img', {src:p.screenshot, alt:`${r.app} pricing page`, loading:'lazy'}),
       el('div', {class:'m'}, [
-        el('b', {text:r.app}), el('span', {text:' — browser read '}),
+        el('b', {text:r.app}), el('span', {text:', browser read '}),
         el('span', {class:'mono', style:'color:var(--warn)', text:(p.signal || '').replace(/_/g, ' ')}),
         el('div', {class:'muted', style:'margin-top:4px;font-size:11px', text:'“' + ((p.quotes || [])[0] || '').slice(0, 110) + '”'}),
       ]),
@@ -884,20 +884,20 @@ if (E.oracle) {
   const R = (D.loops || {}).reachability;
   if (R) {
     $('#reachCap').textContent =
-      `Documentation goes stale. So one GET, with no credential, to the endpoint each app's own docs publish — `
-      + `asking only whether it exists and demands a key. ${R.live_and_gated} of ${R.probed} answered 401 or 403, `
-      + `which is the strongest confirmation available that both the API and its auth story are real, and `
-      + `${R.corroborates_surface} of those also had a documented surface in the findings. No credential was sent.`;
+      `Docs go stale. So one GET, no credential, to the endpoint each app publishes in its own docs, asking only whether it `
+      + `exists and wants a key. ${R.live_and_gated} of ${R.probed} came back 401 or 403. That's the strongest confirmation `
+      + `available that both the API and the auth finding are real, and ${R.corroborates_surface} of those also had a `
+      + `documented surface in the findings. No credential was sent anywhere.`;
     const LABEL = {
-      live_and_gated:'401/403 — live and gated', not_probeable:'per-tenant host or a CLI, nothing to probe',
-      path_not_found:'404 — host up, documented path wrong', live_open:'200 — answers with no credential',
+      live_and_gated:'401/403, live and gated', not_probeable:'per-tenant host or a CLI, nothing to probe',
+      path_not_found:'404, host up, documented path wrong', live_open:'200, answers with no credential',
       unreachable:'nothing listening', server_error:'5xx', error:'probe failed',
     };
     barChart($('#reachChart'), (R.mix || []).map(([k, v]) => ({k:LABEL[k] || k, v})), {total:R.probed});
     $('#reachNote').append(el('p', {class:'cap', style:'margin:0', text:
-      'The 404s are mostly the probe\'s fault, not the vendor\'s: Linear is GraphQL over POST so a GET is '
-      + 'meaningless, and Telegram puts the bot token in the path. They are left in rather than filtered out, '
-      + 'because a check that quietly drops its own failures is not a check.'}));
+      "Most of the 404s are the probe's fault, not the vendor's. Linear is GraphQL over POST, so a GET means nothing. "
+      + "Telegram puts the bot token in the path. They stay in, because a check that quietly drops its own failures "
+      + "isn't a check."}));
   }
 }
 
@@ -907,16 +907,18 @@ const unknowns = rows.filter(r => r.access === 'unknown').length;
 const lowconf = rows.filter(r => ((r.confidence || {}).access ?? 1) < 0.6).length;
 const demoted = rows.reduce((n, r) => n + ((r.critic_changes || []).length), 0);
 const criticFailed = rows.filter(r => (r.critic_audit || {})._error).length;
+const deadProbe = rows.filter(r => ['unreachable','path_not_found'].includes(r.reachability)).length;
 const HONEST = [
-  ['The sample is 20 apps, not 100', `Accuracy is measured on ${(E.pass2 || {}).n_labels || 100} labels across 20 apps. One flipped label moves the headline by a point, and the 95% interval on a result near 90% is roughly ±13 points. It is a direction, not a guarantee. The Composio cross-check exists precisely because 20 is small.`],
-  ['Retrieval was rationed', 'The free Firecrawl tier bills per search *result*, not per query. A full-width first run was projected to drain the account at app 55 of 100, so retrieval was cut to six search results and two fetched pages per app mid-project; a third page was bought back later out of what the cache had saved. Fields that need a pricing page one click deeper than the landing page suffer for it, and that is a real cause of the remaining errors, not a hypothetical one.'],
-  ['The adversarial critic did not work', `It flagged ${demoted} claims across the run and, allowed to act on them, cost 32 accuracy points — it turned a 74% pipeline into a 42% one. Both of the roles it was given (propose a correction, cast doubt) scored under a third against the gold set. Its flags are still published per row because they are useful for triage, but nothing on this page is decided by them. Every technique here was measured, and this is the one that lost.${criticFailed ? ` On ${criticFailed} apps the critic model itself errored and no audit ran at all.` : ''}`],
-  ['Apps that defeated it', `${unknowns} apps still have an unknown access level and ${lowconf} more are below 0.6 confidence on it. The pattern is consistent: private-beta fintech and research-data products (PitchBook, iPayX, Paygent, fanbasis, Waterfall) publish marketing pages and nothing else. For those, "there is no public evidence" is the finding, and the row says so instead of guessing.`],
-  ['Category errors are the honest hard case', 'Sherlock and Mermaid CLI are command-line programs, not SaaS. They have no auth, no tenant, and no API, and every instinct in a pipeline built around "apps" wants to give them one. They are on the page because getting them right is a better signal than a clean average.'],
-  errored ? ['Rows that errored outright', `${errored} apps hit an unrecoverable model or fetch error and carry whatever partial answer survived. They are in the table, not deleted from it.`] : null,
+  ['The sample is 20 apps, not 100', `Accuracy comes from ${(E.pass2 || {}).n_labels || 100} labels across 20 apps. One flipped label moves the headline by a point, and the 95% interval on a result near 74% is roughly 13 points wide. It's a direction, not a guarantee. The Composio cross-check exists because 20 is small.`],
+  ['Retrieval was rationed', 'The free Firecrawl tier bills per search result, not per query. A full-width first run was on track to drain the account at app 55 of 100, so I cut retrieval to six results and two pages per app mid-project, then bought a third page back out of what the cache had saved. Fields that need a pricing page one click deeper than the landing page pay for that, and it is a real cause of the remaining errors.'],
+  ['The adversarial critic did not work', `It flagged ${demoted} claims. Allowed to act on them, it turned a 74% pipeline into a 42% one. Both roles I gave it, propose a correction and cast doubt, scored under a third against the gold set. Its flags still ship per row because they help a human triage, but nothing here is decided by them. Every technique on this page was measured. This is the one that lost.${criticFailed ? ` On ${criticFailed} apps the critic model itself errored and no audit ran.` : ''}`],
+  ['It stopped saying "I don\'t know"', `Arbitration bought accuracy by making the agent commit. Before it, a third of the graded fields came back unknown. Now ${unknowns} row on the whole page has an unknown access level. So the errors that survive are confident errors, which are the harder kind to catch. PitchBook is the clearest: approval_required at 0.85 confidence, off three pages that never mention API access, where the human label is partner_gated. The cheapest tell is the API probe. ${deadProbe} documented endpoints never answered, and the shaky rows cluster there.`],
+  ['The apps that genuinely have nothing', 'PitchBook, iPayX, Paygent, fanbasis and Waterfall publish a marketing site and stop. No docs, no base URL that resolves, no pricing page that mentions an API. Every answer for those five is an inference from adjacent evidence, and I would not put any of them in front of an engineer without a call first.'],
+  ['Category errors are the honest hard case', 'Sherlock and Mermaid CLI are command-line programs, not SaaS. No auth, no tenant, no API. Every instinct in a pipeline built around "apps" wants to hand them one anyway. They stay on the page because getting them right says more than a clean average does.'],
+  errored ? ['Rows that errored outright', `${errored} apps hit a model or fetch error I could not recover and carry whatever partial answer survived. They are in the table, not deleted from it.`] : null,
 ].filter(Boolean);
 $('#honest').append(...HONEST.map(([h, p]) => el('div', {class:'pat'}, [
-  el('div', {class:'i', text:'—'}),
+  el('div', {class:'i', text:'·'}),
   el('div', {}, [el('h3', {text:h}), el('p', {text:p})]),
 ])));
 
@@ -925,18 +927,17 @@ const origin = location.origin && location.origin !== 'null' ? location.origin :
 $('#mcpCmd').textContent = `claude mcp add --transport http toolkit-radar ${origin}/api/mcp`;
 $('#dataLinks').append(el('div', {class:'bars'}, [
   ['data.json', 'every field, every app, plus the eval and the scoring weights'],
-  ['findings.csv', 'the flat table for a spreadsheet'],
-  ['llms.txt', 'a text brief so an agent can orient in one fetch'],
+  ['findings.csv', 'the flat table, for a spreadsheet'],
+  ['llms.txt', 'a short brief so an agent can orient in one fetch'],
 ].map(([f, d]) => el('div', {style:'margin-bottom:11px'}, [
   el('a', {href:f, class:'mono', text:'/' + f}),
   el('div', {class:'cap', style:'margin:2px 0 0', text:d}),
 ]))));
 
 $('#footer').append(el('div', {html:
-  `Researched by an agent, verified by a human, and honest about the difference. `
-  + `Findings generated from <code>agent/research.py</code> pass 2. `
+  `Researched by an agent, checked by a human, honest about the difference. `
   + (REPO ? `Source: <a href="${esc(REPO)}">${esc(REPO)}</a>. ` : '')
-  + `This page renders entirely from <a href="data.json">data.json</a> — no chart is drawn by hand.`}));
+  + `The whole page renders from <a href="data.json">data.json</a>. No number here was typed by hand.`}));
 })();
 </script>
 </body>
