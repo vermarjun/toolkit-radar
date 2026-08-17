@@ -269,7 +269,8 @@
     </div>
     <div class="card">
       <h3>What it cost</h3>
-      <p class="cap">Whole-run telemetry, and what it implies at catalog scale.</p>
+      <p class="cap">Measured on the final grounded run over all 100 apps. The control pass, the
+        browser pass and the API probe are not counted here, and neither are the runs that were thrown away.</p>
       <div id="cost"></div>
     </div>
   </div>
@@ -730,7 +731,7 @@ $('#cost').append(el('div', {class:'bars'}, COST.map(([k, v]) => el('div', {clas
 ]))),
   el('p', {class:'cap', style:'margin-top:12px', text:
     `Per app that is about $${((llm.notional_usd || 0) / Math.max(rows.length, 1)).toFixed(4)} of model spend and ${((fcs.search || 0) + (fcs.scrape || 0)) / Math.max(rows.length, 1) < 20 ? Math.round(((fcs.search || 0) + (fcs.scrape || 0)) / Math.max(rows.length, 1)) : '?'} retrieval calls. `
-    + `The binding constraint was not the model — it was the free Firecrawl tier, which is why retrieval is two pages per app rather than four.`}));
+    + `The binding constraint was never the model — it was the free Firecrawl tier, which bills per search result and is why retrieval is three pages per app rather than eight. At this rate the whole 1,222-toolkit catalog would re-research for roughly $${(((llm.notional_usd || 0) / Math.max(rows.length, 1)) * 1222).toFixed(0)} of model spend, and the search bill would dwarf it.`}));
 
 /* ---------- 7. verification ---------- */
 const E = D.eval || {};
